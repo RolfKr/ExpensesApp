@@ -16,6 +16,9 @@
 		B742632F2448BEC100597D4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B742632D2448BEC100597D4C /* LaunchScreen.storyboard */; };
 		B742633A2448BEC200597D4C /* ExpensesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74263392448BEC200597D4C /* ExpensesAppTests.swift */; };
 		B74263452448BEC200597D4C /* ExpensesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74263442448BEC200597D4C /* ExpensesAppUITests.swift */; };
+		B74263532448BF5D00597D4C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74263522448BF5D00597D4C /* Constants.swift */; };
+		B74263572448E63800597D4C /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74263562448E63800597D4C /* ExpenseCell.swift */; };
+		B74263592448FEE200597D4C /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74263582448FEE200597D4C /* CategoriesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		B74263402448BEC200597D4C /* ExpensesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpensesAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B74263442448BEC200597D4C /* ExpensesAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesAppUITests.swift; sourceTree = "<group>"; };
 		B74263462448BEC200597D4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B74263522448BF5D00597D4C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B74263562448E63800597D4C /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
+		B74263582448FEE200597D4C /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,9 @@
 				B742631F2448BEBA00597D4C /* AppDelegate.swift */,
 				B74263212448BEBA00597D4C /* SceneDelegate.swift */,
 				B74263232448BEBA00597D4C /* ViewController.swift */,
+				B74263582448FEE200597D4C /* CategoriesViewController.swift */,
+				B74263562448E63800597D4C /* ExpenseCell.swift */,
+				B74263522448BF5D00597D4C /* Constants.swift */,
 				B74263252448BEBA00597D4C /* Main.storyboard */,
 				B742632B2448BEC100597D4C /* Assets.xcassets */,
 				B742632D2448BEC100597D4C /* LaunchScreen.storyboard */,
@@ -262,9 +271,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B74263532448BF5D00597D4C /* Constants.swift in Sources */,
 				B742632A2448BEBA00597D4C /* ExpensesApp.xcdatamodeld in Sources */,
 				B74263242448BEBA00597D4C /* ViewController.swift in Sources */,
+				B74263572448E63800597D4C /* ExpenseCell.swift in Sources */,
 				B74263202448BEBA00597D4C /* AppDelegate.swift in Sources */,
+				B74263592448FEE200597D4C /* CategoriesViewController.swift in Sources */,
 				B74263222448BEBA00597D4C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,7 +460,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.RolfK.ExpensesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -466,7 +478,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.RolfK.ExpensesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
