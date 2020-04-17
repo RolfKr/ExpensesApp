@@ -10,7 +10,6 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var totalExpensesContainer: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cardBehind: UIView!
     @IBOutlet weak var cardFront: UIView!
@@ -25,11 +24,6 @@ class MainViewController: UIViewController {
         cardBehind.layer.cornerRadius = 60
         cardFront.layer.cornerRadius = 60
         progressContainer.layer.cornerRadius = 6
-        
-        totalExpensesContainer.layer.cornerRadius = 35
-        totalExpensesContainer.backgroundColor = UIColor.clear
-        totalExpensesContainer.layer.borderWidth = 4
-        totalExpensesContainer.layer.borderColor = UIColor.white.cgColor
     }
     
     @IBAction func expensesBtnTapped(_ sender: UIButton) {

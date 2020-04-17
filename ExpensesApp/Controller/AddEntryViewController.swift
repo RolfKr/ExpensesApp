@@ -16,6 +16,7 @@ class AddEntryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Constants.shared.setBackgroundGradient(for: view)
         background.layer.cornerRadius = 60
     }
     
