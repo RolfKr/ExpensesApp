@@ -10,6 +10,9 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="categoryType" inverseEntity="Category"/>
     </entity>
+    <entity name="FirstBoot" representedClassName="FirstBoot" syncable="YES">
+        <attribute name="firstBoot" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
     <entity name="Item" representedClassName="Item" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -20,5 +23,6 @@
         <element name="Category" positionX="224.3828125" positionY="-94.9609375" width="128" height="103"/>
         <element name="Item" positionX="-74.3359375" positionY="-264.2578125" width="128" height="103"/>
         <element name="CategoryType" positionX="81" positionY="-144" width="128" height="73"/>
+        <element name="FirstBoot" positionX="90" positionY="-126" width="128" height="58"/>
     </elements>
 </model>
