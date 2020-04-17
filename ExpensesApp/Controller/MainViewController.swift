@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MainViewController: UIViewController {
     
@@ -18,12 +19,16 @@ class MainViewController: UIViewController {
     @IBOutlet weak var expensesBtn: UIButton!
     @IBOutlet weak var incomeBtn: UIButton!
     
+    var items = [Item]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Constants.shared.setBackgroundGradient(for: view)
         cardBehind.layer.cornerRadius = 60
         cardFront.layer.cornerRadius = 60
         progressContainer.layer.cornerRadius = 6
+        
+        fetchItems()
     }
     
     @IBAction func expensesBtnTapped(_ sender: UIButton) {
@@ -34,13 +39,25 @@ class MainViewController: UIViewController {
         print("Income tapped")
     }
     
+    private func fetchItems() {
+        let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
+        
+        do {
+            items = try PersistenceManager.persistentContainer.viewContext.fetch(fetchRequest)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        print(items.count)
+    }
+    
 }
 
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
