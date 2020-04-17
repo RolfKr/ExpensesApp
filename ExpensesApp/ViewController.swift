@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         
         totalExpensesContainer.layer.cornerRadius = 35
         totalExpensesContainer.backgroundColor = UIColor.clear
-        totalExpensesContainer.layer.borderWidth = 5
+        totalExpensesContainer.layer.borderWidth = 4
         totalExpensesContainer.layer.borderColor = UIColor.white.cgColor
     }
     
