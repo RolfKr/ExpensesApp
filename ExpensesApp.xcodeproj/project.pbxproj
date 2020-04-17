@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7EA3FCFB24498F5200B1AF10 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA3FCFA24498F5200B1AF10 /* CategoryCell.swift */; };
 		B74263202448BEBA00597D4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B742631F2448BEBA00597D4C /* AppDelegate.swift */; };
 		B74263222448BEBA00597D4C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74263212448BEBA00597D4C /* SceneDelegate.swift */; };
-		B74263242448BEBA00597D4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74263232448BEBA00597D4C /* ViewController.swift */; };
+		B74263242448BEBA00597D4C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74263232448BEBA00597D4C /* MainViewController.swift */; };
 		B74263272448BEBA00597D4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B74263252448BEBA00597D4C /* Main.storyboard */; };
 		B742632A2448BEBA00597D4C /* ExpensesApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B74263282448BEBA00597D4C /* ExpensesApp.xcdatamodeld */; };
 		B742632C2448BEC100597D4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B742632B2448BEC100597D4C /* Assets.xcassets */; };
@@ -39,10 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7EA3FCFA24498F5200B1AF10 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		B742631C2448BEBA00597D4C /* ExpensesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpensesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B742631F2448BEBA00597D4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B74263212448BEBA00597D4C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B74263232448BEBA00597D4C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B74263232448BEBA00597D4C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B74263262448BEBA00597D4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B74263292448BEBA00597D4C /* ExpensesApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExpensesApp.xcdatamodel; sourceTree = "<group>"; };
 		B742632B2448BEC100597D4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -84,6 +86,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7EA3FCFC24499C8900B1AF10 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B74263282448BEBA00597D4C /* ExpensesApp.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7EA3FCFD24499C8E00B1AF10 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B74263562448E63800597D4C /* ExpenseCell.swift */,
+				7EA3FCFA24498F5200B1AF10 /* CategoryCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7EA3FCFE24499C9500B1AF10 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B74263232448BEBA00597D4C /* MainViewController.swift */,
+				B74263582448FEE200597D4C /* CategoriesViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7EA3FCFF24499CA800B1AF10 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B74263522448BF5D00597D4C /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		7EA3FD0024499CCC00B1AF10 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				B74263302448BEC100597D4C /* Info.plist */,
+				B742631F2448BEBA00597D4C /* AppDelegate.swift */,
+				B74263212448BEBA00597D4C /* SceneDelegate.swift */,
+				B742632B2448BEC100597D4C /* Assets.xcassets */,
+				B742632D2448BEC100597D4C /* LaunchScreen.storyboard */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		B74263132448BEB900597D4C = {
 			isa = PBXGroup;
 			children = (
@@ -107,17 +155,12 @@
 		B742631E2448BEBA00597D4C /* ExpensesApp */ = {
 			isa = PBXGroup;
 			children = (
-				B742631F2448BEBA00597D4C /* AppDelegate.swift */,
-				B74263212448BEBA00597D4C /* SceneDelegate.swift */,
-				B74263232448BEBA00597D4C /* ViewController.swift */,
-				B74263582448FEE200597D4C /* CategoriesViewController.swift */,
-				B74263562448E63800597D4C /* ExpenseCell.swift */,
-				B74263522448BF5D00597D4C /* Constants.swift */,
+				7EA3FCFC24499C8900B1AF10 /* Model */,
+				7EA3FCFD24499C8E00B1AF10 /* View */,
+				7EA3FCFE24499C9500B1AF10 /* Controller */,
 				B74263252448BEBA00597D4C /* Main.storyboard */,
-				B742632B2448BEC100597D4C /* Assets.xcassets */,
-				B742632D2448BEC100597D4C /* LaunchScreen.storyboard */,
-				B74263302448BEC100597D4C /* Info.plist */,
-				B74263282448BEBA00597D4C /* ExpensesApp.xcdatamodeld */,
+				7EA3FD0024499CCC00B1AF10 /* Utilities */,
+				7EA3FCFF24499CA800B1AF10 /* Helpers */,
 			);
 			path = ExpensesApp;
 			sourceTree = "<group>";
@@ -273,7 +316,8 @@
 			files = (
 				B74263532448BF5D00597D4C /* Constants.swift in Sources */,
 				B742632A2448BEBA00597D4C /* ExpensesApp.xcdatamodeld in Sources */,
-				B74263242448BEBA00597D4C /* ViewController.swift in Sources */,
+				B74263242448BEBA00597D4C /* MainViewController.swift in Sources */,
+				7EA3FCFB24498F5200B1AF10 /* CategoryCell.swift in Sources */,
 				B74263572448E63800597D4C /* ExpenseCell.swift in Sources */,
 				B74263202448BEBA00597D4C /* AppDelegate.swift in Sources */,
 				B74263592448FEE200597D4C /* CategoriesViewController.swift in Sources */,
@@ -452,7 +496,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3H92NGE9SW;
-				INFOPLIST_FILE = ExpensesApp/Info.plist;
+				INFOPLIST_FILE = ExpensesApp/Utilities/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -470,7 +514,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3H92NGE9SW;
-				INFOPLIST_FILE = ExpensesApp/Info.plist;
+				INFOPLIST_FILE = ExpensesApp/Utilities/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
