@@ -9,8 +9,8 @@
 import UIKit
 import CoreData
 
-class CategoriesViewController: UIViewController {
-    
+class CategoriesViewController: UIViewController, AddCategoryDelegate {
+
     @IBOutlet weak var searchContainer: UIView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -32,8 +32,28 @@ class CategoriesViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(allCategoryTypes[0].count)
+        print("HELLOOOOO")
+    }
+    
     @IBAction func addCategoryTapped(_ sender: UIButton) {
-        print("Add button tapped")
+        let addCategoryVC = storyboard?.instantiateViewController(identifier: "AddCategoryViewController") as! AddCategoryViewController
+        addCategoryVC.delegate = self
+        present(addCategoryVC, animated: true, completion: nil)
+    }
+    
+    func didfinishAddingCategory(category: Category) {
+        var index = 0
+        for categoryType in categoryTypes {
+            if category.categoryType == categoryType {
+                allCategoryTypes[index].append(category)
+                tableView.reloadData()
+                return
+            }
+            index += 1
+        }
     }
     
     private func fetchCategories() {
@@ -54,6 +74,8 @@ class CategoriesViewController: UIViewController {
                 }
                 allCategoryTypes.append(categoryGroup)
             }
+            
+            
         } catch let error {
             print(error.localizedDescription)
         }

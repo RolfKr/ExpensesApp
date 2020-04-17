@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import CoreData
+
+protocol AddCategoryDelegate {
+    func didfinishAddingCategory(category: Category)
+}
 
 class AddCategoryViewController: UIViewController {
     
@@ -15,12 +20,14 @@ class AddCategoryViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var doneButton: UIButton!
     
-    
+    var selectedIcon = UIImage()
+    var selectedType = "Income"
+    var delegate: AddCategoryDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dismissKeyboard = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        view.addGestureRecognizer(dismissKeyboard)
+        //let dismissKeyboard = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        //view.addGestureRecognizer(dismissKeyboard)
         let placeholderColor = UIColor.init(white: 1, alpha: 0.5)
         nameTextField.attributedPlaceholder = NSAttributedString(
             string: "Enter name here",
@@ -34,7 +41,20 @@ class AddCategoryViewController: UIViewController {
     }
     
     @IBAction func doneBtnTapped(_ sender: UIButton) {
-        print("Done button tapped")
+        guard let name = nameTextField.text, !name.isEmpty else {return}
+        createCategory(name: name, type: selectedType, icon: selectedIcon)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func createCategory(name: String, type: String, icon: UIImage) {
+        let categoryEntity = Category(context: PersistenceManager.persistentContainer.viewContext)
+        categoryEntity.name = name
+        categoryEntity.items = []
+        categoryEntity.categoryType = type
+        categoryEntity.icon = icon.pngData()!
+        PersistenceManager.saveContext()
+        
+        delegate.didfinishAddingCategory(category: categoryEntity)
     }
 
 }
@@ -54,6 +74,11 @@ extension AddCategoryViewController: UIPickerViewDelegate, UIPickerViewDataSourc
         let type = Constants.shared.categoryTypes[row]
         return NSAttributedString(string: type, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedType = Constants.shared.categoryTypes[row]
+        print(selectedType)
+    }
 }
 
 extension AddCategoryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -72,7 +97,11 @@ extension AddCategoryViewController: UICollectionViewDataSource, UICollectionVie
         return CGSize(width: 60, height: 60)
     }
     
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIcon = UIImage(named: "restaurant")!
+        print(indexPath.item)
+    }
+    
 }
 
 extension AddCategoryViewController: UITextFieldDelegate {

@@ -242,7 +242,7 @@
         <!--Categories-->
         <scene sceneID="6lN-Up-Vhz">
             <objects>
-                <viewController id="Ow4-qZ-mM3" customClass="CategoriesViewController" customModule="ExpensesApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoriesViewController" id="Ow4-qZ-mM3" customClass="CategoriesViewController" customModule="ExpensesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AuL-hD-F2p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -327,7 +327,6 @@
                                 <state key="normal" image="addBtn"/>
                                 <connections>
                                     <action selector="addCategoryTapped:" destination="Ow4-qZ-mM3" eventType="touchUpInside" id="4SI-Cf-TL6"/>
-                                    <segue destination="p9t-Cz-qfc" kind="presentation" id="SUG-6m-rrS"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -363,19 +362,19 @@
         <!--Add Category View Controller-->
         <scene sceneID="gAr-dt-dsu">
             <objects>
-                <viewController id="p9t-Cz-qfc" customClass="AddCategoryViewController" customModule="ExpensesApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddCategoryViewController" id="p9t-Cz-qfc" customClass="AddCategoryViewController" customModule="ExpensesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xYv-gk-zJI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMi-cy-19h">
-                                <rect key="frame" x="50" y="25" width="314" height="41"/>
+                                <rect key="frame" x="50" y="69" width="314" height="41"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNu-Cr-Cs5">
-                                <rect key="frame" x="50" y="156" width="314" height="26"/>
+                                <rect key="frame" x="50" y="200" width="314" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="IAs-if-PXA"/>
                                 </constraints>
@@ -384,7 +383,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick an icon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8e-vw-0Kn">
-                                <rect key="frame" x="50" y="373" width="314" height="26"/>
+                                <rect key="frame" x="50" y="417" width="314" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="5m3-9o-LM7"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="26" id="ZuY-1f-Kri"/>
@@ -394,7 +393,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o4b-Cw-z01" userLabel="Divider">
-                                <rect key="frame" x="60" y="134" width="294" height="2"/>
+                                <rect key="frame" x="60" y="178" width="294" height="2"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.44713184930000005" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="CAL-6m-XhH"/>
@@ -402,7 +401,7 @@
                                 <viewLayoutGuide key="safeArea" id="cvg-Bp-eP5"/>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Cbv-dn-t45">
-                                <rect key="frame" x="50" y="91" width="314" height="35"/>
+                                <rect key="frame" x="50" y="135" width="314" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="2pO-Re-wQN"/>
                                 </constraints>
@@ -415,7 +414,7 @@
                                 </connections>
                             </textField>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zlb-Po-8Iw">
-                                <rect key="frame" x="50" y="190" width="314" height="175"/>
+                                <rect key="frame" x="50" y="234" width="314" height="175"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="175" id="BoP-q9-9Kn"/>
                                 </constraints>
@@ -425,7 +424,7 @@
                                 </connections>
                             </pickerView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qOm-tV-NKw">
-                                <rect key="frame" x="50" y="407" width="314" height="321"/>
+                                <rect key="frame" x="50" y="451" width="314" height="331"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Kyi-3d-PPt">
                                     <size key="itemSize" width="128" height="128"/>
@@ -467,7 +466,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKk-9K-QHs">
-                                <rect key="frame" x="169" y="758" width="76" height="20"/>
+                                <rect key="frame" x="169" y="812" width="76" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="i6Y-W4-iYu"/>
                                 </constraints>
