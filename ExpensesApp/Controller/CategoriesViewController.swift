@@ -18,13 +18,17 @@ class CategoriesViewController: UIViewController {
     //https://www.mint.com/mint-categories
     var categoryTypes = Constants.shared.categoryTypes
     var allCategoryTypes = [[Category]]()
-    
+    var allCategories = [Category]()
+    var isSearching = false
+    var filteredCategories = [Category]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        textField.addTarget(self, action: #selector(editedTextfield), for: .editingChanged)
         Constants.shared.setBackgroundGradient(for: view)
         searchContainer.layer.cornerRadius = 20
         fetchCategories()
+        
     }
     
     @IBAction func addCategoryTapped(_ sender: UIButton) {
@@ -35,11 +39,12 @@ class CategoriesViewController: UIViewController {
         let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
                 
         do {
-            let categories = try PersistenceManager.persistentContainer.viewContext.fetch(fetchRequest)
+            allCategories = try PersistenceManager.persistentContainer.viewContext.fetch(fetchRequest)
+            filteredCategories = allCategories
             
             for categoryType in categoryTypes {
                 var categoryGroup: [Category] = []
-                for category in categories {
+                for category in allCategories {
                     if category.categoryType == categoryType {
                         categoryGroup.append(category)
                     } else{
@@ -53,30 +58,56 @@ class CategoriesViewController: UIViewController {
         }
     }
     
+    @objc private func editedTextfield() {
+        guard let searchText = textField.text else {return}
+        isSearching = !searchText.isEmpty
+        
+        filteredCategories = allCategories.filter({ (category) -> Bool in
+            category.name.contains(searchText)
+        })
+    
+        tableView.reloadData()
+    }
+    
 }
 
 extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return categoryTypes.count
+        if isSearching {
+            return 1
+        } else {
+            return categoryTypes.count
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return categoryTypes[section]
+        if isSearching {
+            return "Search results"
+        } else {
+            return categoryTypes[section]
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allCategoryTypes[section].count
+        if isSearching {
+            return filteredCategories.count
+        } else {
+            return allCategoryTypes[section].count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CategoryCell
-        //let category = categories[indexPath.item]
-        let category = allCategoryTypes[indexPath.section][indexPath.item]
-        cell.configureCell(image: UIImage(data: category.icon)!, name: category.name)
+        
+        if isSearching {
+            let category = filteredCategories[indexPath.row]
+            cell.configureCell(image: UIImage(data: category.icon)!, name: category.name)
+        } else {
+            let category = allCategoryTypes[indexPath.section][indexPath.item]
+            cell.configureCell(image: UIImage(data: category.icon)!, name: category.name)
+        }
         
         return cell
     }
 }
-
-
