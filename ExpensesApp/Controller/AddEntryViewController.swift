@@ -7,14 +7,29 @@
 //
 
 import UIKit
+import CoreData
 
 class AddEntryViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var amountTextField: UITextField!
     
-    private var addingExpense = true
+    var addingExpense = true
+    var categories: [Category] = {
+        let fetchrequest: NSFetchRequest<Category> = Category.fetchRequest()
+        var categories = [Category]()
+        do {
+            categories = try PersistenceManager.persistentContainer.viewContext.fetch(fetchrequest)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        return categories
+    }()
+    
+    var selectedCategory: Category?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +50,22 @@ class AddEntryViewController: UIViewController {
     }
     
     @IBAction func addBtnTapped(_ sender: UIButton) {
-        createNewItem()
+        guard let name = nameTextField.text, !name.isEmpty else {return}
+        guard let amount = amountTextField.text, !amount.isEmpty else {return}
+        guard let amountDouble = Double(amount) else {return}
+        guard let category = selectedCategory else {return}
+        
+        let timeNow = Date()
+        createItem(name: name, amount: amountDouble, category: category, date: timeNow)
     }
     
-    private func createNewItem() {
-        guard let name = nameTextField.text, !name.isEmpty else {return}
-        print(name)
+    private func createItem(name: String, amount: Double, category: Category, date: Date) {
+        let itemEntity = Item(context: PersistenceManager.persistentContainer.viewContext)
+        itemEntity.name = name
+        itemEntity.amount = amount
+        itemEntity.category = category
+        itemEntity.date = date
+        PersistenceManager.saveContext()
     }
     
 }
@@ -48,20 +73,32 @@ class AddEntryViewController: UIViewController {
 extension AddEntryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return Constants.shared.categoryTypes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CategoryCollectionCell
-        cell.configureCell(image: UIImage(named: "restaurant")!, name: "Restaurant")
+        let category = Constants.shared.categoryTypes[indexPath.row]
+        cell.configureCell(image: UIImage(named: "restaurant")!, name: category)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 110, height: 120)
+        return CGSize(width: 100, height: 120)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
+        selectedCategory = categories[indexPath.row]
+    }
+}
+
+
+extension AddEntryViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        amountTextField.resignFirstResponder()
+        nameTextField.resignFirstResponder()
+        
+        return true
     }
 }
