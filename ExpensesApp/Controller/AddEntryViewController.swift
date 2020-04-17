@@ -35,6 +35,11 @@ class AddEntryViewController: UIViewController {
         super.viewDidLoad()
         Constants.shared.setBackgroundGradient(for: view)
         background.layer.cornerRadius = 60
+        
+        let placeholderColor = UIColor.init(white: 1, alpha: 0.5)
+        amountTextField.attributedPlaceholder = NSAttributedString(
+            string: "0.00",
+            attributes: [NSAttributedString.Key.foregroundColor: placeholderColor])
     }
     
     @IBAction func changeEntryTapped(_ sender: UIButton) {
@@ -57,6 +62,9 @@ class AddEntryViewController: UIViewController {
         
         let timeNow = Date()
         createItem(name: name, amount: amountDouble, category: category, date: timeNow)
+        
+        nameTextField.text = ""
+        amountTextField.text = ""
     }
     
     private func createItem(name: String, amount: Double, category: Category, date: Date) {
