@@ -17,9 +17,10 @@ extension Category {
         return NSFetchRequest<Category>(entityName: "Category")
     }
 
-    @NSManaged public var icon: Data?
-    @NSManaged public var name: String?
-    @NSManaged public var items: NSSet?
+    @NSManaged public var icon: Data
+    @NSManaged public var name: String
+    @NSManaged public var categoryType: String
+    @NSManaged public var items: NSSet
 
 }
 

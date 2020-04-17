@@ -18,8 +18,8 @@ extension Item {
     }
 
     @NSManaged public var amount: Double
-    @NSManaged public var date: Date?
-    @NSManaged public var name: String?
-    @NSManaged public var category: Category?
+    @NSManaged public var date: Date
+    @NSManaged public var name: String
+    @NSManaged public var category: Category
 
 }

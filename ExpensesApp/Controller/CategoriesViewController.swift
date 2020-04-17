@@ -10,45 +10,47 @@ import UIKit
 import CoreData
 
 class CategoriesViewController: UIViewController {
-
+    
     @IBOutlet weak var searchContainer: UIView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
     //https://www.mint.com/mint-categories
     var categoryTypes = Constants.shared.categoryTypes
+    var allCategoryTypes = [[Category]]()
     
-    let categories = [
-        ["Paycheck", "Investment", "Returned Purchase", "Bonus", "Interest Income", "Reimbursement", "Rental Income"],
-        ["Arts", "Music", "Movies", "Newspaper & Magazines", "Games"],
-        ["Tuition", "Student Load", "Books & Supplies"],
-        ["Clothing", "Books", "Electronics & Software", "Hobbies", "Sporting Goods"],
-        ["Laundry", "Hair", "Spa"],
-        ["Dentist", "Doctor", "Eye care", "Pharmacy", "Health Insurance", "Gym", "Sports"],
-        ["Activities", "Allowance", "Baby Supplies", "Babysitter & Daycare", "Child Support", "Toys"],
-        ["Groceries", "Coffee shops", "Fast Food", "Restaurants", "Alcohol"],
-        ["Gift", "Charity"],
-        ["Deposit", "Withdrawal", "Dividends & Cap Gains", "Buy", "Sell"],
-        ["Television", "Home Phone", "Internet", "Mobile Phone", "Utilities"],
-        ["Gas & Fuel", "Parking", "Service & Auto Parts", "Auto Payment", "Auto Insurance"],
-        ["Air Travel", "Hotel", "Rental Car & Taxi", "Vacation"],
-        ["Service Fee", "Late Fee", "Finance Charge", "ATM Fee", "Bank Fee", "Commissions"],
-        ["Advertising", "Office Supplies", "Printing", "Shipping", "Legal"]
-        
-    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         Constants.shared.setBackgroundGradient(for: view)
         searchContainer.layer.cornerRadius = 20
-        
-        
-        
+        fetchCategories()
     }
     
     @IBAction func addCategoryTapped(_ sender: UIButton) {
         print("Add button tapped")
+    }
+    
+    private func fetchCategories() {
+        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+                
+        do {
+            let categories = try PersistenceManager.persistentContainer.viewContext.fetch(fetchRequest)
+            
+            for categoryType in categoryTypes {
+                var categoryGroup: [Category] = []
+                for category in categories {
+                    if category.categoryType == categoryType {
+                        categoryGroup.append(category)
+                    } else{
+                        continue
+                    }
+                }
+                allCategoryTypes.append(categoryGroup)
+            }
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
     
 }
@@ -64,13 +66,17 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories[section].count
+        return allCategoryTypes[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CategoryCell
-        let category = categories[indexPath.section][indexPath.row]
-        cell.configureCell(image: UIImage(named: "restaurant")!, name: category)
+        //let category = categories[indexPath.item]
+        let category = allCategoryTypes[indexPath.section][indexPath.item]
+        cell.configureCell(image: UIImage(data: category.icon)!, name: category.name)
+        
         return cell
     }
 }
+
+

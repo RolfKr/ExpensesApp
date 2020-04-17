@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E54F967244A0BE9003ABAA1 /* Preload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54F966244A0BE9003ABAA1 /* Preload.swift */; };
 		7E84C6902449CA9400B2C657 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E84C68F2449CA9400B2C657 /* SettingsViewController.swift */; };
 		7EA3FCFB24498F5200B1AF10 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA3FCFA24498F5200B1AF10 /* CategoryCell.swift */; };
 		7EA3FD022449A83E00B1AF10 /* AddEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA3FD012449A83E00B1AF10 /* AddEntryViewController.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E54F966244A0BE9003ABAA1 /* Preload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preload.swift; sourceTree = "<group>"; };
 		7E84C68F2449CA9400B2C657 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7EA3FCFA24498F5200B1AF10 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		7EA3FD012449A83E00B1AF10 /* AddEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				B74263522448BF5D00597D4C /* Constants.swift */,
+				7E54F966244A0BE9003ABAA1 /* Preload.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				7EDC71142449E107002CACDF /* Category+CoreDataProperties.swift in Sources */,
 				B74263532448BF5D00597D4C /* Constants.swift in Sources */,
 				7EDC71132449E107002CACDF /* Category+CoreDataClass.swift in Sources */,
+				7E54F967244A0BE9003ABAA1 /* Preload.swift in Sources */,
 				7EDC71122449E107002CACDF /* Item+CoreDataProperties.swift in Sources */,
 				B742632A2448BEBA00597D4C /* ExpensesApp.xcdatamodeld in Sources */,
 				B74263242448BEBA00597D4C /* MainViewController.swift in Sources */,

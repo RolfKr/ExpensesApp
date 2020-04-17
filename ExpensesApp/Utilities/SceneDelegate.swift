@@ -13,26 +13,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
-    let standardCategories = [
-        ["Paycheck", "Investment", "Returned Purchase", "Bonus", "Interest Income", "Reimbursement", "Rental Income"],
-        ["Arts", "Music", "Movies", "Newspaper & Magazines", "Games"],
-        ["Tuition", "Student Load", "Books & Supplies"],
-        ["Clothing", "Books", "Electronics & Software", "Hobbies", "Sporting Goods"],
-        ["Laundry", "Hair", "Spa"],
-        ["Dentist", "Doctor", "Eye care", "Pharmacy", "Health Insurance", "Gym", "Sports"],
-        ["Activities", "Allowance", "Baby Supplies", "Babysitter & Daycare", "Child Support", "Toys"],
-        ["Groceries", "Coffee shops", "Fast Food", "Restaurants", "Alcohol"],
-        ["Gift", "Charity"],
-        ["Deposit", "Withdrawal", "Dividends & Cap Gains", "Buy", "Sell"],
-        ["Television", "Home Phone", "Internet", "Mobile Phone", "Utilities"],
-        ["Gas & Fuel", "Parking", "Service & Auto Parts", "Auto Payment", "Auto Insurance"],
-        ["Air Travel", "Hotel", "Rental Car & Taxi", "Vacation"],
-        ["Service Fee", "Late Fee", "Finance Charge", "ATM Fee", "Bank Fee", "Commissions"],
-        ["Advertising", "Office Supplies", "Printing", "Shipping", "Legal"]
-    ]
-    
-    private func saveStandardCategories() {
-
+    private func checkForCategories() {
+        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+        var categories = [Category]()
+        
+        do {
+            categories = try PersistenceManager.persistentContainer.viewContext.fetch(fetchRequest)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        if let _ = categories.first?.objectID {
+            return
+        }
+        
+        Preload.preloadData()
     }
     
     
@@ -41,7 +36,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
-
+        
+        checkForCategories()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
