@@ -37,27 +37,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ]
 
     private func saveStandardCategories() {
-        
-        for categoryType in standardCategoryTypes {
-            let categoryTypeEntity = CategoryType(context: PersistenceManager.persistentContainer.viewContext)
-            categoryTypeEntity.name = categoryType
-            PersistenceManager.saveContext()
+        if checkIfFirstBoot() {
+            for categoryType in standardCategoryTypes {
+                let categoryTypeEntity = CategoryType(context: PersistenceManager.persistentContainer.viewContext)
+                categoryTypeEntity.name = categoryType
+                PersistenceManager.saveContext()
+                firstBoot()
+            }
         }
+    }
+    
+    private func firstBoot() {
+        let firstBoot = FirstBoot(context: PersistenceManager.persistentContainer.viewContext)
+        firstBoot.firstBoot = false
+        PersistenceManager.saveContext()
     }
     
     private func checkIfFirstBoot() -> Bool {
         let fetchRequest: NSFetchRequest<FirstBoot> = FirstBoot.fetchRequest()
         var firstBoots = [FirstBoot]()
-        var firstBoot = true
         
         do {
             firstBoots = try PersistenceManager.persistentContainer.viewContext.fetch(fetchRequest)
-            firstBoot = firstBoots[0].firstBoot
         } catch let error {
             print(error.localizedDescription)
         }
         
-        return firstBoot
+        if let _ = firstBoots.first?.objectID {
+            print("First time booting the app")
+            return false
+        }
+        print("Not the first time booting the app")
+        return true
     }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -65,7 +76,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
-        checkIfFirstBoot()
         saveStandardCategories()
     }
 
