@@ -6,7 +6,7 @@
         <relationship name="categoryType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryType" inverseName="categories" inverseEntity="CategoryType"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="category" inverseEntity="Item"/>
     </entity>
-    <entity name="CategoryType" representedClassName="CategoryType" syncable="YES" codeGenerationType="class">
+    <entity name="CategoryType" representedClassName="CategoryType" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="categoryType" inverseEntity="Category"/>
     </entity>

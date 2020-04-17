@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CategoriesViewController: UIViewController {
 
@@ -15,7 +16,8 @@ class CategoriesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //https://www.mint.com/mint-categories
-    var categoryHeaders = ["Income", "Entertainment", "Education", "Shopping", "Personal Care", "Health & Fitness", "Kids", "Food & Dining", "Gifts & Donations", "Investments", "Bills & Utilities", "Transport", "Travel", "Fees & Charges", "Business Services"]
+    var categoryTypes = [CategoryType]()
+    
     let categories = [
         ["Paycheck", "Investment", "Returned Purchase", "Bonus", "Interest Income", "Reimbursement", "Rental Income"],
         ["Arts", "Music", "Movies", "Newspaper & Magazines", "Games"],
@@ -37,8 +39,12 @@ class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadData()
+        
         Constants.shared.setBackgroundGradient(for: view)
         searchContainer.layer.cornerRadius = 20
+        
+        
         
     }
     
@@ -46,16 +52,28 @@ class CategoriesViewController: UIViewController {
         print("Add button tapped")
     }
     
+    private func loadData() {
+        let fetchRequest: NSFetchRequest<CategoryType> = CategoryType.fetchRequest()
+        
+        do {
+            categoryTypes = try PersistenceManager.persistentContainer.viewContext.fetch(fetchRequest)
+            tableView.reloadData()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+    }
+    
 }
 
 extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return categoryHeaders.count
+        return categoryTypes.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return categoryHeaders[section]
+        return categoryTypes[section].name
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
