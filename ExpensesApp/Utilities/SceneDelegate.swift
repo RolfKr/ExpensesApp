@@ -11,6 +11,29 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    var standardCategoryTypes = ["Income", "Entertainment", "Education", "Shopping", "Personal Care",
+                           "Health & Fitness", "Kids", "Food & Dining", "Gifts & Donations",
+                           "Investments", "Bills & Utilities", "Transport", "Travel",
+                           "Fees & Charges", "Business Services"]
+    
+    let standardCategories = [
+        ["Paycheck", "Investment", "Returned Purchase", "Bonus", "Interest Income", "Reimbursement", "Rental Income"],
+        ["Arts", "Music", "Movies", "Newspaper & Magazines", "Games"],
+        ["Tuition", "Student Load", "Books & Supplies"],
+        ["Clothing", "Books", "Electronics & Software", "Hobbies", "Sporting Goods"],
+        ["Laundry", "Hair", "Spa"],
+        ["Dentist", "Doctor", "Eye care", "Pharmacy", "Health Insurance", "Gym", "Sports"],
+        ["Activities", "Allowance", "Baby Supplies", "Babysitter & Daycare", "Child Support", "Toys"],
+        ["Groceries", "Coffee shops", "Fast Food", "Restaurants", "Alcohol"],
+        ["Gift", "Charity"],
+        ["Deposit", "Withdrawal", "Dividends & Cap Gains", "Buy", "Sell"],
+        ["Television", "Home Phone", "Internet", "Mobile Phone", "Utilities"],
+        ["Gas & Fuel", "Parking", "Service & Auto Parts", "Auto Payment", "Auto Insurance"],
+        ["Air Travel", "Hotel", "Rental Car & Taxi", "Vacation"],
+        ["Service Fee", "Late Fee", "Finance Charge", "ATM Fee", "Bank Fee", "Commissions"],
+        ["Advertising", "Office Supplies", "Printing", "Shipping", "Legal"]
+    ]
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -18,6 +41,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

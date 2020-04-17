@@ -14,6 +14,8 @@ class AddEntryViewController: UIViewController {
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     
+    private var addingExpense = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Constants.shared.setBackgroundGradient(for: view)
@@ -22,14 +24,25 @@ class AddEntryViewController: UIViewController {
     
     @IBAction func changeEntryTapped(_ sender: UIButton) {
         if sender.titleLabel?.text == "expense" {
+            addingExpense.toggle()
             sender.setTitle("income", for: .normal)
             sender.setTitleColor(.green, for: .normal)
         } else {
+            addingExpense.toggle()
             sender.setTitle("expense", for: .normal)
             sender.setTitleColor(.red, for: .normal)
         }
     }
-
+    
+    @IBAction func addBtnTapped(_ sender: UIButton) {
+        createNewItem()
+    }
+    
+    private func createNewItem() {
+        guard let name = nameTextField.text, !name.isEmpty else {return}
+        print(name)
+    }
+    
 }
 
 extension AddEntryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -46,5 +59,9 @@ extension AddEntryViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 110, height: 120)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.item)
     }
 }

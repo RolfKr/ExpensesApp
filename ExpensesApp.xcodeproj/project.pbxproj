@@ -135,11 +135,11 @@
 		7EA3FD0024499CCC00B1AF10 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				B74263302448BEC100597D4C /* Info.plist */,
 				B742631F2448BEBA00597D4C /* AppDelegate.swift */,
 				B74263212448BEBA00597D4C /* SceneDelegate.swift */,
 				B742632B2448BEC100597D4C /* Assets.xcassets */,
 				B742632D2448BEC100597D4C /* LaunchScreen.storyboard */,
+				B74263302448BEC100597D4C /* Info.plist */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
