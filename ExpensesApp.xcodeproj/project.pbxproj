@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7E54F967244A0BE9003ABAA1 /* Preload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54F966244A0BE9003ABAA1 /* Preload.swift */; };
+		7E54F969244A3AF1003ABAA1 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54F968244A3AF1003ABAA1 /* AddCategoryViewController.swift */; };
+		7E54F96B244A4126003ABAA1 /* AddCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54F96A244A4126003ABAA1 /* AddCategoryCell.swift */; };
 		7E84C6902449CA9400B2C657 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E84C68F2449CA9400B2C657 /* SettingsViewController.swift */; };
 		7EA3FCFB24498F5200B1AF10 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA3FCFA24498F5200B1AF10 /* CategoryCell.swift */; };
 		7EA3FD022449A83E00B1AF10 /* AddEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA3FD012449A83E00B1AF10 /* AddEntryViewController.swift */; };
@@ -51,6 +53,8 @@
 
 /* Begin PBXFileReference section */
 		7E54F966244A0BE9003ABAA1 /* Preload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preload.swift; sourceTree = "<group>"; };
+		7E54F968244A3AF1003ABAA1 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
+		7E54F96A244A4126003ABAA1 /* AddCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryCell.swift; sourceTree = "<group>"; };
 		7E84C68F2449CA9400B2C657 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7EA3FCFA24498F5200B1AF10 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		7EA3FD012449A83E00B1AF10 /* AddEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 				B74263562448E63800597D4C /* ExpenseCell.swift */,
 				7EA3FCFA24498F5200B1AF10 /* CategoryCell.swift */,
 				7EA3FD032449BA4000B1AF10 /* CategoryCollectionCell.swift */,
+				7E54F96A244A4126003ABAA1 /* AddCategoryCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 			children = (
 				B74263232448BEBA00597D4C /* MainViewController.swift */,
 				B74263582448FEE200597D4C /* CategoriesViewController.swift */,
+				7E54F968244A3AF1003ABAA1 /* AddCategoryViewController.swift */,
 				7EA3FD012449A83E00B1AF10 /* AddEntryViewController.swift */,
 				7EA3FD052449C27300B1AF10 /* StatisticsViewController.swift */,
 				7E84C68F2449CA9400B2C657 /* SettingsViewController.swift */,
@@ -359,6 +365,7 @@
 				7E54F967244A0BE9003ABAA1 /* Preload.swift in Sources */,
 				7EDC71122449E107002CACDF /* Item+CoreDataProperties.swift in Sources */,
 				B742632A2448BEBA00597D4C /* ExpensesApp.xcdatamodeld in Sources */,
+				7E54F969244A3AF1003ABAA1 /* AddCategoryViewController.swift in Sources */,
 				B74263242448BEBA00597D4C /* MainViewController.swift in Sources */,
 				7EA3FCFB24498F5200B1AF10 /* CategoryCell.swift in Sources */,
 				B74263572448E63800597D4C /* ExpenseCell.swift in Sources */,
@@ -370,6 +377,7 @@
 				B74263222448BEBA00597D4C /* SceneDelegate.swift in Sources */,
 				7EDC71172449E143002CACDF /* PersistenceManager.swift in Sources */,
 				7E84C6902449CA9400B2C657 /* SettingsViewController.swift in Sources */,
+				7E54F96B244A4126003ABAA1 /* AddCategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
