@@ -24,6 +24,7 @@ class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: true)
         textField.addTarget(self, action: #selector(editedTextfield), for: .editingChanged)
         Constants.shared.setBackgroundGradient(for: view)
         searchContainer.layer.cornerRadius = 20
@@ -60,12 +61,9 @@ class CategoriesViewController: UIViewController {
     
     @objc private func editedTextfield() {
         guard let searchText = textField.text else {return}
-        isSearching = !searchText.isEmpty
         
-        filteredCategories = allCategories.filter({ (category) -> Bool in
-            category.name.contains(searchText)
-        })
-    
+        isSearching = !searchText.isEmpty
+        filteredCategories = allCategories.filter({ category in category.name.contains(searchText)})
         tableView.reloadData()
     }
     
@@ -85,7 +83,11 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
         if isSearching {
             return "Search results"
         } else {
-            return categoryTypes[section]
+            if allCategoryTypes[section].isEmpty  {
+                return nil
+            } else {
+                return categoryTypes[section]
+            }
         }
     }
     
@@ -109,5 +111,20 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let category = allCategoryTypes[indexPath.section][indexPath.row]
+            PersistenceManager.persistentContainer.viewContext.delete(category)
+            PersistenceManager.saveContext()
+            
+            allCategoryTypes[indexPath.section].remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }

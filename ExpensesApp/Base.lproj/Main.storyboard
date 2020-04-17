@@ -20,7 +20,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="ooY-UR-Lvj"/>
-                        <segue destination="Ow4-qZ-mM3" kind="relationship" relationship="viewControllers" id="NVx-Zn-Mv7"/>
+                        <segue destination="uNh-1Z-PHM" kind="relationship" relationship="viewControllers" id="NVx-Zn-Mv7"/>
                         <segue destination="7sf-o7-y31" kind="relationship" relationship="viewControllers" id="9SH-Yw-bjA"/>
                         <segue destination="v4Y-Ut-yMQ" kind="relationship" relationship="viewControllers" id="umL-31-thE"/>
                         <segue destination="P5L-0j-xH1" kind="relationship" relationship="viewControllers" id="xWR-TL-Fc7"/>
@@ -239,7 +239,7 @@
             </objects>
             <point key="canvasLocation" x="136.875" y="114.08450704225352"/>
         </scene>
-        <!--Categories-->
+        <!--Categories View Controller-->
         <scene sceneID="6lN-Up-Vhz">
             <objects>
                 <viewController id="Ow4-qZ-mM3" customClass="CategoriesViewController" customModule="ExpensesApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -248,7 +248,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1e-jm-K7D">
-                                <rect key="frame" x="20" y="64" width="374" height="30"/>
+                                <rect key="frame" x="20" y="108" width="374" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="aEf-Yn-y8j"/>
                                 </constraints>
@@ -257,7 +257,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqJ-zd-odM">
-                                <rect key="frame" x="50" y="110" width="314" height="40"/>
+                                <rect key="frame" x="50" y="154" width="314" height="40"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search for categories" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n1K-7P-G1J">
                                         <rect key="frame" x="20" y="8" width="274" height="24"/>
@@ -274,8 +274,8 @@
                                     <constraint firstItem="n1K-7P-G1J" firstAttribute="leading" secondItem="hqJ-zd-odM" secondAttribute="leading" constant="20" id="lde-1M-SLs"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jpp-JV-bhn">
-                                <rect key="frame" x="0.0" y="175" width="414" height="721"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jpp-JV-bhn">
+                                <rect key="frame" x="0.0" y="219" width="414" height="677"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="pRY-pT-9Qh" customClass="CategoryCell" customModule="ExpensesApp" customModuleProvider="target">
@@ -319,7 +319,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hA-Wa-etb">
-                                <rect key="frame" x="359" y="52" width="30" height="30"/>
+                                <rect key="frame" x="359" y="96" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="XQN-Hu-TmZ"/>
                                     <constraint firstAttribute="height" constant="30" id="mzd-rd-xZ4"/>
@@ -347,7 +347,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eDj-Re-4Q8"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Categories" id="cJi-wQ-iWU"/>
+                    <navigationItem key="navigationItem" id="xsu-rP-Qpj"/>
                     <connections>
                         <outlet property="searchContainer" destination="hqJ-zd-odM" id="Dv4-HZ-Qnl"/>
                         <outlet property="tableView" destination="jpp-JV-bhn" id="lCA-f5-tOK"/>
@@ -356,7 +356,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hX7-EL-KLB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="900.00000000000011" y="112.5"/>
+            <point key="canvasLocation" x="983" y="547"/>
         </scene>
         <!--Add-->
         <scene sceneID="b6s-I8-Mp2">
@@ -533,7 +533,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hZK-aK-e0t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1618.840579710145" y="112.5"/>
+            <point key="canvasLocation" x="2528.985507246377" y="112.5"/>
         </scene>
         <!--Statistics-->
         <scene sceneID="Axj-KE-CLa">
@@ -717,7 +717,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4vz-BK-PTq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2324.6376811594205" y="112.5"/>
+            <point key="canvasLocation" x="3234.7826086956525" y="112.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="MJ9-J0-am0">
@@ -782,7 +782,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wq5-aV-Td9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3037.68115942029" y="112.5"/>
+            <point key="canvasLocation" x="3947.826086956522" y="112.5"/>
+        </scene>
+        <!--Categories-->
+        <scene sceneID="7y5-5N-ggg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uNh-1Z-PHM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Categories" id="cJi-wQ-iWU"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JMA-ZC-VIo">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ow4-qZ-mM3" kind="relationship" relationship="rootViewController" id="1QF-qM-ipl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9a6-6y-QiY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="983" y="-157"/>
         </scene>
     </scenes>
     <resources>
