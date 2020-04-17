@@ -12,6 +12,11 @@ struct Constants {
     
     static let shared = Constants()
     
+    var categoryTypes = ["Income", "Entertainment", "Education", "Shopping", "Personal Care",
+                                 "Health & Fitness", "Kids", "Food & Dining", "Gifts & Donations",
+                                 "Investments", "Bills & Utilities", "Transport", "Travel",
+                                 "Fees & Charges", "Business Services"]
+    
     func setBackgroundGradient(for view: UIView) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds

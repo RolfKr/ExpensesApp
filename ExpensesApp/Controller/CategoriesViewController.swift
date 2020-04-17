@@ -16,7 +16,7 @@ class CategoriesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //https://www.mint.com/mint-categories
-    var categoryTypes = [CategoryType]()
+    var categoryTypes = Constants.shared.categoryTypes
     
     let categories = [
         ["Paycheck", "Investment", "Returned Purchase", "Bonus", "Interest Income", "Reimbursement", "Rental Income"],
@@ -39,7 +39,6 @@ class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
         
         Constants.shared.setBackgroundGradient(for: view)
         searchContainer.layer.cornerRadius = 20
@@ -52,18 +51,6 @@ class CategoriesViewController: UIViewController {
         print("Add button tapped")
     }
     
-    private func loadData() {
-        let fetchRequest: NSFetchRequest<CategoryType> = CategoryType.fetchRequest()
-        
-        do {
-            categoryTypes = try PersistenceManager.persistentContainer.viewContext.fetch(fetchRequest)
-            tableView.reloadData()
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        
-    }
-    
 }
 
 extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
@@ -73,7 +60,7 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return categoryTypes[section].name
+        return categoryTypes[section]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
