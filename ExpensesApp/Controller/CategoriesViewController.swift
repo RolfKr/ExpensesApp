@@ -32,12 +32,6 @@ class CategoriesViewController: UIViewController, AddCategoryDelegate {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print(allCategoryTypes[0].count)
-        print("HELLOOOOO")
-    }
-    
     @IBAction func addCategoryTapped(_ sender: UIButton) {
         let addCategoryVC = storyboard?.instantiateViewController(identifier: "AddCategoryViewController") as! AddCategoryViewController
         addCategoryVC.delegate = self

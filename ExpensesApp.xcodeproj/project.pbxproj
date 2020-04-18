@@ -127,8 +127,8 @@
 			children = (
 				B74263562448E63800597D4C /* ExpenseCell.swift */,
 				7EA3FCFA24498F5200B1AF10 /* CategoryCell.swift */,
-				7EA3FD032449BA4000B1AF10 /* CategoryCollectionCell.swift */,
 				7E54F96A244A4126003ABAA1 /* AddCategoryCell.swift */,
+				7EA3FD032449BA4000B1AF10 /* CategoryCollectionCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

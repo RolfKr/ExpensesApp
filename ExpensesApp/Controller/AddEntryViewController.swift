@@ -16,6 +16,7 @@ class AddEntryViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
     
+    
     var addingExpense = true
     var categories: [Category] = {
         let fetchrequest: NSFetchRequest<Category> = Category.fetchRequest()
@@ -35,6 +36,7 @@ class AddEntryViewController: UIViewController {
         super.viewDidLoad()
         Constants.shared.setBackgroundGradient(for: view)
         background.layer.cornerRadius = 60
+        print(categories.count)
         
         let placeholderColor = UIColor.init(white: 1, alpha: 0.5)
         amountTextField.attributedPlaceholder = NSAttributedString(

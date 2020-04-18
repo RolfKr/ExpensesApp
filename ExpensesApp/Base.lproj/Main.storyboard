@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9b6-OG-Suc">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -610,7 +610,7 @@
                                                                 <constraint firstAttribute="width" constant="84" id="gk9-Td-YaV"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="12"/>
-                                                            <color key="textColor" red="0.08992759067831628" green="0.092069929975480122" blue="0.095950983502538056" alpha="0.74949165239726034" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="textColor" red="0.090196078431372548" green="0.092069929975480122" blue="0.090196078431372548" alpha="0.74949165239726034" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -718,7 +718,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hZK-aK-e0t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1706" y="114"/>
+            <point key="canvasLocation" x="1705.7971014492755" y="113.83928571428571"/>
         </scene>
         <!--Statistics-->
         <scene sceneID="Axj-KE-CLa">
