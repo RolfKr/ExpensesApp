@@ -29,6 +29,8 @@ class MainViewController: UIViewController {
         progressContainer.layer.cornerRadius = 6
         
         fetchItems()
+        
+        
     }
     
     @IBAction func expensesBtnTapped(_ sender: UIButton) {
@@ -39,11 +41,29 @@ class MainViewController: UIViewController {
         print("Income tapped")
     }
     
+    private func checkDataSelectedDate(date: Date) -> Bool {
+        let calendar = Calendar.current
+        let now = Date()
+        
+        let compOne = calendar.dateComponents([.month, .year], from: now)
+        let compTwo = calendar.dateComponents([.month, .year], from: date)
+        
+        if compOne == compTwo {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     private func fetchItems() {
         let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
         
         do {
             items = try PersistenceManager.persistentContainer.viewContext.fetch(fetchRequest)
+            items = items.filter({ (item) -> Bool in
+                checkDataSelectedDate(date: item.date)
+            })
+            
         } catch let error {
             print(error.localizedDescription)
         }
@@ -59,7 +79,24 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenseCell", for: indexPath) as! ExpenseCell
-        cell.configureCell(image: UIImage(named: "restaurant")!, category: "Restaurants", budgetAmount: "45", moneyLabel: "800", transactions: "9")
+        let item = items[indexPath.row]
+        
+        cell.configureCell(image: UIImage(named: "restaurant")!, category: item.category.name, budgetAmount: "45", moneyLabel: "\(item.amount)", transactions: "9")
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let item = items[indexPath.row]
+            PersistenceManager.persistentContainer.viewContext.delete(item)
+            PersistenceManager.saveContext()
+            
+            items.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }

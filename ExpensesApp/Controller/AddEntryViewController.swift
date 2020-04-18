@@ -76,6 +76,8 @@ class AddEntryViewController: UIViewController {
         itemEntity.category = category
         itemEntity.date = date
         PersistenceManager.saveContext()
+        
+        print(itemEntity.category.name)
     }
     
 }
@@ -83,13 +85,13 @@ class AddEntryViewController: UIViewController {
 extension AddEntryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Constants.shared.categoryTypes.count
+        return categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CategoryCollectionCell
-        let category = Constants.shared.categoryTypes[indexPath.row]
-        cell.configureCell(image: UIImage(named: "restaurant")!, name: category)
+        let category = categories[indexPath.row]
+        cell.configureCell(image: UIImage(named: "restaurant")!, name: category.name)
         return cell
     }
     
@@ -99,6 +101,7 @@ extension AddEntryViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedCategory = categories[indexPath.row]
+        print(selectedCategory!.name)
     }
 }
 
