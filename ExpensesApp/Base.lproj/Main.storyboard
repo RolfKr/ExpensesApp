@@ -171,9 +171,23 @@
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fd-pt-Ld7">
                                         <rect key="frame" x="50" y="50" width="314" height="12"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tcd-2D-Xg0" userLabel="Progress">
+                                                <rect key="frame" x="0.0" y="0.0" width="314" height="12"/>
+                                                <color key="backgroundColor" red="0.075928337870000001" green="0.61091083290000003" blue="0.80394977329999995" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="12" id="dQN-QS-j6O"/>
+                                                </constraints>
+                                                <viewLayoutGuide key="safeArea" id="Ipt-bd-DGP"/>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Tcd-2D-Xg0" secondAttribute="bottom" id="2Oc-PU-1MH"/>
+                                            <constraint firstItem="Tcd-2D-Xg0" firstAttribute="leading" secondItem="6fd-pt-Ld7" secondAttribute="leading" id="66b-ZG-11W"/>
                                             <constraint firstAttribute="height" constant="12" id="GOt-Eg-DLK"/>
+                                            <constraint firstItem="Tcd-2D-Xg0" firstAttribute="top" secondItem="6fd-pt-Ld7" secondAttribute="top" id="coI-OE-ZiW"/>
+                                            <constraint firstAttribute="trailing" secondItem="Tcd-2D-Xg0" secondAttribute="trailing" id="tlC-he-cTI"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -233,7 +247,9 @@
                         <outlet property="cardFront" destination="brq-BG-HPl" id="ija-uR-M9n"/>
                         <outlet property="expensesBtn" destination="0nk-g9-HBi" id="sjy-K3-Uyk"/>
                         <outlet property="incomeBtn" destination="WHN-W3-MiK" id="zi8-DS-6bw"/>
-                        <outlet property="monthlyBudget" destination="RxH-Xa-ESJ" id="dn3-FM-Ko1"/>
+                        <outlet property="monthlyBudgetLabel" destination="RxH-Xa-ESJ" id="dn3-FM-Ko1"/>
+                        <outlet property="progress" destination="Tcd-2D-Xg0" id="mrz-GW-wYD"/>
+                        <outlet property="progressConstraint" destination="tlC-he-cTI" id="FhA-hb-Dju"/>
                         <outlet property="progressContainer" destination="6fd-pt-Ld7" id="5W3-aI-1U7"/>
                         <outlet property="tableView" destination="owk-px-cZV" id="luC-1N-08D"/>
                         <outlet property="totalExpenses" destination="egm-MD-UJm" id="jdW-bq-P7y"/>

@@ -14,13 +14,16 @@ class MainViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cardBehind: UIView!
     @IBOutlet weak var cardFront: UIView!
-    @IBOutlet weak var monthlyBudget: UILabel!
+    @IBOutlet weak var monthlyBudgetLabel: UILabel!
     @IBOutlet weak var totalExpenses: UILabel!
     @IBOutlet weak var progressContainer: UIView!
     @IBOutlet weak var expensesBtn: UIButton!
     @IBOutlet weak var incomeBtn: UIButton!
+    @IBOutlet weak var progress: UIView!
+    @IBOutlet weak var progressConstraint: NSLayoutConstraint!
     
     var items = [Item]()
+    var monthlyBudget = 1500.00
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +86,20 @@ class MainViewController: UIViewController {
     
     private func updateUI() {
         totalExpenses.text = "$\(calculateTotalExpenses())"
+        
+        let budgetPercentage = (calculateTotalExpenses() / monthlyBudget)
+        print(budgetPercentage)
+        
+        let progressWidth = progressContainer.frame.width
+        print(progressWidth)
+        let constraintConstant = progressWidth - (CGFloat(budgetPercentage) * progressWidth)
+        
+        if constraintConstant >= progressWidth {
+            progressConstraint.constant = constraintConstant
+        } else {
+            progressConstraint.constant = 0
+        }
+        
     }
 }
 
