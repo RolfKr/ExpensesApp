@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
         cardBehind.layer.cornerRadius = 60
         cardFront.layer.cornerRadius = 60
         progressContainer.layer.cornerRadius = 6
-        
+        view.layoutIfNeeded()
         fetchItems()
     }
     
@@ -84,22 +84,26 @@ class MainViewController: UIViewController {
         return total
     }
     
+    private func calculateProgressbar() -> CGFloat {
+        let budgetPercentage = (calculateTotalExpenses() / monthlyBudget)
+        let progressWidth = progressContainer.frame.width
+        let constraintConstant = progressWidth - (CGFloat(budgetPercentage) * progressWidth)
+        print(constraintConstant)
+        
+        if constraintConstant <= progressWidth {
+            return constraintConstant
+        } else {
+            return 0
+        }
+    }
+    
     private func updateUI() {
         totalExpenses.text = "$\(calculateTotalExpenses())"
         
-        let budgetPercentage = (calculateTotalExpenses() / monthlyBudget)
-        print(budgetPercentage)
-        
-        let progressWidth = progressContainer.frame.width
-        print(progressWidth)
-        let constraintConstant = progressWidth - (CGFloat(budgetPercentage) * progressWidth)
-        
-        if constraintConstant >= progressWidth {
-            progressConstraint.constant = constraintConstant
-        } else {
-            progressConstraint.constant = 0
-        }
-        
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.6, options: .curveEaseInOut, animations: {
+            self.progressConstraint.constant = self.calculateProgressbar()
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
 }
 
