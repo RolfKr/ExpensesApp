@@ -53,4 +53,16 @@ class PersistenceManager {
             }
         }
     }
+    
+    static func fetchItems() -> [Item] {
+        let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
+        var items = [Item]()
+        do {
+            items = try PersistenceManager.persistentContainer.viewContext.fetch(fetchRequest)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        return items
+    }
 }

@@ -25,20 +25,21 @@ class MainViewController: UIViewController {
     var items = [Item]()
     var monthlyBudget = 1500.00
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        intitialSetup()
+        progressConstraint.constant = progress.frame.width
+        items = PersistenceManager.fetchItems()
+        items = items.filter({ item in checkDataSelectedDate(date: item.date)})
+        updateUI()
+    }
+    
+    private func intitialSetup() {
         Constants.shared.setBackgroundGradient(for: view)
         cardBehind.layer.cornerRadius = 60
         cardFront.layer.cornerRadius = 60
         progressContainer.layer.cornerRadius = 6
-        fetchItems()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.view.layoutIfNeeded()
-        fetchItems()
-        tableView.reloadData()
+        progressConstraint.constant = progress.frame.width
     }
     
     @IBAction func expensesBtnTapped(_ sender: UIButton) {
@@ -63,22 +64,22 @@ class MainViewController: UIViewController {
         }
     }
     
-    private func fetchItems() {
-        print("Fetching items")
-        let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
-        
-        do {
-            items = try PersistenceManager.persistentContainer.viewContext.fetch(fetchRequest)
-            items = items.filter({ (item) -> Bool in
-                checkDataSelectedDate(date: item.date)
-            })
-            
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        
-        updateUI()
-    }
+//    private func fetchItems() {
+//        print("Fetching items")
+//        let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
+//
+//        do {
+//            items = try PersistenceManager.persistentContainer.viewContext.fetch(fetchRequest)
+//            items = items.filter({ (item) -> Bool in
+//                checkDataSelectedDate(date: item.date)
+//            })
+//
+//        } catch let error {
+//            print(error.localizedDescription)
+//        }
+//
+//        updateUI()
+//    }
     
     private func calculateTotalExpenses() -> Double {
         var totalExpenses = 0.0
@@ -111,6 +112,8 @@ class MainViewController: UIViewController {
             self.view.layoutSubviews()
             self.view.layoutIfNeeded()
         }
+        
+        tableView.reloadData()
     }
 }
 
