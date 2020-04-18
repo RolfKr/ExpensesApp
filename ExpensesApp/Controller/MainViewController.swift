@@ -15,7 +15,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var cardBehind: UIView!
     @IBOutlet weak var cardFront: UIView!
     @IBOutlet weak var monthlyBudgetLabel: UILabel!
-    @IBOutlet weak var totalExpenses: UILabel!
+    @IBOutlet weak var totalExpensesLabel: UILabel!
     @IBOutlet weak var progressContainer: UIView!
     @IBOutlet weak var expensesBtn: UIButton!
     @IBOutlet weak var incomeBtn: UIButton!
@@ -31,8 +31,14 @@ class MainViewController: UIViewController {
         cardBehind.layer.cornerRadius = 60
         cardFront.layer.cornerRadius = 60
         progressContainer.layer.cornerRadius = 6
-        view.layoutIfNeeded()
         fetchItems()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.view.layoutIfNeeded()
+        fetchItems()
+        tableView.reloadData()
     }
     
     @IBAction func expensesBtnTapped(_ sender: UIButton) {
@@ -58,6 +64,7 @@ class MainViewController: UIViewController {
     }
     
     private func fetchItems() {
+        print("Fetching items")
         let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
         
         do {
@@ -74,23 +81,22 @@ class MainViewController: UIViewController {
     }
     
     private func calculateTotalExpenses() -> Double {
-        var total = 0.0
+        var totalExpenses = 0.0
         for item in items {
             if item.category.categoryType != "Income" {
-                total += item.amount
+                totalExpenses += item.amount
             }
         }
-        
-        return total
+        return totalExpenses
     }
     
     private func calculateProgressbar() -> CGFloat {
         let budgetPercentage = (calculateTotalExpenses() / monthlyBudget)
         let progressWidth = progressContainer.frame.width
         let constraintConstant = progressWidth - (CGFloat(budgetPercentage) * progressWidth)
-        print(constraintConstant)
         
-        if constraintConstant <= progressWidth {
+        
+        if abs(constraintConstant) <= progressWidth {
             return constraintConstant
         } else {
             return 0
@@ -98,12 +104,13 @@ class MainViewController: UIViewController {
     }
     
     private func updateUI() {
-        totalExpenses.text = "$\(calculateTotalExpenses())"
+        totalExpensesLabel.text = "$\(calculateTotalExpenses())"
+        progressConstraint.constant = calculateProgressbar()
         
-        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.6, options: .curveEaseInOut, animations: {
-            self.progressConstraint.constant = self.calculateProgressbar()
+        UIView.animate(withDuration: 1.0) {
+            self.view.layoutSubviews()
             self.view.layoutIfNeeded()
-        }, completion: nil)
+        }
     }
 }
 

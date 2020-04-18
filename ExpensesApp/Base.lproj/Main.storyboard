@@ -208,7 +208,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Fyg-YO-oiF">
                                 <rect key="frame" x="50" y="74" width="314" height="88"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="December" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Awp-c0-Fd5">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="April" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Awp-c0-Fd5">
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="mEc-Ww-tsy"/>
@@ -252,7 +252,7 @@
                         <outlet property="progressConstraint" destination="tlC-he-cTI" id="FhA-hb-Dju"/>
                         <outlet property="progressContainer" destination="6fd-pt-Ld7" id="5W3-aI-1U7"/>
                         <outlet property="tableView" destination="owk-px-cZV" id="luC-1N-08D"/>
-                        <outlet property="totalExpenses" destination="egm-MD-UJm" id="jdW-bq-P7y"/>
+                        <outlet property="totalExpensesLabel" destination="egm-MD-UJm" id="jdW-bq-P7y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -541,7 +541,7 @@
         <!--Add-->
         <scene sceneID="b6s-I8-Mp2">
             <objects>
-                <viewController id="7sf-o7-y31" customClass="AddEntryViewController" customModule="ExpensesApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7sf-o7-y31" customClass="AddItemViewController" customModule="ExpensesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="10F-5f-CjC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

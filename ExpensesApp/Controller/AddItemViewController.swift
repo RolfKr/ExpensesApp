@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-protocol AddEntryDelegate {
+protocol AddItemDelegate {
     func didFinishAddingItem()
 }
 
@@ -20,6 +20,7 @@ class AddItemViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
     
+    var delegate: AddItemDelegate?
     
     var addingExpense = true
     var categories: [Category] = {
@@ -71,6 +72,8 @@ class AddItemViewController: UIViewController {
         
         nameTextField.text = ""
         amountTextField.text = ""
+        
+        
     }
     
     private func createItem(name: String, amount: Double, category: Category, date: Date) {
