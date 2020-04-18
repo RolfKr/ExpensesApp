@@ -73,7 +73,8 @@ class AddItemViewController: UIViewController {
         nameTextField.text = ""
         amountTextField.text = ""
         
-        
+        nameTextField.resignFirstResponder()
+        amountTextField.resignFirstResponder()
     }
     
     private func createItem(name: String, amount: Double, category: Category, date: Date) {
