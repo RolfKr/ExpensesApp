@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var cardBehind: UIView!
     @IBOutlet weak var cardFront: UIView!
     @IBOutlet weak var monthlyBudget: UILabel!
+    @IBOutlet weak var totalExpenses: UILabel!
     @IBOutlet weak var progressContainer: UIView!
     @IBOutlet weak var expensesBtn: UIButton!
     @IBOutlet weak var incomeBtn: UIButton!
@@ -29,8 +30,6 @@ class MainViewController: UIViewController {
         progressContainer.layer.cornerRadius = 6
         
         fetchItems()
-        
-        
     }
     
     @IBAction func expensesBtnTapped(_ sender: UIButton) {
@@ -67,6 +66,23 @@ class MainViewController: UIViewController {
         } catch let error {
             print(error.localizedDescription)
         }
+        
+        updateUI()
+    }
+    
+    private func calculateTotalExpenses() -> Double {
+        var total = 0.0
+        for item in items {
+            if item.category.categoryType != "Income" {
+                total += item.amount
+            }
+        }
+        
+        return total
+    }
+    
+    private func updateUI() {
+        totalExpenses.text = "$\(calculateTotalExpenses())"
     }
 }
 
@@ -97,6 +113,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             
             items.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            updateUI()
         }
     }
 }

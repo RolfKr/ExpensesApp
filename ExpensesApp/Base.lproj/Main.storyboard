@@ -233,9 +233,10 @@
                         <outlet property="cardFront" destination="brq-BG-HPl" id="ija-uR-M9n"/>
                         <outlet property="expensesBtn" destination="0nk-g9-HBi" id="sjy-K3-Uyk"/>
                         <outlet property="incomeBtn" destination="WHN-W3-MiK" id="zi8-DS-6bw"/>
-                        <outlet property="monthlyBudget" destination="RxH-Xa-ESJ" id="LfJ-TS-G8Q"/>
+                        <outlet property="monthlyBudget" destination="RxH-Xa-ESJ" id="dn3-FM-Ko1"/>
                         <outlet property="progressContainer" destination="6fd-pt-Ld7" id="5W3-aI-1U7"/>
                         <outlet property="tableView" destination="owk-px-cZV" id="luC-1N-08D"/>
+                        <outlet property="totalExpenses" destination="egm-MD-UJm" id="jdW-bq-P7y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
