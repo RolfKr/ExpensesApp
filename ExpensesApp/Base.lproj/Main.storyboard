@@ -857,12 +857,20 @@
                                             <color key="titleColor" red="0.2337397635" green="0.67376559970000005" blue="0.87453716989999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Rh-9O-ywk" customClass="LineChart" customModule="ExpensesApp" customModuleProvider="target">
+                                        <rect key="frame" x="25" y="80" width="364" height="203.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="7Rh-9O-ywk" firstAttribute="top" secondItem="jp4-Dh-AN4" secondAttribute="bottom" constant="25" id="1xB-DH-m03"/>
+                                    <constraint firstItem="7Rh-9O-ywk" firstAttribute="leading" secondItem="6DA-Y7-7Bv" secondAttribute="leading" constant="25" id="4jq-3J-bdg"/>
                                     <constraint firstItem="jp4-Dh-AN4" firstAttribute="top" secondItem="6DA-Y7-7Bv" secondAttribute="top" constant="40" id="4sZ-kE-qhM"/>
                                     <constraint firstItem="33l-V4-r67" firstAttribute="top" secondItem="6DA-Y7-7Bv" secondAttribute="top" constant="40" id="EY7-RC-c0H"/>
                                     <constraint firstItem="jp4-Dh-AN4" firstAttribute="leading" secondItem="6DA-Y7-7Bv" secondAttribute="leading" constant="60" id="Xm7-qJ-Gc1"/>
+                                    <constraint firstItem="7Rh-9O-ywk" firstAttribute="height" secondItem="6DA-Y7-7Bv" secondAttribute="height" multiplier="0.3" id="qCj-FE-tJw"/>
+                                    <constraint firstAttribute="trailing" secondItem="7Rh-9O-ywk" secondAttribute="trailing" constant="25" id="spk-Ra-ZQU"/>
                                     <constraint firstAttribute="trailing" secondItem="33l-V4-r67" secondAttribute="trailing" constant="60" id="y4X-pv-mku"/>
                                 </constraints>
                             </view>
@@ -885,6 +893,7 @@
                     <tabBarItem key="tabBarItem" title="Statistics" id="cua-vb-1d9"/>
                     <connections>
                         <outlet property="background" destination="6DA-Y7-7Bv" id="DtN-ap-2Zo"/>
+                        <outlet property="chartContainerView" destination="7Rh-9O-ywk" id="HMu-Xp-UMy"/>
                         <outlet property="totalExpensesContainer" destination="TyT-5Z-Igi" id="LWS-aS-FF1"/>
                         <outlet property="totalExpensesLabel" destination="HyS-eu-W6g" id="0TS-lV-aQp"/>
                         <outlet property="totalIncomeContainer" destination="c7Y-WQ-w7R" id="Il3-d9-eN0"/>
@@ -894,7 +903,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4vz-BK-PTq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2467" y="114"/>
+            <point key="canvasLocation" x="2466.666666666667" y="113.83928571428571"/>
         </scene>
         <!--Settings-->
         <scene sceneID="MJ9-J0-am0">

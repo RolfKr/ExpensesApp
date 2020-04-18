@@ -16,6 +16,7 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var totalExpensesLabel: UILabel!
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var yearButton: UIButton!
+    @IBOutlet weak var chartContainerView: UIView!
     
     var items = [Item]()
     var totalExpenses = 0.0
