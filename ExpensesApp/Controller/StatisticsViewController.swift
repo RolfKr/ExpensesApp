@@ -23,6 +23,7 @@ class StatisticsViewController: UIViewController {
     var totalExpenses = 0.0
     var totalIncome = 0.0
     var chartDataEntries: [ChartDataEntry] = []
+    var selectedYear = 2020
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
     override func viewDidAppear(_ animated: Bool) {
@@ -50,7 +51,7 @@ class StatisticsViewController: UIViewController {
     
     // MARK: Draws each point in chart, based on datapoints.
     private func setChartData() {
-        let set1 = LineChartDataSet(entries: chartDataEntries, label: "Expenses")
+        let set1 = LineChartDataSet(entries: chartDataEntries, label: "Expenses per month")
         set1.drawCirclesEnabled = false
         set1.mode = .cubicBezier
         set1.lineWidth = 3
@@ -75,10 +76,11 @@ class StatisticsViewController: UIViewController {
             var totalAmountPerMonth = 0.0
             
             for item in items {
-                let dateComponent = calendar.dateComponents([.month], from: item.date)
+                let dateComponent = calendar.dateComponents([.month, .year], from: item.date)
                 guard let month = dateComponent.month else {continue}
+                guard let year = dateComponent.year else {continue}
                 
-                if index == month {
+                if index == month && selectedYear == year {
                     totalAmountPerMonth += item.amount
                     let entry = ChartDataEntry(x: Double(month), y: totalAmountPerMonth)
                     chartDataEntries.append(entry)
