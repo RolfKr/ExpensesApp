@@ -893,7 +893,7 @@
                     <tabBarItem key="tabBarItem" title="Statistics" id="cua-vb-1d9"/>
                     <connections>
                         <outlet property="background" destination="6DA-Y7-7Bv" id="DtN-ap-2Zo"/>
-                        <outlet property="chartContainerView" destination="7Rh-9O-ywk" id="HMu-Xp-UMy"/>
+                        <outlet property="chart" destination="7Rh-9O-ywk" id="HMu-Xp-UMy"/>
                         <outlet property="totalExpensesContainer" destination="TyT-5Z-Igi" id="LWS-aS-FF1"/>
                         <outlet property="totalExpensesLabel" destination="HyS-eu-W6g" id="0TS-lV-aQp"/>
                         <outlet property="totalIncomeContainer" destination="c7Y-WQ-w7R" id="Il3-d9-eN0"/>

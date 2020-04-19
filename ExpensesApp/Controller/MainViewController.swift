@@ -64,23 +64,6 @@ class MainViewController: UIViewController {
         }
     }
     
-//    private func fetchItems() {
-//        print("Fetching items")
-//        let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
-//
-//        do {
-//            items = try PersistenceManager.persistentContainer.viewContext.fetch(fetchRequest)
-//            items = items.filter({ (item) -> Bool in
-//                checkDataSelectedDate(date: item.date)
-//            })
-//
-//        } catch let error {
-//            print(error.localizedDescription)
-//        }
-//
-//        updateUI()
-//    }
-    
     private func calculateTotalExpenses() -> Double {
         var totalExpenses = 0.0
         for item in items {
@@ -96,8 +79,7 @@ class MainViewController: UIViewController {
         let progressWidth = progressContainer.frame.width
         let constraintConstant = progressWidth - (CGFloat(budgetPercentage) * progressWidth)
         
-        
-        if abs(constraintConstant) <= progressWidth {
+        if abs(constraintConstant) <= progressWidth && budgetPercentage < 1.0 {
             return constraintConstant
         } else {
             return 0
