@@ -77,6 +77,27 @@ class AddItemViewController: UIViewController {
         amountTextField.resignFirstResponder()
     }
     
+    private func getYesterdayDate() -> Date {
+        let calender = Calendar.current
+        guard let yesterday = calender.date(byAdding: .day, value: -1, to: Date()) else {return Date()}
+        return yesterday
+    }
+    
+    private func addToScoreStreak() {
+        guard let scoreStreak = PersistenceManager.fetchScore() else {return}
+
+        if getYesterdayDate() == scoreStreak.date {
+            scoreStreak.setValue(scoreStreak.score + 1, forKey: "score")
+            if scoreStreak.highscore < scoreStreak.score {
+                scoreStreak.setValue(scoreStreak.highscore + 1, forKey: "highscore")
+            }
+        } else {
+            scoreStreak.setValue(1, forKey: "score")
+        }
+        
+        scoreStreak.date = Date()
+    }
+    
     private func createItem(name: String, amount: Double, category: Category, date: Date) {
         let itemEntity = Item(context: PersistenceManager.persistentContainer.viewContext)
         itemEntity.name = name

@@ -18,6 +18,9 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var yearButton: UIButton!
     @IBOutlet weak var chart: LineChartView!
+    @IBOutlet weak var scoreStreak: UILabel!
+    @IBOutlet weak var highScore: UILabel!
+    
     
     var items = [Item]()
     var totalExpenses = 0.0
@@ -107,6 +110,10 @@ class StatisticsViewController: UIViewController {
     private func updateUI() {
         totalExpensesLabel.text = "$\(totalExpenses)"
         totalIncomeLabel.text = "$\(totalIncome)"
+        
+        let savedScore = PersistenceManager.fetchScore()
+        scoreStreak.text = String(savedScore!.score)
+        highScore.text = String(savedScore!.highscore)
     }
     
     //MARK: Calculates total expenses and income for current month.
