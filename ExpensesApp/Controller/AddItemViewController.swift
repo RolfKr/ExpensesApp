@@ -75,6 +75,8 @@ class AddItemViewController: UIViewController {
         
         nameTextField.resignFirstResponder()
         amountTextField.resignFirstResponder()
+        
+        addToScoreStreak()
     }
     
     private func getYesterdayDate() -> Date {
@@ -85,7 +87,9 @@ class AddItemViewController: UIViewController {
     
     private func addToScoreStreak() {
         guard let scoreStreak = PersistenceManager.fetchScore() else {return}
-
+        
+        print("Fethced scores")
+        
         if getYesterdayDate() == scoreStreak.date {
             scoreStreak.setValue(scoreStreak.score + 1, forKey: "score")
             if scoreStreak.highscore < scoreStreak.score {
@@ -95,6 +99,7 @@ class AddItemViewController: UIViewController {
             scoreStreak.setValue(1, forKey: "score")
         }
         
+        PersistenceManager.saveContext()
         scoreStreak.date = Date()
     }
     

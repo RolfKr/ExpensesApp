@@ -112,6 +112,7 @@ class StatisticsViewController: UIViewController {
         totalIncomeLabel.text = "$\(totalIncome)"
         
         let savedScore = PersistenceManager.fetchScore()
+        print(savedScore!.score)
         scoreStreak.text = String(savedScore!.score)
         highScore.text = String(savedScore!.highscore)
     }
