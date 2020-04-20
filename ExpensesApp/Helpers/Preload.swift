@@ -48,5 +48,11 @@ class Preload {
                 }
                 index += 1
             }
+    
+        let scorestreakEntity = Scorestreak(context: PersistenceManager.persistentContainer.viewContext)
+        scorestreakEntity.highscore = 0
+        scorestreakEntity.score = 0
+        scorestreakEntity.date = Date()
+        PersistenceManager.saveContext()
     }
 }

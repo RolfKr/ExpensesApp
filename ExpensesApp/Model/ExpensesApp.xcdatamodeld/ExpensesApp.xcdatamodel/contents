@@ -12,8 +12,14 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="items" inverseEntity="Category"/>
     </entity>
+    <entity name="Scorestreak" representedClassName="Scorestreak" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="highscore" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="score" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <elements>
         <element name="Category" positionX="224.3828125" positionY="-94.9609375" width="128" height="103"/>
         <element name="Item" positionX="-74.3359375" positionY="-264.2578125" width="128" height="103"/>
+        <element name="Scorestreak" positionX="72" positionY="-144" width="128" height="88"/>
     </elements>
 </model>

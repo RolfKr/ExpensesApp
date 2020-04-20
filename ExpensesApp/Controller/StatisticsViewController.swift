@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 class StatisticsViewController: UIViewController {
 
@@ -16,14 +17,22 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var totalExpensesLabel: UILabel!
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var yearButton: UIButton!
+    @IBOutlet weak var chart: LineChartView!
+    @IBOutlet weak var scoreStreak: UILabel!
+    @IBOutlet weak var highScore: UILabel!
+    
     
     var items = [Item]()
     var totalExpenses = 0.0
     var totalIncome = 0.0
+    var chartDataEntries: [ChartDataEntry] = []
+    var selectedYear = 2020
+    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
     override func viewDidAppear(_ animated: Bool) {
         initialSetup()
         calculate()
+        createChart()
     }
     
     private func initialSetup() {
@@ -32,10 +41,59 @@ class StatisticsViewController: UIViewController {
         totalExpensesContainer.layer.cornerRadius = 8
         background.layer.cornerRadius = 60
         items = PersistenceManager.fetchItems()
-        items = items.filter({ item in checkDataSelectedDate(date: item.date)})
+        items = items.filter({ item in checkForCurrentMonth(date: item.date)})
     }
     
-    private func checkDataSelectedDate(date: Date) -> Bool {
+    //MARK: Creates chart.
+    private func createChart() {
+        chart.animate(xAxisDuration: 0.5)
+        setChartData()
+        getDataPoints()
+        setChartData()
+    }
+    
+    // MARK: Draws each point in chart, based on datapoints.
+    private func setChartData() {
+        let set1 = LineChartDataSet(entries: chartDataEntries, label: "Expenses per month")
+        set1.drawCirclesEnabled = false
+        set1.mode = .cubicBezier
+        set1.lineWidth = 3
+        set1.setColors(.systemTeal)
+        set1.fill = Fill(color: .systemTeal)
+        set1.fillAlpha = 0.8
+        set1.drawFilledEnabled = true
+
+        let data = LineChartData(dataSet: set1)
+        data.setDrawValues(false)
+        chart.data = data
+        
+        chart.xAxis.valueFormatter = IndexAxisValueFormatter(values:months)
+        chart.xAxis.granularity = 1
+    }
+    
+    // MARK: Calculates datapoints for chart. Uses items array fetched from coredata
+    private func getDataPoints() {
+        let calendar = Calendar.current
+        
+        for (index, _) in months.enumerated() {
+            var totalAmountPerMonth = 0.0
+            
+            for item in items {
+                let dateComponent = calendar.dateComponents([.month, .year], from: item.date)
+                guard let month = dateComponent.month else {continue}
+                guard let year = dateComponent.year else {continue}
+                
+                if index == month && selectedYear == year {
+                    totalAmountPerMonth += item.amount
+                    let entry = ChartDataEntry(x: Double(month), y: totalAmountPerMonth)
+                    chartDataEntries.append(entry)
+                }
+            }
+        }
+    }
+    
+    // MARK: Checks item in items array if item is for current month
+    private func checkForCurrentMonth(date: Date) -> Bool {
         let calendar = Calendar.current
         let now = Date()
         
@@ -52,9 +110,17 @@ class StatisticsViewController: UIViewController {
     private func updateUI() {
         totalExpensesLabel.text = "$\(totalExpenses)"
         totalIncomeLabel.text = "$\(totalIncome)"
+        
+        let savedScore = PersistenceManager.fetchScore()
+        scoreStreak.text = String(savedScore!.score)
+        highScore.text = String(savedScore!.highscore)
     }
     
+    //MARK: Calculates total expenses and income for current month.
     private func calculate() {
+        totalIncome = 0.0
+        totalExpenses = 0.0
+        
         for item in items {
             if item.category.categoryType == "Income" {
                 totalIncome += item.amount
