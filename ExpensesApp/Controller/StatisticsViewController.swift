@@ -20,9 +20,14 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var chart: LineChartView!
     @IBOutlet weak var scoreStreak: UILabel!
     @IBOutlet weak var highScore: UILabel!
+    @IBOutlet weak var dataAvailableLabel: UILabel!
     
+    var items = [Item]() {
+        didSet {
+            dataAvailableLabel.isHidden = !items.isEmpty
+        }
+    }
     
-    var items = [Item]()
     var totalExpenses = 0.0
     var totalIncome = 0.0
     var chartDataEntries: [ChartDataEntry] = []

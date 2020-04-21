@@ -23,25 +23,18 @@ class AddItemViewController: UIViewController {
     var delegate: AddItemDelegate?
     
     var addingExpense = true
-    var categories: [Category] = {
-        let fetchrequest: NSFetchRequest<Category> = Category.fetchRequest()
-        var categories = [Category]()
-        do {
-            categories = try PersistenceManager.persistentContainer.viewContext.fetch(fetchrequest)
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        
-        return categories
-    }()
-    
+    var categories: [Category] = []
+    var filteredCategories: [Category] = []
     var selectedCategory: Category?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Constants.shared.setBackgroundGradient(for: view)
         background.layer.cornerRadius = 60
-        print(categories.count)
+        categories = PersistenceManager.fetchCategories()
+        filteredCategories = categories.filter { (category) -> Bool in
+            category.categoryType != "Income"
+        }
         
         let placeholderColor = UIColor.init(white: 1, alpha: 0.5)
         amountTextField.attributedPlaceholder = NSAttributedString(
@@ -54,11 +47,19 @@ class AddItemViewController: UIViewController {
             addingExpense.toggle()
             sender.setTitle("income", for: .normal)
             sender.setTitleColor(.green, for: .normal)
+            filteredCategories = categories.filter { (category) -> Bool in
+                category.categoryType == "Income"
+            }
         } else {
             addingExpense.toggle()
             sender.setTitle("expense", for: .normal)
             sender.setTitleColor(.red, for: .normal)
+            filteredCategories = categories.filter { (category) -> Bool in
+                category.categoryType != "Income"
+            }
         }
+        
+        collectionView.reloadData()
     }
     
     @IBAction func addBtnTapped(_ sender: UIButton) {
@@ -120,12 +121,12 @@ class AddItemViewController: UIViewController {
 extension AddItemViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categories.count
+        return filteredCategories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CategoryCollectionCell
-        let category = categories[indexPath.row]
+        let category = filteredCategories[indexPath.row]
         cell.configureCell(image: UIImage(named: "restaurant")!, name: category.name)
         return cell
     }
@@ -135,7 +136,7 @@ extension AddItemViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedCategory = categories[indexPath.row]
+        selectedCategory = filteredCategories[indexPath.row]
         print(selectedCategory!.name)
     }
 }

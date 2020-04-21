@@ -8,11 +8,13 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
-
+class SettingsViewController: UITableViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        Constants.shared.setBackgroundGradient(for: view)
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
+    
+    
 
 }

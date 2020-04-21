@@ -80,4 +80,16 @@ class PersistenceManager {
         guard let firstEntry = score.first else {return nil}
         return firstEntry
     }
+    
+    static func fetchCategories() -> [Category] {
+        let fetchrequest: NSFetchRequest<Category> = Category.fetchRequest()
+        var categories = [Category]()
+        do {
+            categories = try PersistenceManager.persistentContainer.viewContext.fetch(fetchrequest)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        return categories
+    }
 }
