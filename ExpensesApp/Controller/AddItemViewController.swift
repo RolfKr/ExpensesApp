@@ -99,8 +99,9 @@ class AddItemViewController: UIViewController {
             scoreStreak.setValue(1, forKey: "score")
         }
         
-        PersistenceManager.saveContext()
         scoreStreak.date = Date()
+        PersistenceManager.saveContext()
+        
     }
     
     private func createItem(name: String, amount: Double, category: Category, date: Date) {
