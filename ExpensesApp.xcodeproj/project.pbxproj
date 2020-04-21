@@ -38,6 +38,7 @@
 		B7969D3F244B9D56007E69E9 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7969D3E244B9D56007E69E9 /* LineChartView.swift */; };
 		B7969D4A244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7969D48244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift */; };
 		B7969D4B244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7969D49244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift */; };
+		B7B79DA5244F715200F103F3 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B79DA4244F715200F103F3 /* Currency.swift */; };
 		B7C83AED244F4A8D00089050 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C83AEC244F4A8D00089050 /* CurrencyCell.swift */; };
 		B7C83AF0244F62F000089050 /* Settings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C83AEE244F62F000089050 /* Settings+CoreDataClass.swift */; };
 		B7C83AF1244F62F000089050 /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C83AEF244F62F000089050 /* Settings+CoreDataProperties.swift */; };
@@ -102,6 +103,7 @@
 		B7969D3E244B9D56007E69E9 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		B7969D48244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scorestreak+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7969D49244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scorestreak+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		B7B79DA4244F715200F103F3 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		B7C83AEC244F4A8D00089050 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 		B7C83AEE244F62F000089050 /* Settings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7C83AEF244F62F000089050 /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
@@ -172,6 +174,7 @@
 				7EDC710D2449E107002CACDF /* Category+CoreDataClass.swift */,
 				7EDC710E2449E107002CACDF /* Category+CoreDataProperties.swift */,
 				B74263282448BEBA00597D4C /* ExpensesApp.xcdatamodeld */,
+				B7B79DA4244F715200F103F3 /* Currency.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				B7C83AF1244F62F000089050 /* Settings+CoreDataProperties.swift in Sources */,
 				7EDC71122449E107002CACDF /* Item+CoreDataProperties.swift in Sources */,
 				B742632A2448BEBA00597D4C /* ExpensesApp.xcdatamodeld in Sources */,
+				B7B79DA5244F715200F103F3 /* Currency.swift in Sources */,
 				7E54F969244A3AF1003ABAA1 /* AddCategoryViewController.swift in Sources */,
 				B74263242448BEBA00597D4C /* MainViewController.swift in Sources */,
 				7EA3FCFB24498F5200B1AF10 /* CategoryCell.swift in Sources */,

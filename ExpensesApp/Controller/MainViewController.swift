@@ -24,6 +24,11 @@ class MainViewController: UIViewController {
     
     var items = [Item]()
     var monthlyBudget = 1500.00
+    var settings: Settings! {
+        didSet {
+            monthlyBudgetLabel.text = "\(settings.budget) \(settings.currency.lowercased())"
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -32,6 +37,7 @@ class MainViewController: UIViewController {
         items = PersistenceManager.fetchItems()
         items = items.filter({ item in checkDataSelectedDate(date: item.date)})
         updateUI()
+        settings = PersistenceManager.fetchSettings()!
     }
     
     private func intitialSetup() {
