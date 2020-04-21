@@ -39,6 +39,8 @@
 		B7969D4A244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7969D48244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift */; };
 		B7969D4B244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7969D49244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift */; };
 		B7C83AED244F4A8D00089050 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C83AEC244F4A8D00089050 /* CurrencyCell.swift */; };
+		B7C83AF0244F62F000089050 /* Settings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C83AEE244F62F000089050 /* Settings+CoreDataClass.swift */; };
+		B7C83AF1244F62F000089050 /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C83AEF244F62F000089050 /* Settings+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,8 @@
 		B7969D48244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scorestreak+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7969D49244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scorestreak+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		B7C83AEC244F4A8D00089050 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
+		B7C83AEE244F62F000089050 /* Settings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B7C83AEF244F62F000089050 /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		B9A7077BDCAA92EEB6D8AA88 /* Pods-ExpensesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesApp.debug.xcconfig"; path = "Target Support Files/Pods-ExpensesApp/Pods-ExpensesApp.debug.xcconfig"; sourceTree = "<group>"; };
 		BC66C6A69425343E3FD32677 /* Pods-ExpensesApp-ExpensesAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesApp-ExpensesAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ExpensesApp-ExpensesAppUITests/Pods-ExpensesApp-ExpensesAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +163,8 @@
 		7EA3FCFC24499C8900B1AF10 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B7C83AEE244F62F000089050 /* Settings+CoreDataClass.swift */,
+				B7C83AEF244F62F000089050 /* Settings+CoreDataProperties.swift */,
 				B7969D48244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift */,
 				B7969D49244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift */,
 				7EDC710B2449E107002CACDF /* Item+CoreDataClass.swift */,
@@ -532,11 +538,13 @@
 				B74263532448BF5D00597D4C /* Constants.swift in Sources */,
 				7EDC71132449E107002CACDF /* Category+CoreDataClass.swift in Sources */,
 				7E54F967244A0BE9003ABAA1 /* Preload.swift in Sources */,
+				B7C83AF1244F62F000089050 /* Settings+CoreDataProperties.swift in Sources */,
 				7EDC71122449E107002CACDF /* Item+CoreDataProperties.swift in Sources */,
 				B742632A2448BEBA00597D4C /* ExpensesApp.xcdatamodeld in Sources */,
 				7E54F969244A3AF1003ABAA1 /* AddCategoryViewController.swift in Sources */,
 				B74263242448BEBA00597D4C /* MainViewController.swift in Sources */,
 				7EA3FCFB24498F5200B1AF10 /* CategoryCell.swift in Sources */,
+				B7C83AF0244F62F000089050 /* Settings+CoreDataClass.swift in Sources */,
 				B7969D4A244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift in Sources */,
 				B74263572448E63800597D4C /* ExpenseCell.swift in Sources */,
 				7EA3FD062449C27300B1AF10 /* StatisticsViewController.swift in Sources */,

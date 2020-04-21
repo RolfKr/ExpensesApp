@@ -92,4 +92,17 @@ class PersistenceManager {
         
         return categories
     }
+    
+    static func fetchSettings() -> Settings? {
+        let fetchrequest: NSFetchRequest<Settings> = Settings.fetchRequest()
+        var settingsArray = [Settings]()
+        do {
+            settingsArray = try PersistenceManager.persistentContainer.viewContext.fetch(fetchrequest)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        guard let settings = settingsArray.first else {return nil}
+        return settings
+    }
 }

@@ -44,7 +44,6 @@ class Preload {
                     categoryEntity.items = []
                     categoryEntity.categoryType = categoryTypes[index]
                     categoryEntity.icon = (UIImage(named: "restaurant")!.pngData()!)
-                    PersistenceManager.saveContext()
                 }
                 index += 1
             }
@@ -53,6 +52,12 @@ class Preload {
         scorestreakEntity.highscore = 0
         scorestreakEntity.score = 0
         scorestreakEntity.date = Date()
+        
+        let settingsEntity = Settings(context: PersistenceManager.persistentContainer.viewContext)
+        settingsEntity.budget = 10_000
+        settingsEntity.currency = "Dollar"
+        settingsEntity.theme = "System"
+        
         PersistenceManager.saveContext()
     }
 }
