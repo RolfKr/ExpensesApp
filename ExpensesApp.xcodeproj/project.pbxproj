@@ -14,6 +14,7 @@
 		7E54F969244A3AF1003ABAA1 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54F968244A3AF1003ABAA1 /* AddCategoryViewController.swift */; };
 		7E54F96B244A4126003ABAA1 /* AddCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54F96A244A4126003ABAA1 /* AddCategoryCell.swift */; };
 		7E66B56B2453556E00F138C3 /* ExpenseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E66B56A2453556E00F138C3 /* ExpenseCategory.swift */; };
+		7E66B56E2453874700F138C3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E66B56D2453874700F138C3 /* CloudKit.framework */; };
 		7E84C6902449CA9400B2C657 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E84C68F2449CA9400B2C657 /* SettingsViewController.swift */; };
 		7EA3FCFB24498F5200B1AF10 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA3FCFA24498F5200B1AF10 /* CategoryCell.swift */; };
 		7EA3FD022449A83E00B1AF10 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA3FD012449A83E00B1AF10 /* AddItemViewController.swift */; };
@@ -70,6 +71,8 @@
 		7E54F968244A3AF1003ABAA1 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		7E54F96A244A4126003ABAA1 /* AddCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryCell.swift; sourceTree = "<group>"; };
 		7E66B56A2453556E00F138C3 /* ExpenseCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategory.swift; sourceTree = "<group>"; };
+		7E66B56C2453870200F138C3 /* ExpensesApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExpensesApp.entitlements; sourceTree = "<group>"; };
+		7E66B56D2453874700F138C3 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		7E84C68F2449CA9400B2C657 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7EA3FCFA24498F5200B1AF10 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		7EA3FD012449A83E00B1AF10 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E1DEAB0115FFD8D82F13AEF /* Pods_ExpensesApp.framework in Frameworks */,
+				7E66B56E2453874700F138C3 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +159,7 @@
 		78F5815B91C6822F9B6DC15F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E66B56D2453874700F138C3 /* CloudKit.framework */,
 				78F7AC10A4D7315CCF5FFD54 /* Pods_ExpensesApp.framework */,
 				0F625B0472DA99EDE79BE311 /* Pods_ExpensesApp_ExpensesAppUITests.framework */,
 				70160C5DDD8CB203221EFD66 /* Pods_ExpensesAppTests.framework */,
@@ -259,6 +264,7 @@
 		B742631E2448BEBA00597D4C /* ExpensesApp */ = {
 			isa = PBXGroup;
 			children = (
+				7E66B56C2453870200F138C3 /* ExpensesApp.entitlements */,
 				7EA3FCFC24499C8900B1AF10 /* Model */,
 				7EA3FCFD24499C8E00B1AF10 /* View */,
 				7EA3FCFE24499C9500B1AF10 /* Controller */,
@@ -735,6 +741,7 @@
 			baseConfigurationReference = B9A7077BDCAA92EEB6D8AA88 /* Pods-ExpensesApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ExpensesApp/ExpensesApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3H92NGE9SW;
 				INFOPLIST_FILE = ExpensesApp/Utilities/Info.plist;
@@ -755,6 +762,7 @@
 			baseConfigurationReference = 84600F1ED4C062903CD24551 /* Pods-ExpensesApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ExpensesApp/ExpensesApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3H92NGE9SW;
 				INFOPLIST_FILE = ExpensesApp/Utilities/Info.plist;
