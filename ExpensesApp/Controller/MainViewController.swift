@@ -24,9 +24,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var progressConstraint: NSLayoutConstraint!
     
     var items = [Item]()
+    var filteredItemIncomes = [Item]()
     var categories = [ExpenseCategory]()
     
-    var expensesSelected: Bool! {
+    var expensesSelected = true {
         didSet {
             if expensesSelected {
                 expensesBtn.setTitleColor(.label, for: .normal)
@@ -49,17 +50,19 @@ class MainViewController: UIViewController {
         super.viewDidAppear(animated)
         settings = PersistenceManager.fetchSettings()!
         items = PersistenceManager.fetchItems()
-        expensesSelected = true
+
+        
         intitialSetup()
         
         progressConstraint.constant = progress.frame.width
         items = items.filter({ item in checkDataSelectedDate(date: item.date)})
+        filteredItemIncomes = items.filter { item in
+            item.category.categoryType == "Income"
+        }
         
         updateUI()
         
         filterCategories()
-        
-        
     }
     
     private func intitialSetup() {
@@ -88,8 +91,10 @@ class MainViewController: UIViewController {
         }
         
         for categoryExpense in categoryExpenses where categoryExpense.value != 0.0 {
-            let category = ExpenseCategory(category: categoryExpense.key, amount: categoryExpense.value)
-            self.categories.append(category)
+            if categoryExpense.key != "Income" {
+                let category = ExpenseCategory(category: categoryExpense.key, amount: categoryExpense.value)
+                self.categories.append(category)
+            }
         }
         
         tableView.reloadData()
@@ -97,10 +102,12 @@ class MainViewController: UIViewController {
     
     @IBAction func expensesBtnTapped(_ sender: UIButton) {
         expensesSelected = true
+        tableView.reloadData()
     }
     
     @IBAction func incomeBtnTapped(_ sender: UIButton) {
         expensesSelected = false
+        tableView.reloadData()
     }
     
     private func checkDataSelectedDate(date: Date) -> Bool {
@@ -176,14 +183,25 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        if expensesSelected {
+            return categories.count
+        } else {
+            return filteredItemIncomes.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenseCell", for: indexPath) as! ExpenseCell
-        let category = categories[indexPath.row]
         
-        cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: settings.budget, categoryAmount: category.amount))% of budget", moneyLabel: "\(settings.currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) transactions")
+        if expensesSelected {
+            let category = categories[indexPath.row]
+            cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: settings.budget, categoryAmount: category.amount))% of budget", moneyLabel: "\(settings.currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) transactions")
+        } else {
+            let item = filteredItemIncomes[indexPath.row]
+            cell.configureCell(image: UIImage(named: "restaurant")!, category: item.category.name, budgetAmount: "", moneyLabel: "\(settings.currencyIcon) \(item.amount)", transactions: "")
+        }
+
         return cell
     }
     
