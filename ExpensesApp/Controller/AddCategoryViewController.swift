@@ -77,7 +77,6 @@ extension AddCategoryViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedType = Constants.shared.categoryTypes[row]
-        print(selectedType)
     }
 }
 
@@ -99,7 +98,6 @@ extension AddCategoryViewController: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIcon = UIImage(named: "restaurant")!
-        print(indexPath.item)
     }
     
 }
