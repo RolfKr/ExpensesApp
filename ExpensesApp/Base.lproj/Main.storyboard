@@ -45,7 +45,7 @@
                                         <rect key="frame" x="0.0" y="82" width="414" height="589"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Z9a-DB-a7L">
-                                                <rect key="frame" x="60" y="30" width="154" height="36"/>
+                                                <rect key="frame" x="60" y="30" width="161" height="36"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nk-g9-HBi">
                                                         <rect key="frame" x="0.0" y="0.0" width="75" height="36"/>
@@ -58,9 +58,9 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHN-W3-MiK">
-                                                        <rect key="frame" x="95" y="0.0" width="59" height="36"/>
+                                                        <rect key="frame" x="95" y="0.0" width="66" height="36"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
-                                                        <state key="normal" title="Income">
+                                                        <state key="normal" title="Incomes">
                                                             <color key="titleColor" white="0.29217099470000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>

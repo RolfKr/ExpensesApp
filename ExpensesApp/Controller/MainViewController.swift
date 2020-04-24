@@ -26,6 +26,17 @@ class MainViewController: UIViewController {
     var items = [Item]()
     var categories = [ExpenseCategory]()
     
+    var expensesSelected: Bool! {
+        didSet {
+            if expensesSelected {
+                expensesBtn.setTitleColor(.label, for: .normal)
+                incomeBtn.setTitleColor(.lightGray, for: .normal)
+            } else {
+                expensesBtn.setTitleColor(.lightGray, for: .normal)
+                incomeBtn.setTitleColor(.label, for: .normal)
+            }
+        }
+    }
 
     var monthlyBudget = 1500.00
     var settings: Settings! {
@@ -38,7 +49,7 @@ class MainViewController: UIViewController {
         super.viewDidAppear(animated)
         settings = PersistenceManager.fetchSettings()!
         items = PersistenceManager.fetchItems()
-        
+        expensesSelected = true
         intitialSetup()
         
         progressConstraint.constant = progress.frame.width
@@ -47,15 +58,19 @@ class MainViewController: UIViewController {
         updateUI()
         
         filterCategories()
+        
+        
     }
     
     private func intitialSetup() {
+        
         Constants.shared.setBackgroundGradient(for: view)
         cardBehind.layer.cornerRadius = 60
         cardFront.layer.cornerRadius = 60
         progressContainer.layer.cornerRadius = 6
         progressConstraint.constant = progress.frame.width
         monthlyBudget = settings.budget
+        
     }
     
     private func filterCategories() {
@@ -81,11 +96,11 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func expensesBtnTapped(_ sender: UIButton) {
-        print("Expenses tapped")
+        expensesSelected = true
     }
     
     @IBAction func incomeBtnTapped(_ sender: UIButton) {
-        print("Income tapped")
+        expensesSelected = false
     }
     
     private func checkDataSelectedDate(date: Date) -> Bool {
