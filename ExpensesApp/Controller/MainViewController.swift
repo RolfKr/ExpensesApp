@@ -129,6 +129,18 @@ class MainViewController: UIViewController {
         }
     }
     
+    private func calculateTransactions(for category: ExpenseCategory) -> Int {
+        var total = 0
+        
+        for item in items {
+            if item.category.categoryType == category.category {
+                total += 1
+            }
+        }
+        
+        return total
+    }
+    
     private func updateUI() {
         totalExpensesLabel.text = "\(settings.currencyIcon) \(calculateTotalExpenses())"
         progressConstraint.constant = calculateProgressbar()
@@ -156,7 +168,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenseCell", for: indexPath) as! ExpenseCell
         let category = categories[indexPath.row]
         
-        cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: settings.budget, categoryAmount: category.amount))% of budget", moneyLabel: "\(settings.currencyIcon) \(category.amount)", transactions: "\(category.transactions) transactions")
+        cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: settings.budget, categoryAmount: category.amount))% of budget", moneyLabel: "\(settings.currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) transactions")
         return cell
     }
     

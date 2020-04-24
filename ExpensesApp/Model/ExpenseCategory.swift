@@ -11,5 +11,4 @@ import Foundation
 struct ExpenseCategory {
     var category: String
     var amount: Double = 0
-    var transactions = 0
 }
