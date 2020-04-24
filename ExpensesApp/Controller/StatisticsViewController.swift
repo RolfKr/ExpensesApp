@@ -28,6 +28,7 @@ class StatisticsViewController: UIViewController {
         }
     }
     
+    var settings: Settings!
     var totalExpenses = 0.0
     var totalIncome = 0.0
     var chartDataEntries: [ChartDataEntry] = []
@@ -41,6 +42,7 @@ class StatisticsViewController: UIViewController {
     }
     
     private func initialSetup() {
+        settings = PersistenceManager.fetchSettings()!
         Constants.shared.setBackgroundGradient(for: view)
         totalIncomeContainer.layer.cornerRadius = 8
         totalExpensesContainer.layer.cornerRadius = 8
@@ -113,8 +115,8 @@ class StatisticsViewController: UIViewController {
     }
     
     private func updateUI() {
-        totalExpensesLabel.text = "$\(totalExpenses)"
-        totalIncomeLabel.text = "$\(totalIncome)"
+        totalExpensesLabel.text = "\(settings.currencyIcon) \(totalExpenses)"
+        totalIncomeLabel.text = "\(settings.currencyIcon) \(totalIncome)"
         
         let savedScore = PersistenceManager.fetchScore()
         print(savedScore!.score)
