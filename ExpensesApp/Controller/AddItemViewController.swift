@@ -96,10 +96,12 @@ class AddItemViewController: UIViewController {
     
     private func addToScoreStreak() {
         guard let scoreStreak = PersistenceManager.fetchScore() else {return}
+        let calendar = Calendar.current
         
-        print("Fethced scores")
+        let yesterday = calendar.dateComponents([.day, .month, .year], from: getYesterdayDate())
+        let lastTimeAdded = calendar.dateComponents([.day, .month, .year], from: scoreStreak.date)
         
-        if getYesterdayDate() == scoreStreak.date {
+        if yesterday == lastTimeAdded {
             scoreStreak.setValue(scoreStreak.score + 1, forKey: "score")
             if scoreStreak.highscore < scoreStreak.score {
                 scoreStreak.setValue(scoreStreak.highscore + 1, forKey: "highscore")
@@ -120,8 +122,6 @@ class AddItemViewController: UIViewController {
         itemEntity.category = category
         itemEntity.date = date
         PersistenceManager.saveContext()
-        
-        print(itemEntity.category.name)
     }
     
 }
@@ -145,7 +145,6 @@ extension AddItemViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedCategory = filteredCategories[indexPath.row]
-        print(selectedCategory!.name)
     }
 }
 
