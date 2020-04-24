@@ -25,8 +25,8 @@ class ExpenseCell: UITableViewCell {
         categoryImage.image = image
         categoryName.text = category
         budgetLabel.text = "\(budgetAmount)% of budget"
-        self.moneyLabel.text = "$\(moneyLabel)"
-        transactionsLabel.text = "\(transactions) transactions"
+        self.moneyLabel.text = "\(moneyLabel)"
+        transactionsLabel.text = transactions
     }
 
 }

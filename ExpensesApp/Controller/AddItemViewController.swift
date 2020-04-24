@@ -19,6 +19,8 @@ class AddItemViewController: UIViewController {
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
+    @IBOutlet weak var currencyIcon: UILabel!
+    
     
     var delegate: AddItemDelegate?
     
@@ -26,12 +28,18 @@ class AddItemViewController: UIViewController {
     var categories: [Category] = []
     var filteredCategories: [Category] = []
     var selectedCategory: Category?
+    var settings: Settings! {
+        didSet {
+            currencyIcon.text = "\(settings.currencyIcon)"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Constants.shared.setBackgroundGradient(for: view)
         background.layer.cornerRadius = 60
         categories = PersistenceManager.fetchCategories()
+        settings = PersistenceManager.fetchSettings()!
         filteredCategories = categories.filter { (category) -> Bool in
             category.categoryType != "Income"
         }

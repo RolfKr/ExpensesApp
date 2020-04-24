@@ -16,6 +16,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var cardFront: UIView!
     @IBOutlet weak var monthlyBudgetLabel: UILabel!
     @IBOutlet weak var totalExpensesLabel: UILabel!
+    
     @IBOutlet weak var progressContainer: UIView!
     @IBOutlet weak var expensesBtn: UIButton!
     @IBOutlet weak var incomeBtn: UIButton!
@@ -23,21 +24,29 @@ class MainViewController: UIViewController {
     @IBOutlet weak var progressConstraint: NSLayoutConstraint!
     
     var items = [Item]()
+    var categories = [ExpenseCategory]()
+    
+
     var monthlyBudget = 1500.00
     var settings: Settings! {
         didSet {
-            monthlyBudgetLabel.text = "\(settings.budget) \(settings.currency.lowercased())"
+            monthlyBudgetLabel.text = "\(settings.currencyIcon) \(settings.budget) remaining"
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        intitialSetup()
-        progressConstraint.constant = progress.frame.width
-        items = PersistenceManager.fetchItems()
-        items = items.filter({ item in checkDataSelectedDate(date: item.date)})
-        updateUI()
         settings = PersistenceManager.fetchSettings()!
+        items = PersistenceManager.fetchItems()
+        
+        intitialSetup()
+        
+        progressConstraint.constant = progress.frame.width
+        items = items.filter({ item in checkDataSelectedDate(date: item.date)})
+        
+        updateUI()
+        
+        filterCategories()
     }
     
     private func intitialSetup() {
@@ -46,6 +55,29 @@ class MainViewController: UIViewController {
         cardFront.layer.cornerRadius = 60
         progressContainer.layer.cornerRadius = 6
         progressConstraint.constant = progress.frame.width
+        monthlyBudget = settings.budget
+    }
+    
+    private func filterCategories() {
+        categories = []
+        
+        var categoryExpenses = ["Income" : 0.0, "Entertainment" : 0.0, "Education" : 0.0, "Shopping" : 0.0, "Personal Care" : 0.0,
+                                "Health & Fitness" : 0.0, "Kids" : 0.0, "Food & Dining" : 0.0, "Gifts & Donations" : 0.0,
+                                "Investments" : 0.0, "Bills & Utilities" : 0.0, "Transport" : 0.0, "Travel" : 0.0,
+                                "Fees & Charges" : 0.0, "Business Services" : 0.0]
+        
+        for item in items {
+            var currentAmount = categoryExpenses[item.category.categoryType]!
+            currentAmount += item.amount
+            categoryExpenses[item.category.categoryType] = currentAmount
+        }
+        
+        for categoryExpense in categoryExpenses where categoryExpense.value != 0.0 {
+            let category = ExpenseCategory(category: categoryExpense.key, amount: categoryExpense.value)
+            self.categories.append(category)
+        }
+        
+        tableView.reloadData()
     }
     
     @IBAction func expensesBtnTapped(_ sender: UIButton) {
@@ -72,12 +104,17 @@ class MainViewController: UIViewController {
     
     private func calculateTotalExpenses() -> Double {
         var totalExpenses = 0.0
+        
         for item in items {
             if item.category.categoryType != "Income" {
                 totalExpenses += item.amount
             }
         }
         return totalExpenses
+    }
+    
+    private func calculateBudgetPercentage(totalAmount: Double, categoryAmount: Double) -> Int {
+        return Int((categoryAmount / totalAmount) * 100)
     }
     
     private func calculateProgressbar() -> CGFloat {
@@ -93,8 +130,11 @@ class MainViewController: UIViewController {
     }
     
     private func updateUI() {
-        totalExpensesLabel.text = "$\(calculateTotalExpenses())"
+        totalExpensesLabel.text = "\(settings.currencyIcon) \(calculateTotalExpenses())"
         progressConstraint.constant = calculateProgressbar()
+        
+        let remainingBudget = settings.budget - calculateTotalExpenses()
+        monthlyBudgetLabel.text = "\(settings.currencyIcon) \(remainingBudget) remaining"
         
         UIView.animate(withDuration: 1.0) {
             self.view.layoutSubviews()
@@ -109,31 +149,18 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return categories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenseCell", for: indexPath) as! ExpenseCell
-        let item = items[indexPath.row]
+        let category = categories[indexPath.row]
         
-        cell.configureCell(image: UIImage(named: "restaurant")!, category: item.category.name, budgetAmount: "45", moneyLabel: "\(item.amount)", transactions: "9")
+        cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: settings.budget, categoryAmount: category.amount))% of budget", moneyLabel: "\(settings.currencyIcon) \(category.amount)", transactions: "\(category.transactions) transactions")
         return cell
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let item = items[indexPath.row]
-            PersistenceManager.persistentContainer.viewContext.delete(item)
-            PersistenceManager.saveContext()
-            
-            items.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            
-            updateUI()
-        }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

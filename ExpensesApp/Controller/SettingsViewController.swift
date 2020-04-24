@@ -64,6 +64,18 @@ class SettingsViewController: UITableViewController {
         guard let currency = sender.title else {return}
         currencyLabel.text = currency
         settings.setValue(currency, forKey: "currency")
+        
+        switch sender.title {
+        case "Dollar":
+            settings.setValue("$", forKey: "currencyIcon")
+        case "Kroner":
+            settings.setValue("kr", forKey: "currencyIcon")
+        case "Euro":
+            settings.setValue("€", forKey: "currencyIcon")
+        default:
+            break
+        }
+        
         PersistenceManager.saveContext()
     }
     

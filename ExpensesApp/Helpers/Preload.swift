@@ -57,6 +57,7 @@ class Preload {
         settingsEntity.budget = 10_000
         settingsEntity.currency = "Dollar"
         settingsEntity.theme = "System"
+        settingsEntity.currencyIcon = "$"
         
         PersistenceManager.saveContext()
     }
