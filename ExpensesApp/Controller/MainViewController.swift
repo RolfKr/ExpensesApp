@@ -24,6 +24,13 @@ class MainViewController: UIViewController {
     @IBOutlet weak var progressConstraint: NSLayoutConstraint!
     
     var fetchControllerItems: NSFetchedResultsController<Item>!
+    var fetchControllerSettings: NSFetchedResultsController<Settings>! {
+        didSet {
+            let currencyIcon = fetchControllerSettings.fetchedObjects?.first?.currencyIcon ?? "$"
+            let budget = fetchControllerSettings.fetchedObjects?.first?.budget ?? 1000
+            monthlyBudgetLabel.text = "\(currencyIcon) \(budget) remaining"
+        }
+    }
     
     var categories = [ExpenseCategory]()
     
@@ -40,17 +47,13 @@ class MainViewController: UIViewController {
     }
 
     var monthlyBudget = 1500.00
-    var settings: Settings! {
-        didSet {
-            monthlyBudgetLabel.text = "\(settings.currencyIcon) \(settings.budget) remaining"
-        }
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loadItems()
+        loadSettings()
         
-        settings = PersistenceManager.fetchSettings()!
+        //settings = PersistenceManager.fetchSettings()!
         //items = PersistenceManager.fetchItems()
 
         
@@ -74,7 +77,7 @@ class MainViewController: UIViewController {
         cardFront.layer.cornerRadius = 60
         progressContainer.layer.cornerRadius = 6
         progressConstraint.constant = progress.frame.width
-        monthlyBudget = settings.budget
+        monthlyBudget = fetchControllerSettings.fetchedObjects?.first?.budget ?? 0.0
         
     }
     
@@ -99,6 +102,20 @@ class MainViewController: UIViewController {
         }
         
         tableView.reloadData()
+    }
+    
+    private func loadSettings() {
+        let request = NSFetchRequest<Settings>(entityName: "Settings")
+        let sortDescriptor = NSSortDescriptor(key: "budget", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+    
+        fetchControllerSettings = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "budget", cacheName: nil)
+        
+        do {
+            try fetchControllerSettings.performFetch()
+        } catch let err {
+            print(err.localizedDescription)
+        }
     }
     
     private func filterCategories() {
@@ -189,11 +206,14 @@ class MainViewController: UIViewController {
     }
     
     private func updateUI() {
-        totalExpensesLabel.text = "\(settings.currencyIcon) \(calculateTotalExpenses())"
+        let currencyIcon = fetchControllerSettings.fetchedObjects?.first?.currencyIcon ?? "$"
+        let budget = fetchControllerSettings.fetchedObjects?.first?.budget ?? 1000
+        
+        totalExpensesLabel.text = "\(currencyIcon) \(calculateTotalExpenses())"
         progressConstraint.constant = calculateProgressbar()
         
-        let remainingBudget = settings.budget - calculateTotalExpenses()
-        monthlyBudgetLabel.text = "\(settings.currencyIcon) \(remainingBudget) remaining"
+        let remainingBudget = budget - calculateTotalExpenses()
+        monthlyBudgetLabel.text = "\(currencyIcon) \(remainingBudget) remaining"
         
         UIView.animate(withDuration: 1.0) {
             self.view.layoutSubviews()
@@ -211,20 +231,24 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         if expensesSelected {
             return categories.count
         } else {
-            return fetchControllerItems.fetchedObjects?.count ?? 0
+            return fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income" }).count
         }
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenseCell", for: indexPath) as! ExpenseCell
+        let budget = fetchControllerSettings.fetchedObjects?.first?.budget ?? 1000
+        let currencyIcon = fetchControllerSettings.fetchedObjects?.first?.currencyIcon ?? "$"
         
         if expensesSelected {
             let category = categories[indexPath.row]
-            cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: settings.budget, categoryAmount: category.amount))% of budget", moneyLabel: "\(settings.currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) transactions")
+            cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: budget, categoryAmount: category.amount))% of budget", moneyLabel: "\(currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) transactions")
         } else {
-            let item = fetchControllerItems.fetchedObjects![indexPath.row]
-            cell.configureCell(image: UIImage(named: "restaurant")!, category: item.category.name, budgetAmount: "", moneyLabel: "\(settings.currencyIcon) \(item.amount)", transactions: "")
+            let filteredOnIncome = fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income" })
+            
+            let item = filteredOnIncome[indexPath.row]
+            cell.configureCell(image: UIImage(named: "restaurant")!, category: item.category.name, budgetAmount: "", moneyLabel: "\(currencyIcon) \(item.amount)", transactions: "")
         }
 
         return cell
