@@ -23,8 +23,9 @@ class MainViewController: UIViewController {
     @IBOutlet weak var progress: UIView!
     @IBOutlet weak var progressConstraint: NSLayoutConstraint!
     
-    var items = [Item]()
-    var filteredItemIncomes = [Item]()
+    var fetchControllerItems: NSFetchedResultsController<Item>!
+    
+    
     var categories = [ExpenseCategory]()
     
     var expensesSelected = true {
@@ -48,17 +49,19 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        loadItems()
+        
         settings = PersistenceManager.fetchSettings()!
-        items = PersistenceManager.fetchItems()
+        //items = PersistenceManager.fetchItems()
 
         
         intitialSetup()
         
         progressConstraint.constant = progress.frame.width
-        items = items.filter({ item in checkDataSelectedDate(date: item.date)})
-        filteredItemIncomes = items.filter { item in
-            item.category.categoryType == "Income"
-        }
+        //items = items.filter({ item in checkDataSelectedDate(date: item.date)})
+        //filteredItemIncomes = items.filter { item in
+        //    item.category.categoryType == "Income"
+        //}
         
         updateUI()
         
@@ -76,6 +79,29 @@ class MainViewController: UIViewController {
         
     }
     
+    private func loadItems() {
+        let request = NSFetchRequest<Item>(entityName: "Item")
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        // TODO: Add NSPredicate to filter out incomes.
+        
+        fetchControllerItems = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "date", cacheName: nil)
+        
+        do {
+            try fetchControllerItems.performFetch()
+            
+            for item in fetchControllerItems.fetchedObjects! {
+                print(item.name)
+                print(item.category.categoryType)
+            }
+            
+        } catch let err {
+            print(err.localizedDescription)
+        }
+        
+        tableView.reloadData()
+    }
+    
     private func filterCategories() {
         categories = []
         
@@ -84,7 +110,7 @@ class MainViewController: UIViewController {
                                 "Investments" : 0.0, "Bills & Utilities" : 0.0, "Transport" : 0.0, "Travel" : 0.0,
                                 "Fees & Charges" : 0.0, "Business Services" : 0.0]
         
-        for item in items {
+        for item in fetchControllerItems.fetchedObjects! {
             var currentAmount = categoryExpenses[item.category.categoryType]!
             currentAmount += item.amount
             categoryExpenses[item.category.categoryType] = currentAmount
@@ -127,7 +153,7 @@ class MainViewController: UIViewController {
     private func calculateTotalExpenses() -> Double {
         var totalExpenses = 0.0
         
-        for item in items {
+        for item in fetchControllerItems.fetchedObjects! {
             if item.category.categoryType != "Income" {
                 totalExpenses += item.amount
             }
@@ -154,7 +180,7 @@ class MainViewController: UIViewController {
     private func calculateTransactions(for category: ExpenseCategory) -> Int {
         var total = 0
         
-        for item in items {
+        for item in fetchControllerItems.fetchedObjects! {
             if item.category.categoryType == category.category {
                 total += 1
             }
@@ -186,7 +212,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         if expensesSelected {
             return categories.count
         } else {
-            return filteredItemIncomes.count
+            return fetchControllerItems.fetchedObjects?.count ?? 0
         }
         
     }
@@ -198,7 +224,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             let category = categories[indexPath.row]
             cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: settings.budget, categoryAmount: category.amount))% of budget", moneyLabel: "\(settings.currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) transactions")
         } else {
-            let item = filteredItemIncomes[indexPath.row]
+            let item = fetchControllerItems.fetchedObjects![indexPath.row]
             cell.configureCell(image: UIImage(named: "restaurant")!, category: item.category.name, budgetAmount: "", moneyLabel: "\(settings.currencyIcon) \(item.amount)", transactions: "")
         }
 
