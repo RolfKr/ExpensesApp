@@ -25,7 +25,6 @@ class MainViewController: UIViewController {
     
     var fetchControllerItems: NSFetchedResultsController<Item>!
     
-    
     var categories = [ExpenseCategory]()
     
     var expensesSelected = true {
