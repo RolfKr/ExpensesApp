@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SettingsViewController: UITableViewController {
     
@@ -14,11 +15,13 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var themeLabel: UILabel!
     
-    
+    var fetchControllerSettings: NSFetchedResultsController<Settings>!
     var settings: Settings!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadSettings()
         
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = UIColor(named: "DarkBlueGradient")
@@ -27,13 +30,25 @@ class SettingsViewController: UITableViewController {
         
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
+    }
+    
+    private func loadSettings() {
+        let request = NSFetchRequest<Settings>(entityName: "Settings")
+        let sortDescriptor = NSSortDescriptor(key: "budget", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+    
+        fetchControllerSettings = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "budget", cacheName: nil)
         
-        if let fetchedSettings = PersistenceManager.fetchSettings() {
-            settings = fetchedSettings
+        do {
+            try fetchControllerSettings.performFetch()
+            settings = fetchControllerSettings.fetchedObjects!.first!
             
             budgetLabel.text = String(settings.budget)
             themeLabel.text = settings.theme
             currencyLabel.text = settings.currency
+            
+        } catch let err {
+            print(err.localizedDescription)
         }
     }
     
