@@ -26,8 +26,6 @@ class AddCategoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let dismissKeyboard = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        //view.addGestureRecognizer(dismissKeyboard)
         let placeholderColor = UIColor.init(white: 1, alpha: 0.5)
         nameTextField.attributedPlaceholder = NSAttributedString(
             string: "Enter name here",

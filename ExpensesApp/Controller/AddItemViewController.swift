@@ -24,22 +24,25 @@ class AddItemViewController: UIViewController {
     
     var delegate: AddItemDelegate?
     
+    var fetchControllerSettings: NSFetchedResultsController<Settings>!
+    var fetchControllerCategory: NSFetchedResultsController<Category>!
     var addingExpense = true
-    var categories: [Category] = []
-    var filteredCategories: [Category] = []
+    var categories = [Category]()
+    var filteredCategories = [Category]()
     var selectedCategory: Category?
+    
     var settings: Settings! {
         didSet {
             currencyIcon.text = "\(settings.currencyIcon)"
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadCategories()
+        loadSettings()
         Constants.shared.setBackgroundGradient(for: view)
         background.layer.cornerRadius = 60
-        categories = PersistenceManager.fetchCategories()
-        settings = PersistenceManager.fetchSettings()!
         filteredCategories = categories.filter { (category) -> Bool in
             category.categoryType != "Income"
         }
@@ -48,6 +51,40 @@ class AddItemViewController: UIViewController {
         amountTextField.attributedPlaceholder = NSAttributedString(
             string: "0.00",
             attributes: [NSAttributedString.Key.foregroundColor: placeholderColor])
+    }
+    
+    private func loadCategories() {
+        let request = NSFetchRequest<Category>(entityName: "Category")
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        
+        fetchControllerCategory = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "categoryType", cacheName: nil)
+        
+        do {
+            try fetchControllerCategory.performFetch()
+            categories = fetchControllerCategory.fetchedObjects!
+            filteredCategories = categories.filter {$0.categoryType != "Income"}
+        } catch let err {
+            print(err.localizedDescription)
+        }
+        
+        collectionView.reloadData()
+    }
+    
+    private func loadSettings() {
+        let request = NSFetchRequest<Settings>(entityName: "Settings")
+        let sortDescriptor = NSSortDescriptor(key: "budget", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+    
+        fetchControllerSettings = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "budget", cacheName: nil)
+        
+        do {
+            try fetchControllerSettings.performFetch()
+        } catch let err {
+            print(err.localizedDescription)
+        }
+        
+        settings = fetchControllerSettings.fetchedObjects?.first
     }
     
     @IBAction func changeEntryTapped(_ sender: UIButton) {
