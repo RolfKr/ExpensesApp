@@ -16,6 +16,7 @@ class CategoriesViewController: UIViewController, AddCategoryDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     //https://www.mint.com/mint-categories
+    var fetchController: NSFetchedResultsController<Category>!
     var categoryTypes = Constants.shared.categoryTypes
     var allCategoryTypes = [[Category]]()
     var allCategories = [Category]()
@@ -28,34 +29,20 @@ class CategoriesViewController: UIViewController, AddCategoryDelegate {
         textField.addTarget(self, action: #selector(editedTextfield), for: .editingChanged)
         Constants.shared.setBackgroundGradient(for: view)
         searchContainer.layer.cornerRadius = 20
-        fetchCategories()
+        loadCategories()
+    }
+    
+    private func loadCategories() {
+        let request = NSFetchRequest<Category>(entityName: "Category")
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
         
-    }
-    
-    @IBAction func addCategoryTapped(_ sender: UIButton) {
-        let addCategoryVC = storyboard?.instantiateViewController(identifier: "AddCategoryViewController") as! AddCategoryViewController
-        addCategoryVC.delegate = self
-        present(addCategoryVC, animated: true, completion: nil)
-    }
-    
-    func didfinishAddingCategory(category: Category) {
-        var index = 0
-        for categoryType in categoryTypes {
-            if category.categoryType == categoryType {
-                allCategoryTypes[index].append(category)
-                tableView.reloadData()
-                return
-            }
-            index += 1
-        }
-    }
-    
-    private func fetchCategories() {
-        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
-                
+        fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "categoryType", cacheName: nil)
+        
         do {
-            allCategories = try PersistenceManager.persistentContainer.viewContext.fetch(fetchRequest)
-            filteredCategories = allCategories
+            try fetchController.performFetch()
+            allCategories = fetchController.fetchedObjects!
+            filteredCategories = fetchController.fetchedObjects!
             
             for categoryType in categoryTypes {
                 var categoryGroup: [Category] = []
@@ -69,9 +56,29 @@ class CategoriesViewController: UIViewController, AddCategoryDelegate {
                 allCategoryTypes.append(categoryGroup)
             }
             
-            
-        } catch let error {
-            print(error.localizedDescription)
+        } catch let err {
+            print(err.localizedDescription)
+        }
+        
+        tableView.reloadData()
+    }
+    
+    @IBAction func addCategoryTapped(_ sender: UIButton) {
+        let addCategoryVC = storyboard?.instantiateViewController(identifier: "AddCategoryViewController") as! AddCategoryViewController
+        addCategoryVC.delegate = self
+        present(addCategoryVC, animated: true, completion: nil)
+    }
+    
+    func didfinishAddingCategory(category: Category) {
+        var index = 0
+        
+        for categoryType in categoryTypes {
+            if category.categoryType == categoryType {
+                allCategoryTypes[index].append(category)
+                tableView.reloadData()
+                return
+            }
+            index += 1
         }
     }
     
@@ -79,7 +86,7 @@ class CategoriesViewController: UIViewController, AddCategoryDelegate {
         guard let searchText = textField.text else {return}
         
         isSearching = !searchText.isEmpty
-        filteredCategories = allCategories.filter({ category in category.name.contains(searchText)})
+        filteredCategories = allCategories.filter({ category in category.name.lowercased().contains(searchText)})
         tableView.reloadData()
     }
     

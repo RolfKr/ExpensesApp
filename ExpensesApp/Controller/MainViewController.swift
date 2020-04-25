@@ -50,28 +50,15 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        loadItems()
-        loadSettings()
-        
-        //settings = PersistenceManager.fetchSettings()!
-        //items = PersistenceManager.fetchItems()
-
-        
         intitialSetup()
-        
         progressConstraint.constant = progress.frame.width
-        //items = items.filter({ item in checkDataSelectedDate(date: item.date)})
-        //filteredItemIncomes = items.filter { item in
-        //    item.category.categoryType == "Income"
-        //}
-        
-        updateUI()
-        
         filterCategories()
+        updateUI()
     }
     
     private func intitialSetup() {
-        
+        loadItems()
+        loadSettings()
         Constants.shared.setBackgroundGradient(for: view)
         cardBehind.layer.cornerRadius = 60
         cardFront.layer.cornerRadius = 60
@@ -85,7 +72,6 @@ class MainViewController: UIViewController {
         let request = NSFetchRequest<Item>(entityName: "Item")
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
         request.sortDescriptors = [sortDescriptor]
-        // TODO: Add NSPredicate to filter out incomes.
         
         fetchControllerItems = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "date", cacheName: nil)
         
