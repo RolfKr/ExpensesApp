@@ -8,6 +8,8 @@
 
 import UIKit
 import Charts
+import CoreData
+
 
 class StatisticsViewController: UIViewController {
 
@@ -28,7 +30,10 @@ class StatisticsViewController: UIViewController {
         }
     }
     
+    var fetchControllerSettings: NSFetchedResultsController<Settings>!
+    var fetchControllerItems: NSFetchedResultsController<Item>!
     var settings: Settings!
+    var savedScore: Scorestreak!
     var totalExpenses = 0.0
     var totalIncome = 0.0
     var chartDataEntries: [ChartDataEntry] = []
@@ -42,13 +47,58 @@ class StatisticsViewController: UIViewController {
     }
     
     private func initialSetup() {
-        settings = PersistenceManager.fetchSettings()!
+        loadData()
+        loadSettings()
+        loadScore()
         Constants.shared.setBackgroundGradient(for: view)
         totalIncomeContainer.layer.cornerRadius = 8
         totalExpensesContainer.layer.cornerRadius = 8
         background.layer.cornerRadius = 60
-        items = PersistenceManager.fetchItems()
-        items = items.filter({ item in checkForCurrentMonth(date: item.date)})
+    }
+    
+    private func loadData(){
+        let request = NSFetchRequest<Item>(entityName: "Item")
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        
+        fetchControllerItems = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "date", cacheName: nil)
+        
+        do {
+            try fetchControllerItems.performFetch()
+            items = fetchControllerItems.fetchedObjects!.filter({ item in checkForCurrentMonth(date: item.date)})
+        } catch let err {
+            print(err.localizedDescription)
+        }
+    }
+    
+    private func loadSettings() {
+        let request = NSFetchRequest<Settings>(entityName: "Settings")
+        let sortDescriptor = NSSortDescriptor(key: "budget", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+    
+        fetchControllerSettings = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "budget", cacheName: nil)
+        
+        do {
+            try fetchControllerSettings.performFetch()
+            settings = fetchControllerSettings.fetchedObjects!.first!
+        } catch let err {
+            print(err.localizedDescription)
+        }
+    }
+    
+    private func loadScore() {
+        let request = NSFetchRequest<Scorestreak>(entityName: "Scorestreak")
+        let sortDescriptor = NSSortDescriptor(key: "score", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        
+        let fetchControllerScore = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "score", cacheName: nil)
+        
+        do {
+            try fetchControllerScore.performFetch()
+            savedScore = fetchControllerScore.fetchedObjects!.first!
+        } catch let err {
+            print(err.localizedDescription)
+        }
     }
     
     //MARK: Creates chart.
@@ -118,11 +168,11 @@ class StatisticsViewController: UIViewController {
         totalExpensesLabel.text = "\(settings.currencyIcon) \(totalExpenses)"
         totalIncomeLabel.text = "\(settings.currencyIcon) \(totalIncome)"
         
-        let savedScore = PersistenceManager.fetchScore()
-        print(savedScore!.score)
         scoreStreak.text = String(savedScore!.score)
         highScore.text = String(savedScore!.highscore)
     }
+    
+    
     
     //MARK: Calculates total expenses and income for current month.
     private func calculate() {
