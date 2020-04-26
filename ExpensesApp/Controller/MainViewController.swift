@@ -32,12 +32,10 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         }
     }
     
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.reloadData()
-    }
+
     
     var categories = [ExpenseCategory]()
-    
+    var monthlyBudget = 1500.00
     var expensesSelected = true {
         didSet {
             if expensesSelected {
@@ -49,8 +47,6 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
             }
         }
     }
-
-    var monthlyBudget = 1500.00
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -69,7 +65,10 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         progressContainer.layer.cornerRadius = 6
         progressConstraint.constant = progress.frame.width
         monthlyBudget = fetchControllerSettings.fetchedObjects?.first?.budget ?? 0.0
-        
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.reloadData()
     }
     
     private func loadItems() {

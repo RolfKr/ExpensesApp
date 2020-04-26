@@ -8,58 +8,19 @@
 
 import UIKit
 import CoreData
+import CloudKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, NSFetchedResultsControllerDelegate {
     
-    var fetchController: NSFetchedResultsController<Category>!
     var window: UIWindow?
-    
-    
-    private func loadCategories() {
-        
-        downloadFromCloud { (success) in
-            if true {
-                if let objects = fetchController.fetchedObjects {
-                    if objects.isEmpty {
-                        print("preloading")
-                        Preload.preloadData()
-                    } else {
-                        print("We got data")
-                        return
-                    }
-                }
-            }
-        }
-        
-    }
-    
-    func downloadFromCloud(completion: (Bool) -> Void) {
-        // Do something
-        let request = NSFetchRequest<Category>(entityName: "Category")
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
-        
-        fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "categoryType", cacheName: nil)
-        fetchController.delegate = self
-        
-        do {
-            try fetchController.performFetch()
-            completion(true)
-        } catch let err {
-            print(err.localizedDescription)
-            completion(false)
-        }
-    }
-    
-    
-    
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
-        loadCategories()
+
+        Preload.preloadData()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

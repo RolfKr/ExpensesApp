@@ -8,10 +8,23 @@
 
 import UIKit
 import CoreData
+import CloudKit
 
 class Preload {
-
+    
     static func preloadData() {
+        
+        let scorestreakEntity = Scorestreak(context: PersistenceManager.persistentContainer.viewContext)
+        scorestreakEntity.highscore = 0
+        scorestreakEntity.score = 0
+        scorestreakEntity.date = Date()
+        
+        let settingsEntity = Settings(context: PersistenceManager.persistentContainer.viewContext)
+        settingsEntity.budget = 10_000
+        settingsEntity.currency = "Dollar"
+        settingsEntity.theme = "System"
+        settingsEntity.currencyIcon = "$"
+        
         
         let categoryTypes = ["Income", "Entertainment", "Education", "Shopping", "Personal Care",
                              "Health & Fitness", "Kids", "Food & Dining", "Gifts & Donations",
@@ -37,28 +50,19 @@ class Preload {
         let categories = [income, entertainment, education, shopping, personalCare, healthFitness, kids, foodDining, giftDonations, investments, billsUtilities, transport, travel, feesCharges, businessServices]
         var index = 0
         
-            for category in categories {
-                for item in category {
-                    let categoryEntity = Category(context: PersistenceManager.persistentContainer.viewContext)
-                    categoryEntity.name = item
-                    categoryEntity.items = []
-                    categoryEntity.categoryType = categoryTypes[index]
-                    categoryEntity.icon = (UIImage(named: "restaurant")!.pngData()!)
-                }
-                index += 1
+        for category in categories {
+            for item in category {
+                let categoryEntity = Category(context: PersistenceManager.persistentContainer.viewContext)
+                categoryEntity.name = item
+                categoryEntity.items = []
+                categoryEntity.categoryType = categoryTypes[index]
+                categoryEntity.icon = (UIImage(named: "restaurant")!.pngData()!)
             }
-    
-        let scorestreakEntity = Scorestreak(context: PersistenceManager.persistentContainer.viewContext)
-        scorestreakEntity.highscore = 0
-        scorestreakEntity.score = 0
-        scorestreakEntity.date = Date()
+            index += 1
+        }
         
-        let settingsEntity = Settings(context: PersistenceManager.persistentContainer.viewContext)
-        settingsEntity.budget = 10_000
-        settingsEntity.currency = "Dollar"
-        settingsEntity.theme = "System"
-        settingsEntity.currencyIcon = "$"
         
         PersistenceManager.saveContext()
     }
+    
 }
