@@ -32,7 +32,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         }
     }
     
-
+    
     
     var categories = [ExpenseCategory]()
     var monthlyBudget = 1500.00
@@ -67,8 +67,9 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         monthlyBudget = fetchControllerSettings.fetchedObjects?.first?.budget ?? 0.0
     }
     
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.reloadData()
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        filterCategories()
+        updateUI()
     }
     
     private func loadItems() {
@@ -78,9 +79,9 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         
         fetchControllerItems = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "date", cacheName: nil)
         fetchControllerItems.delegate = self
+        
         do {
             try fetchControllerItems.performFetch()
-            
         } catch let err {
             print(err.localizedDescription)
         }
@@ -92,11 +93,12 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         let request = NSFetchRequest<Settings>(entityName: "Settings")
         let sortDescriptor = NSSortDescriptor(key: "budget", ascending: true)
         request.sortDescriptors = [sortDescriptor]
-    
+        
         fetchControllerSettings = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "budget", cacheName: nil)
         
         do {
             try fetchControllerSettings.performFetch()
+            tableView.reloadData()
         } catch let err {
             print(err.localizedDescription)
         }
@@ -110,7 +112,10 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
                                 "Investments" : 0.0, "Bills & Utilities" : 0.0, "Transport" : 0.0, "Travel" : 0.0,
                                 "Fees & Charges" : 0.0, "Business Services" : 0.0]
         
+        print("filtering")
+        
         for item in fetchControllerItems.fetchedObjects! {
+            print("filtering*****")
             var currentAmount = categoryExpenses[item.category.categoryType]!
             currentAmount += item.amount
             categoryExpenses[item.category.categoryType] = currentAmount
@@ -234,7 +239,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             let item = filteredOnIncome[indexPath.row]
             cell.configureCell(image: UIImage(named: "restaurant")!, category: item.category.name, budgetAmount: "", moneyLabel: "\(currencyIcon) \(item.amount)", transactions: "")
         }
-
+        
         return cell
     }
     
