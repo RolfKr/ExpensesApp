@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cardBehind: UIView!
@@ -30,6 +30,10 @@ class MainViewController: UIViewController {
             let budget = fetchControllerSettings.fetchedObjects?.first?.budget ?? 1000
             monthlyBudgetLabel.text = "\(currencyIcon) \(budget) remaining"
         }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.reloadData()
     }
     
     var categories = [ExpenseCategory]()
@@ -74,14 +78,9 @@ class MainViewController: UIViewController {
         request.sortDescriptors = [sortDescriptor]
         
         fetchControllerItems = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "date", cacheName: nil)
-        
+        fetchControllerItems.delegate = self
         do {
             try fetchControllerItems.performFetch()
-            
-            for item in fetchControllerItems.fetchedObjects! {
-                print(item.name)
-                print(item.category.categoryType)
-            }
             
         } catch let err {
             print(err.localizedDescription)
@@ -229,7 +228,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         if expensesSelected {
             let category = categories[indexPath.row]
-            cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: budget, categoryAmount: category.amount))% of budget", moneyLabel: "\(currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) transactions")
+            cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: budget, categoryAmount: category.amount))", moneyLabel: "\(currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) transactions")
         } else {
             let filteredOnIncome = fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income" })
             

@@ -9,26 +9,49 @@
 import UIKit
 import CoreData
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, NSFetchedResultsControllerDelegate {
     
+    var fetchController: NSFetchedResultsController<Category>!
     var window: UIWindow?
     
-    private func checkForCategories() {
-        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
-        var categories = [Category]()
+    
+    private func loadCategories() {
+        
+        downloadFromCloud { (success) in
+            if true {
+                if let objects = fetchController.fetchedObjects {
+                    if objects.isEmpty {
+                        print("preloading")
+                        Preload.preloadData()
+                    } else {
+                        print("We got data")
+                        return
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    func downloadFromCloud(completion: (Bool) -> Void) {
+        // Do something
+        let request = NSFetchRequest<Category>(entityName: "Category")
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        
+        fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "categoryType", cacheName: nil)
+        fetchController.delegate = self
         
         do {
-            categories = try PersistenceManager.persistentContainer.viewContext.fetch(fetchRequest)
-        } catch let error {
-            print(error.localizedDescription)
+            try fetchController.performFetch()
+            completion(true)
+        } catch let err {
+            print(err.localizedDescription)
+            completion(false)
         }
-        
-        if let _ = categories.first?.objectID {
-            return
-        }
-        
-        Preload.preloadData()
     }
+    
+    
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -36,7 +59,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
-        checkForCategories()
+        loadCategories()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
