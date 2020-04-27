@@ -13,14 +13,28 @@ import CloudKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, NSFetchedResultsControllerDelegate {
     
     var window: UIWindow?
+    var database = CKContainer(identifier: "iCloud.ExpensesApp").privateCloudDatabase
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
-
-        Preload.preloadData()
+        queryDatabase()
+    }
+    
+    private func queryDatabase() {
+        let query = CKQuery(recordType: "CD_Category", predicate: NSPredicate(value: true))
+        database.perform(query, inZoneWith: nil) { (records, error) in
+            guard let records = records else {return}
+            print(records.count)
+            if records.count > 0 {
+                print("Got data")
+            } else {
+                print("Need data")
+                Preload.preloadData()
+            }
+        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
