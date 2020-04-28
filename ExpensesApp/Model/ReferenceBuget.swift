@@ -9,6 +9,7 @@
 import Foundation
 
 struct ReferenceBuget {
+    
     var foodAndDrinks = 3500.0
     var clothes = 770.0
     var personalCare = 580.0

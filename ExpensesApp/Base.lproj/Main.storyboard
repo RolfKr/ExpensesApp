@@ -890,8 +890,8 @@
                                             <constraint firstItem="nfE-XX-Hcd" firstAttribute="leading" secondItem="7Rh-9O-ywk" secondAttribute="leading" constant="25" id="Vmo-1g-bAr"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="DSV-Yp-cIn">
-                                        <rect key="frame" x="60" y="303.66666666666663" width="294" height="23.333333333333314"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.90000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="DSV-Yp-cIn">
+                                        <rect key="frame" x="60" y="313.66666666666663" width="294" height="23.333333333333314"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                         <color key="textColor" red="0.090196078430000007" green="0.092069929980000006" blue="0.090196078430000007" alpha="0.74949165240000004" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -905,7 +905,7 @@
                                     <constraint firstItem="DSV-Yp-cIn" firstAttribute="leading" secondItem="6DA-Y7-7Bv" secondAttribute="leading" constant="60" id="CMp-22-PZc"/>
                                     <constraint firstItem="33l-V4-r67" firstAttribute="top" secondItem="6DA-Y7-7Bv" secondAttribute="top" constant="40" id="EY7-RC-c0H"/>
                                     <constraint firstItem="jp4-Dh-AN4" firstAttribute="leading" secondItem="6DA-Y7-7Bv" secondAttribute="leading" constant="60" id="Xm7-qJ-Gc1"/>
-                                    <constraint firstItem="DSV-Yp-cIn" firstAttribute="top" secondItem="7Rh-9O-ywk" secondAttribute="bottom" constant="20" id="gnh-H8-iW7"/>
+                                    <constraint firstItem="DSV-Yp-cIn" firstAttribute="top" secondItem="7Rh-9O-ywk" secondAttribute="bottom" constant="30" id="gnh-H8-iW7"/>
                                     <constraint firstAttribute="trailing" secondItem="DSV-Yp-cIn" secondAttribute="trailing" constant="60" id="itZ-qs-Wwb"/>
                                     <constraint firstItem="7Rh-9O-ywk" firstAttribute="height" secondItem="6DA-Y7-7Bv" secondAttribute="height" multiplier="0.3" id="qCj-FE-tJw"/>
                                     <constraint firstAttribute="trailing" secondItem="7Rh-9O-ywk" secondAttribute="trailing" constant="25" id="spk-Ra-ZQU"/>
