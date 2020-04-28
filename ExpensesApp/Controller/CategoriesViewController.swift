@@ -41,23 +41,23 @@ class CategoriesViewController: UIViewController, AddCategoryDelegate {
         
         do {
             try fetchController.performFetch()
-            allCategories = fetchController.fetchedObjects!
-            filteredCategories = fetchController.fetchedObjects!
-            
-            for categoryType in categoryTypes {
-                var categoryGroup: [Category] = []
-                for category in allCategories {
-                    if category.categoryType == categoryType {
-                        categoryGroup.append(category)
-                    } else{
-                        continue
-                    }
-                }
-                allCategoryTypes.append(categoryGroup)
-            }
-            
         } catch let err {
             print(err.localizedDescription)
+        }
+        
+        allCategories = fetchController.fetchedObjects!
+        filteredCategories = fetchController.fetchedObjects!
+        
+        for categoryType in categoryTypes {
+            var categoryGroup: [Category] = []
+            for category in allCategories {
+                if category.categoryType == categoryType {
+                    categoryGroup.append(category)
+                } else{
+                    continue
+                }
+            }
+            allCategoryTypes.append(categoryGroup)
         }
         
         tableView.reloadData()

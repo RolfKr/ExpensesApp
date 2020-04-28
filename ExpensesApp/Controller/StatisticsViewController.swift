@@ -33,7 +33,7 @@ class StatisticsViewController: UIViewController {
     var mostExpensiveCategory: String! {
         didSet {
             guard let categoryText = mostExpensiveCategory else {return}
-            mostExpenseCategoryLabel.text = "\(categoryText) is your most expensive category.\n Try to lower the cost of this category next month."
+            mostExpenseCategoryLabel.text = "\(categoryText) is your most expensive category.\n Try to reduce the cost of this category next month."
         }
     }
     
@@ -86,7 +86,8 @@ class StatisticsViewController: UIViewController {
         
         do {
             try fetchControllerSettings.performFetch()
-            settings = fetchControllerSettings.fetchedObjects!.first!
+            guard let fetchedSettings = fetchControllerSettings.fetchedObjects?.first else {return}
+            settings = fetchedSettings
         } catch let err {
             print(err.localizedDescription)
         }
@@ -160,8 +161,6 @@ class StatisticsViewController: UIViewController {
         totalIncomeLabel.text = "\(settings.currencyIcon) \(totalIncome)"
 
     }
-    
-    
     
     //MARK: Calculates total expenses and income for current month.
     private func calculate() {

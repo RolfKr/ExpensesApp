@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import LocalAuthentication
 import CloudKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, NSFetchedResultsControllerDelegate {
@@ -33,6 +34,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, NSFetchedResultsControl
             } else {
                 print("Need data")
                 Preload.preloadData()
+            }
+        }
+    }
+    
+    private func checkBiometrics() {
+        let context = LAContext()
+        
+        let reason = "Please identify yourself."
+        
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
+            success, authenticationError in
+            
+            if success {
+                
+            } else {
+                print("")
             }
         }
     }

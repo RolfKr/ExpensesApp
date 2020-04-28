@@ -38,6 +38,8 @@
 		B74263572448E63800597D4C /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74263562448E63800597D4C /* ExpenseCell.swift */; };
 		B74263592448FEE200597D4C /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74263582448FEE200597D4C /* CategoriesViewController.swift */; };
 		B7514C1A2457A664004639FC /* ReferenceBuget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7514C192457A664004639FC /* ReferenceBuget.swift */; };
+		B7514C1C2457BF79004639FC /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7514C1B2457BF79004639FC /* LaunchViewController.swift */; };
+		B7514C1E2457D468004639FC /* FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7514C1D2457D468004639FC /* FetchRequest.swift */; };
 		B7969D3F244B9D56007E69E9 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7969D3E244B9D56007E69E9 /* LineChartView.swift */; };
 		B7969D4A244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7969D48244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift */; };
 		B7969D4B244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7969D49244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift */; };
@@ -106,6 +108,8 @@
 		B74263562448E63800597D4C /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		B74263582448FEE200597D4C /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		B7514C192457A664004639FC /* ReferenceBuget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceBuget.swift; sourceTree = "<group>"; };
+		B7514C1B2457BF79004639FC /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		B7514C1D2457D468004639FC /* FetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRequest.swift; sourceTree = "<group>"; };
 		B7969D3E244B9D56007E69E9 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		B7969D48244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scorestreak+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7969D49244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scorestreak+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
@@ -203,6 +207,7 @@
 		7EA3FCFE24499C9500B1AF10 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B7514C1B2457BF79004639FC /* LaunchViewController.swift */,
 				B74263232448BEBA00597D4C /* MainViewController.swift */,
 				B74263582448FEE200597D4C /* CategoriesViewController.swift */,
 				7E54F968244A3AF1003ABAA1 /* AddCategoryViewController.swift */,
@@ -237,6 +242,7 @@
 		7EDC71152449E135002CACDF /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				B7514C1D2457D468004639FC /* FetchRequest.swift */,
 				7EDC71162449E143002CACDF /* PersistenceManager.swift */,
 			);
 			path = Managers;
@@ -544,6 +550,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7514C1E2457D468004639FC /* FetchRequest.swift in Sources */,
 				B7C83AED244F4A8D00089050 /* CurrencyCell.swift in Sources */,
 				7EDC71112449E107002CACDF /* Item+CoreDataClass.swift in Sources */,
 				7E66B56B2453556E00F138C3 /* ExpenseCategory.swift in Sources */,
@@ -555,6 +562,7 @@
 				B7C83AF1244F62F000089050 /* Settings+CoreDataProperties.swift in Sources */,
 				7EDC71122449E107002CACDF /* Item+CoreDataProperties.swift in Sources */,
 				B742632A2448BEBA00597D4C /* ExpensesApp.xcdatamodeld in Sources */,
+				B7514C1C2457BF79004639FC /* LaunchViewController.swift in Sources */,
 				7E54F969244A3AF1003ABAA1 /* AddCategoryViewController.swift in Sources */,
 				B74263242448BEBA00597D4C /* MainViewController.swift in Sources */,
 				7EA3FCFB24498F5200B1AF10 /* CategoryCell.swift in Sources */,
