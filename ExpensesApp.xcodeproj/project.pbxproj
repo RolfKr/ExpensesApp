@@ -37,6 +37,7 @@
 		B74263532448BF5D00597D4C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74263522448BF5D00597D4C /* Constants.swift */; };
 		B74263572448E63800597D4C /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74263562448E63800597D4C /* ExpenseCell.swift */; };
 		B74263592448FEE200597D4C /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74263582448FEE200597D4C /* CategoriesViewController.swift */; };
+		B7514C1A2457A664004639FC /* ReferenceBuget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7514C192457A664004639FC /* ReferenceBuget.swift */; };
 		B7969D3F244B9D56007E69E9 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7969D3E244B9D56007E69E9 /* LineChartView.swift */; };
 		B7969D4A244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7969D48244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift */; };
 		B7969D4B244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7969D49244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift */; };
@@ -104,6 +105,7 @@
 		B74263522448BF5D00597D4C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B74263562448E63800597D4C /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		B74263582448FEE200597D4C /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		B7514C192457A664004639FC /* ReferenceBuget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceBuget.swift; sourceTree = "<group>"; };
 		B7969D3E244B9D56007E69E9 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		B7969D48244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scorestreak+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7969D49244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scorestreak+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
@@ -180,6 +182,7 @@
 				7EDC710E2449E107002CACDF /* Category+CoreDataProperties.swift */,
 				B74263282448BEBA00597D4C /* ExpensesApp.xcdatamodeld */,
 				7E66B56A2453556E00F138C3 /* ExpenseCategory.swift */,
+				B7514C192457A664004639FC /* ReferenceBuget.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				B74263532448BF5D00597D4C /* Constants.swift in Sources */,
 				7EDC71132449E107002CACDF /* Category+CoreDataClass.swift in Sources */,
 				7E54F967244A0BE9003ABAA1 /* Preload.swift in Sources */,
+				B7514C1A2457A664004639FC /* ReferenceBuget.swift in Sources */,
 				B7C83AF1244F62F000089050 /* Settings+CoreDataProperties.swift in Sources */,
 				7EDC71122449E107002CACDF /* Item+CoreDataProperties.swift in Sources */,
 				B742632A2448BEBA00597D4C /* ExpensesApp.xcdatamodeld in Sources */,

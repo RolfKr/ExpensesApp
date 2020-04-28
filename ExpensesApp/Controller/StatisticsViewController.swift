@@ -20,9 +20,9 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var yearButton: UIButton!
     @IBOutlet weak var chart: LineChartView!
-    @IBOutlet weak var scoreStreak: UILabel!
-    @IBOutlet weak var highScore: UILabel!
     @IBOutlet weak var dataAvailableLabel: UILabel!
+    @IBOutlet weak var mostExpenseCategoryLabel: UILabel!
+    
     
     var items = [Item]() {
         didSet {
@@ -30,10 +30,16 @@ class StatisticsViewController: UIViewController {
         }
     }
     
+    var mostExpensiveCategory: String! {
+        didSet {
+            guard let categoryText = mostExpensiveCategory else {return}
+            mostExpenseCategoryLabel.text = "\(categoryText) is your most expensive category.\n Try to lower the cost of this category next month."
+        }
+    }
+    
     var fetchControllerSettings: NSFetchedResultsController<Settings>!
     var fetchControllerItems: NSFetchedResultsController<Item>!
     var settings: Settings!
-    var savedScore: Scorestreak!
     var totalExpenses = 0.0
     var totalIncome = 0.0
     var chartDataEntries: [ChartDataEntry] = []
@@ -49,7 +55,6 @@ class StatisticsViewController: UIViewController {
     private func initialSetup() {
         loadData()
         loadSettings()
-        loadScore()
         Constants.shared.setBackgroundGradient(for: view)
         totalIncomeContainer.layer.cornerRadius = 8
         totalExpensesContainer.layer.cornerRadius = 8
@@ -66,6 +71,7 @@ class StatisticsViewController: UIViewController {
         do {
             try fetchControllerItems.performFetch()
             items = fetchControllerItems.fetchedObjects!.filter({ item in checkForCurrentMonth(date: item.date)})
+            mostExpensiveCategory = ReferenceBuget.compareWithBudget(with: items)
         } catch let err {
             print(err.localizedDescription)
         }
@@ -81,21 +87,6 @@ class StatisticsViewController: UIViewController {
         do {
             try fetchControllerSettings.performFetch()
             settings = fetchControllerSettings.fetchedObjects!.first!
-        } catch let err {
-            print(err.localizedDescription)
-        }
-    }
-    
-    private func loadScore() {
-        let request = NSFetchRequest<Scorestreak>(entityName: "Scorestreak")
-        let sortDescriptor = NSSortDescriptor(key: "score", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
-        
-        let fetchControllerScore = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "score", cacheName: nil)
-        
-        do {
-            try fetchControllerScore.performFetch()
-            savedScore = fetchControllerScore.fetchedObjects!.first!
         } catch let err {
             print(err.localizedDescription)
         }
@@ -167,9 +158,7 @@ class StatisticsViewController: UIViewController {
     private func updateUI() {
         totalExpensesLabel.text = "\(settings.currencyIcon) \(totalExpenses)"
         totalIncomeLabel.text = "\(settings.currencyIcon) \(totalIncome)"
-        
-        scoreStreak.text = String(savedScore!.score)
-        highScore.text = String(savedScore!.highscore)
+
     }
     
     

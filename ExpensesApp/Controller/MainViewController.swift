@@ -111,11 +111,8 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
                                 "Health & Fitness" : 0.0, "Kids" : 0.0, "Food & Dining" : 0.0, "Gifts & Donations" : 0.0,
                                 "Investments" : 0.0, "Bills & Utilities" : 0.0, "Transport" : 0.0, "Travel" : 0.0,
                                 "Fees & Charges" : 0.0, "Business Services" : 0.0]
-        
-        print("filtering")
-        
+                
         for item in fetchControllerItems.fetchedObjects! {
-            print("filtering*****")
             var currentAmount = categoryExpenses[item.category.categoryType]!
             currentAmount += item.amount
             categoryExpenses[item.category.categoryType] = currentAmount
