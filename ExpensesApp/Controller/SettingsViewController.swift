@@ -17,10 +17,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var themeLabel: UILabel!
     @IBOutlet weak var lockSwitch: UISwitch!
     
-    
-    var fetchControllerSettings: NSFetchedResultsController<Settings>!
     var settings: Settings!
-    
     let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
@@ -43,25 +40,13 @@ class SettingsViewController: UITableViewController {
     }
     
     private func loadSettings() {
-        let request = NSFetchRequest<Settings>(entityName: "Settings")
-        let sortDescriptor = NSSortDescriptor(key: "budget", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
+        guard let fetchedSettings = FetchRequest.fetchControllerSettings.fetchedObjects?.first else {return}
+        print("Got Settings")
+        settings = fetchedSettings
         
-        fetchControllerSettings = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "budget", cacheName: nil)
-        
-        do {
-            try fetchControllerSettings.performFetch()
-            settings = fetchControllerSettings.fetchedObjects?.first
-            guard let fetchedSettings = fetchControllerSettings.fetchedObjects?.first else {return}
-            settings = fetchedSettings
-            
-            budgetLabel.text = String(settings.budget)
-            themeLabel.text = settings.theme
-            currencyLabel.text = settings.currency
-            
-        } catch let err {
-            print(err.localizedDescription)
-        }
+        budgetLabel.text = String(settings.budget)
+        themeLabel.text = settings.theme
+        currencyLabel.text = settings.currency
     }
     
     func configureSecurity() {

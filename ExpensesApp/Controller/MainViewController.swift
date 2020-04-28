@@ -22,8 +22,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var incomeBtn: UIButton!
     @IBOutlet weak var progress: UIView!
     @IBOutlet weak var progressConstraint: NSLayoutConstraint!
-        
-    var fetchControllerItems: NSFetchedResultsController<Item>!
+    
     var fetchControllerSettings: NSFetchedResultsController<Settings>! {
         didSet {
             let currencyIcon = fetchControllerSettings.fetchedObjects?.first?.currencyIcon ?? "$"
@@ -31,8 +30,6 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
             monthlyBudgetLabel.text = "\(currencyIcon) \(budget) remaining"
         }
     }
-    
-    
     
     var categories = [ExpenseCategory]()
     var monthlyBudget = 1500.00
@@ -65,7 +62,6 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         progressContainer.layer.cornerRadius = 6
         progressConstraint.constant = progress.frame.width
         monthlyBudget = FetchRequest.fetchControllerSettings.fetchedObjects?.first?.budget ?? 0.0
-//        monthlyBudget = fetchControllerSettings.fetchedObjects?.first?.budget ?? 0.0
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
@@ -73,7 +69,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         updateUI()
     }
     
-    private func loadItems() {        
+    private func loadItems() {
         FetchRequest.loadItems()
         FetchRequest.fetchControllerItems.delegate = self
 

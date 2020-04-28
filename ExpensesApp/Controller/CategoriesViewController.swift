@@ -16,7 +16,6 @@ class CategoriesViewController: UIViewController, AddCategoryDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     //https://www.mint.com/mint-categories
-    var fetchController: NSFetchedResultsController<Category>!
     var categoryTypes = Constants.shared.categoryTypes
     var allCategoryTypes = [[Category]]()
     var allCategories = [Category]()
@@ -33,20 +32,9 @@ class CategoriesViewController: UIViewController, AddCategoryDelegate {
     }
     
     private func loadCategories() {
-        let request = NSFetchRequest<Category>(entityName: "Category")
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
-        
-        fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "categoryType", cacheName: nil)
-        
-        do {
-            try fetchController.performFetch()
-        } catch let err {
-            print(err.localizedDescription)
-        }
-        
-        allCategories = fetchController.fetchedObjects!
-        filteredCategories = fetchController.fetchedObjects!
+        FetchRequest.loadCategories()
+        allCategories = FetchRequest.fetchControllerCategory.fetchedObjects!
+        filteredCategories = FetchRequest.fetchControllerCategory.fetchedObjects!
         
         for categoryType in categoryTypes {
             var categoryGroup: [Category] = []

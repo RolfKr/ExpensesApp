@@ -23,9 +23,6 @@ class AddItemViewController: UIViewController {
     
     
     var delegate: AddItemDelegate?
-    
-    var fetchControllerSettings: NSFetchedResultsController<Settings>!
-    var fetchControllerCategory: NSFetchedResultsController<Category>!
     var addingExpense = true
     var categories = [Category]()
     var filteredCategories = [Category]()
@@ -54,37 +51,14 @@ class AddItemViewController: UIViewController {
     }
     
     private func loadCategories() {
-        let request = NSFetchRequest<Category>(entityName: "Category")
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
-        
-        fetchControllerCategory = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "categoryType", cacheName: nil)
-        
-        do {
-            try fetchControllerCategory.performFetch()
-            categories = fetchControllerCategory.fetchedObjects!
-            filteredCategories = categories.filter {$0.categoryType != "Income"}
-        } catch let err {
-            print(err.localizedDescription)
-        }
-        
+        categories = FetchRequest.fetchControllerCategory.fetchedObjects!
+        filteredCategories = categories.filter {$0.categoryType != "Income"}
         collectionView.reloadData()
     }
     
     private func loadSettings() {
-        let request = NSFetchRequest<Settings>(entityName: "Settings")
-        let sortDescriptor = NSSortDescriptor(key: "budget", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
-    
-        fetchControllerSettings = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "budget", cacheName: nil)
-        
-        do {
-            try fetchControllerSettings.performFetch()
-        } catch let err {
-            print(err.localizedDescription)
-        }
-        
-        settings = fetchControllerSettings.fetchedObjects?.first
+        guard let fetchedSettings = FetchRequest.fetchControllerSettings.fetchedObjects?.first else {return}
+        settings = fetchedSettings
     }
     
     @IBAction func changeEntryTapped(_ sender: UIButton) {
@@ -121,35 +95,12 @@ class AddItemViewController: UIViewController {
         
         nameTextField.resignFirstResponder()
         amountTextField.resignFirstResponder()
-        
-        addToScoreStreak()
     }
     
     private func getYesterdayDate() -> Date {
         let calender = Calendar.current
         guard let yesterday = calender.date(byAdding: .day, value: -1, to: Date()) else {return Date()}
         return yesterday
-    }
-    
-    private func addToScoreStreak() {
-        guard let scoreStreak = PersistenceManager.fetchScore() else {return}
-        let calendar = Calendar.current
-        
-        let yesterday = calendar.dateComponents([.day, .month, .year], from: getYesterdayDate())
-        let lastTimeAdded = calendar.dateComponents([.day, .month, .year], from: scoreStreak.date)
-        
-        if yesterday == lastTimeAdded {
-            scoreStreak.setValue(scoreStreak.score + 1, forKey: "score")
-            if scoreStreak.highscore < scoreStreak.score {
-                scoreStreak.setValue(scoreStreak.highscore + 1, forKey: "highscore")
-            }
-        } else {
-            scoreStreak.setValue(1, forKey: "score")
-        }
-        
-        scoreStreak.date = Date()
-        PersistenceManager.saveContext()
-        
     }
     
     private func createItem(name: String, amount: Double, category: Category, date: Date) {
