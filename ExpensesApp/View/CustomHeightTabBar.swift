@@ -10,30 +10,22 @@ import UIKit
 
 class CustomHeightTabBar : UITabBar {
     
+    required init?(coder aDecoder: NSCoder) {
+       super.init(coder: aDecoder)
+        barTintColor = UIColor(named: "DarkBlueGradient")
+        tintColor = .white
+        unselectedItemTintColor = UIColor(red: 23/255, green: 23/255, blue: 23/255, alpha: 0.75)
+    }
+    
+    
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         let defaultSizeWidth = self.frame.width
         
-        if UIDevice.current.hasNotch {
-            print("Got the notch")
+        if UIScreen.main.bounds.height > 736 {
             return CGSize(width: defaultSizeWidth, height: 100)
         } else {
-            print("No notch")
             return CGSize(width: defaultSizeWidth, height: 60)
         }
-    }
-}
 
-
-extension UIDevice {
-    var hasNotch: Bool {
-        let keyWindow = UIApplication.shared.connectedScenes
-        .filter({$0.activationState == .foregroundActive})
-        .map({$0 as? UIWindowScene})
-        .compactMap({$0})
-        .first?.windows
-        .filter({$0.isKeyWindow}).first
-        
-        let bottom = keyWindow?.safeAreaInsets.bottom ?? 0
-        return bottom > 0
     }
 }

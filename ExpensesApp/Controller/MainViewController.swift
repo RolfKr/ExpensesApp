@@ -117,11 +117,6 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
             }
         }
         
-        for category in categories {
-            
-            print(category.category)
-        }
-        
         tableView.reloadData()
     }
     
@@ -192,9 +187,6 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     }
     
     private func updateUI() {
-        print("*****")
-        print(calculateTotalExpenses())
-        
         let currencyIcon = FetchRequest.fetchControllerSettings.fetchedObjects?.first?.currencyIcon ?? "$"
         let budget = FetchRequest.fetchControllerSettings.fetchedObjects?.first?.budget ?? 1000
         
@@ -223,7 +215,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if expensesSelected {
-            print("number of rows: \(categories.count)")
             return categories.count
         } else {
             return FetchRequest.fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income" }).count
@@ -237,7 +228,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let currencyIcon = FetchRequest.fetchControllerSettings.fetchedObjects?.first?.currencyIcon ?? "$"
         
         if expensesSelected {
-            print(categories.count)
             let category = categories[indexPath.row]
             cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: budget, categoryAmount: category.amount))", moneyLabel: "\(currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) transactions")
         } else {
