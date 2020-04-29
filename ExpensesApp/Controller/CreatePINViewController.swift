@@ -40,10 +40,7 @@ class CreatePINViewController: UIViewController {
         guard !pinTextField.text!.isEmpty else {return}
         configureBiometrics()
         defaults.set(true, forKey: "useSecurity")
-        
-        
-        print("*******")
-        print(defaults.value(forKey: "useSecurity") as? Bool)
+        defaults.set(pinTextField.text!, forKey: "unlockPIN")
     }
     
     

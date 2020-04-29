@@ -35,7 +35,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0000" placeholder="0000" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i7K-1K-LKY">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0000" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i7K-1K-LKY">
                                 <rect key="frame" x="50" y="300" width="275" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="RbA-Gr-lIg"/>
@@ -43,7 +43,7 @@
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="60"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akF-6t-Kd3">
                                 <rect key="frame" x="162.5" y="542" width="50" height="50"/>
@@ -52,9 +52,13 @@
                                     <constraint firstAttribute="width" constant="50" id="tEp-Ir-hR1"/>
                                 </constraints>
                                 <state key="normal" image="checkmark"/>
+                                <connections>
+                                    <action selector="enterBtnTapped:" destination="8uH-u9-Nxl" eventType="touchUpInside" id="2Xl-zU-fcp"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" name="DarkBlueGradient"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="JxM-R5-RYt" firstAttribute="trailing" secondItem="i7K-1K-LKY" secondAttribute="trailing" constant="50" id="1MJ-CV-Rgw"/>
                             <constraint firstItem="FK7-Zc-iLv" firstAttribute="leading" secondItem="JxM-R5-RYt" secondAttribute="leading" constant="50" id="2Eo-Mg-S3N"/>
@@ -69,9 +73,21 @@
                             <constraint firstItem="akF-6t-Kd3" firstAttribute="centerX" secondItem="bJ1-1E-s46" secondAttribute="centerX" id="odS-Ds-PEY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JxM-R5-RYt"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="2o2-x1-dFF" appends="YES" id="EYY-xQ-1xZ"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="enterPinLabel" destination="FK7-Zc-iLv" id="bvo-YQ-LyR"/>
+                        <outlet property="pinTextField" destination="i7K-1K-LKY" id="4YY-u9-O7t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zCl-gJ-gvX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2o2-x1-dFF" userLabel="dismissKeyboard">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="8uH-u9-Nxl" id="JU6-wC-o0b"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="912.79999999999995" y="-674.21289355322347"/>
         </scene>
