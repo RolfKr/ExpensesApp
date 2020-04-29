@@ -17,16 +17,13 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var themeLabel: UILabel!
     @IBOutlet weak var lockSwitch: UISwitch!
     
-    
-    var fetchControllerSettings: NSFetchedResultsController<Settings>!
     var settings: Settings!
-    
     let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let checkBiometrics = defaults.value(forKey: "useBiometrics") as? Bool {
+        if let checkBiometrics = defaults.value(forKey: "useSecurity") as? Bool {
             print(checkBiometrics)
             lockSwitch.isOn = checkBiometrics
         }
@@ -43,43 +40,13 @@ class SettingsViewController: UITableViewController {
     }
     
     private func loadSettings() {
-        let request = NSFetchRequest<Settings>(entityName: "Settings")
-        let sortDescriptor = NSSortDescriptor(key: "budget", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
+        guard let fetchedSettings = FetchRequest.fetchControllerSettings.fetchedObjects?.first else {return}
+        print("Got Settings")
+        settings = fetchedSettings
         
-        fetchControllerSettings = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "budget", cacheName: nil)
-        
-        do {
-            try fetchControllerSettings.performFetch()
-            settings = fetchControllerSettings.fetchedObjects?.first
-            guard let fetchedSettings = fetchControllerSettings.fetchedObjects?.first else {return}
-            settings = fetchedSettings
-            
-            budgetLabel.text = String(settings.budget)
-            themeLabel.text = settings.theme
-            currencyLabel.text = settings.currency
-            
-        } catch let err {
-            print(err.localizedDescription)
-        }
-    }
-    
-    func configureSecurity() {
-        let context = LAContext()
-        var error: NSError?
-        
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Please identify yourself") { (success, error) in
-                if success {
-                    DispatchQueue.main.async {
-                        self.defaults.set(self.lockSwitch.isOn, forKey: "useBiometrics")
-                    }
-                }
-            }
-            
-        } else {
-            print("No biometry")
-        }
+        budgetLabel.text = String(settings.budget)
+        themeLabel.text = settings.theme
+        currencyLabel.text = settings.currency
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -103,11 +70,11 @@ class SettingsViewController: UITableViewController {
         case 3:
             if lockSwitch.isOn {
                 lockSwitch.setOn(false, animated: true)
+                configureSecurity()
             } else {
                 lockSwitch.setOn(true, animated: true)
+                configureSecurity()
             }
-            
-            configureSecurity()
         default:
             break
         }
@@ -115,6 +82,18 @@ class SettingsViewController: UITableViewController {
     
     @IBAction func lockSwitchChanged(_ sender: UISwitch) {
         configureSecurity()
+    }
+    
+    private func configureSecurity() {
+        if let _ = defaults.value(forKey: "useSecurity") {
+            defaults.set(self.lockSwitch.isOn, forKey: "useSecurity")
+        } else {
+            if lockSwitch.isOn {
+                guard let createPinVC = storyboard?.instantiateViewController(identifier: "createPIN") as? CreatePINViewController else {return}
+                createPinVC.fromSettings = true
+                present(createPinVC, animated: true)
+            }
+        }
     }
     
     

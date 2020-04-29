@@ -37,8 +37,6 @@ class StatisticsViewController: UIViewController {
         }
     }
     
-    var fetchControllerSettings: NSFetchedResultsController<Settings>!
-    var fetchControllerItems: NSFetchedResultsController<Item>!
     var settings: Settings!
     var totalExpenses = 0.0
     var totalIncome = 0.0
@@ -48,13 +46,12 @@ class StatisticsViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         initialSetup()
+        loadData()
         calculate()
         createChart()
     }
     
     private func initialSetup() {
-        loadData()
-        loadSettings()
         Constants.shared.setBackgroundGradient(for: view)
         totalIncomeContainer.layer.cornerRadius = 8
         totalExpensesContainer.layer.cornerRadius = 8
@@ -62,35 +59,8 @@ class StatisticsViewController: UIViewController {
     }
     
     private func loadData(){
-        let request = NSFetchRequest<Item>(entityName: "Item")
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
-        
-        fetchControllerItems = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "date", cacheName: nil)
-        
-        do {
-            try fetchControllerItems.performFetch()
-            items = fetchControllerItems.fetchedObjects!.filter({ item in checkForCurrentMonth(date: item.date)})
-            mostExpensiveCategory = ReferenceBuget.compareWithBudget(with: items)
-        } catch let err {
-            print(err.localizedDescription)
-        }
-    }
-    
-    private func loadSettings() {
-        let request = NSFetchRequest<Settings>(entityName: "Settings")
-        let sortDescriptor = NSSortDescriptor(key: "budget", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
-    
-        fetchControllerSettings = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistenceManager.persistentContainer.viewContext, sectionNameKeyPath: "budget", cacheName: nil)
-        
-        do {
-            try fetchControllerSettings.performFetch()
-            guard let fetchedSettings = fetchControllerSettings.fetchedObjects?.first else {return}
-            settings = fetchedSettings
-        } catch let err {
-            print(err.localizedDescription)
-        }
+        items = FetchRequest.fetchControllerItems.fetchedObjects!.filter({ item in checkForCurrentMonth(date: item.date)})
+        mostExpensiveCategory = ReferenceBuget.compareWithBudget(with: items)
     }
     
     //MARK: Creates chart.
@@ -157,6 +127,9 @@ class StatisticsViewController: UIViewController {
     }
     
     private func updateUI() {
+        guard let fetchedSettings = FetchRequest.fetchControllerSettings.fetchedObjects?.first else {return}
+        settings = fetchedSettings
+        
         totalExpensesLabel.text = "\(settings.currencyIcon) \(totalExpenses)"
         totalIncomeLabel.text = "\(settings.currencyIcon) \(totalIncome)"
 

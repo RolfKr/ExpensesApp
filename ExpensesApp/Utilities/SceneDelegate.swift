@@ -22,6 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, NSFetchedResultsControl
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         queryDatabase()
+        FetchRequest.loadCategories()
+        FetchRequest.loadItems()
+        FetchRequest.loadSettings()
     }
     
     private func queryDatabase() {
@@ -34,22 +37,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, NSFetchedResultsControl
             } else {
                 print("Need data")
                 Preload.preloadData()
-            }
-        }
-    }
-    
-    private func checkBiometrics() {
-        let context = LAContext()
-        
-        let reason = "Please identify yourself."
-        
-        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
-            success, authenticationError in
-            
-            if success {
-                
-            } else {
-                print("")
             }
         }
     }

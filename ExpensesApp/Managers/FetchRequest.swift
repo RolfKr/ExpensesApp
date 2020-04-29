@@ -15,6 +15,8 @@ class FetchRequest {
     static var fetchControllerSettings: NSFetchedResultsController<Settings>!
     static var fetchControllerCategory: NSFetchedResultsController<Category>!
     
+    static var shared = FetchRequest()
+    
     static func loadItems() {
         let request = NSFetchRequest<Item>(entityName: "Item")
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
