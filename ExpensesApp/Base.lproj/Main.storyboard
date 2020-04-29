@@ -289,10 +289,10 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Fyg-YO-oiF">
-                                <rect key="frame" x="50" y="30" width="275" height="88"/>
+                                <rect key="frame" x="63" y="30" width="249" height="88"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="April" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Awp-c0-Fd5">
-                                        <rect key="frame" x="0.0" y="0.0" width="275" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="249" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="mEc-Ww-tsy"/>
                                         </constraints>
@@ -301,7 +301,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="$1,749" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="egm-MD-UJm">
-                                        <rect key="frame" x="0.0" y="48" width="275" height="40"/>
+                                        <rect key="frame" x="0.0" y="48" width="249" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="EvH-1y-Xqr"/>
                                         </constraints>
@@ -311,16 +311,44 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNH-zT-A4z">
+                                <rect key="frame" x="320" y="59" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="CHs-Nk-bAi"/>
+                                    <constraint firstAttribute="width" constant="30" id="cqz-f0-LMr"/>
+                                </constraints>
+                                <state key="normal" image="arrow"/>
+                                <connections>
+                                    <action selector="nextMonthBtntapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yqo-Jn-zfR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkj-AS-Hr2">
+                                <rect key="frame" x="25" y="59" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7OU-c7-aed"/>
+                                    <constraint firstAttribute="width" constant="30" id="HSY-UY-gjL"/>
+                                </constraints>
+                                <state key="normal" image="arrow"/>
+                                <connections>
+                                    <action selector="previousMonthBtntapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kca-qN-UKQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" name="DarkBlueGradient"/>
                         <constraints>
-                            <constraint firstItem="Fyg-YO-oiF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="Ajl-Qx-PJi"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Fyg-YO-oiF" secondAttribute="trailing" constant="50" id="EVh-80-F2u"/>
+                            <constraint firstItem="qkj-AS-Hr2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="1RK-8o-3hw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uNH-zT-A4z" secondAttribute="trailing" constant="25" id="242-pM-M2Y"/>
+                            <constraint firstItem="Fyg-YO-oiF" firstAttribute="leading" secondItem="qkj-AS-Hr2" secondAttribute="trailing" constant="8" id="7K0-ig-IhY"/>
+                            <constraint firstItem="fAb-f7-Rgo" firstAttribute="top" secondItem="uNH-zT-A4z" secondAttribute="bottom" constant="59" id="Bax-rI-nvY"/>
+                            <constraint firstItem="uNH-zT-A4z" firstAttribute="leading" secondItem="Fyg-YO-oiF" secondAttribute="trailing" constant="8" id="Fne-6L-qV3"/>
                             <constraint firstItem="Fyg-YO-oiF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="P81-3C-fEa"/>
                             <constraint firstItem="fAb-f7-Rgo" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="50" id="WKE-iB-WKz"/>
+                            <constraint firstItem="fAb-f7-Rgo" firstAttribute="top" secondItem="qkj-AS-Hr2" secondAttribute="bottom" constant="59" id="ZQg-S6-Psr"/>
                             <constraint firstItem="fAb-f7-Rgo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cb6-hR-byZ"/>
+                            <constraint firstItem="qkj-AS-Hr2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="59" id="gXF-fu-a9z"/>
                             <constraint firstItem="fAb-f7-Rgo" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="hcz-Mt-UOT"/>
                             <constraint firstItem="fAb-f7-Rgo" firstAttribute="top" secondItem="Fyg-YO-oiF" secondAttribute="bottom" constant="30" id="mZi-aG-gIX"/>
+                            <constraint firstItem="uNH-zT-A4z" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="59" id="ynb-Kx-R7U"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -330,6 +358,7 @@
                         <outlet property="cardFront" destination="brq-BG-HPl" id="ija-uR-M9n"/>
                         <outlet property="expensesBtn" destination="0nk-g9-HBi" id="sjy-K3-Uyk"/>
                         <outlet property="incomeBtn" destination="WHN-W3-MiK" id="zi8-DS-6bw"/>
+                        <outlet property="monthLabel" destination="Awp-c0-Fd5" id="uzh-Gh-NyE"/>
                         <outlet property="monthlyBudgetLabel" destination="RxH-Xa-ESJ" id="dn3-FM-Ko1"/>
                         <outlet property="progress" destination="Tcd-2D-Xg0" id="mrz-GW-wYD"/>
                         <outlet property="progressConstraint" destination="tlC-he-cTI" id="FhA-hb-Dju"/>
@@ -340,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="126" y="114"/>
+            <point key="canvasLocation" x="125.59999999999999" y="113.79310344827587"/>
         </scene>
         <!--Categories-->
         <scene sceneID="6lN-Up-Vhz">
