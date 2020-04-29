@@ -9,9 +9,32 @@
 import UIKit
 
 class CustomHeightTabBar : UITabBar {
-    @IBInspectable var height: CGFloat = 0.0
-
+    
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        return CGSize(width: 150, height: 60)
+        let defaultSizeWidth = self.frame.width
+        
+        if UIDevice.current.hasNotch {
+            print("Got the notch")
+            return CGSize(width: defaultSizeWidth, height: 100)
+        } else {
+            print("No notch")
+            return CGSize(width: defaultSizeWidth, height: 60)
+        }
+        
+    }
+}
+
+
+extension UIDevice {
+    var hasNotch: Bool {
+        let keyWindow = UIApplication.shared.connectedScenes
+        .filter({$0.activationState == .foregroundActive})
+        .map({$0 as? UIWindowScene})
+        .compactMap({$0})
+        .first?.windows
+        .filter({$0.isKeyWindow}).first
+        
+        let bottom = keyWindow?.safeAreaInsets.bottom ?? 0
+        return bottom > 0
     }
 }
