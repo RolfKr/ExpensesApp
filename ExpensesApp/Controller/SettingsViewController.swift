@@ -49,7 +49,7 @@ class SettingsViewController: UITableViewController {
         currencyLabel.text = settings.currency
     }
     
-    func configureSecurity() {
+    private func configureSecurity() {
         let context = LAContext()
         var error: NSError?
         
@@ -61,7 +61,6 @@ class SettingsViewController: UITableViewController {
                     }
                 }
             }
-            
         } else {
             print("No biometry")
         }
