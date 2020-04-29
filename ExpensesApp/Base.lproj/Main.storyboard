@@ -99,6 +99,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.24059507250000001" green="0.67350560429999995" blue="0.87453913689999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="ooY-UR-Lvj"/>
@@ -323,7 +324,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="0k0-pg-lyV"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" id="0k0-pg-lyV"/>
                     <connections>
                         <outlet property="cardBehind" destination="fAb-f7-Rgo" id="dkn-eY-OTw"/>
                         <outlet property="cardFront" destination="brq-BG-HPl" id="ija-uR-M9n"/>
@@ -449,7 +450,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eDj-Re-4Q8"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Categories" id="hkj-UW-meT"/>
+                    <tabBarItem key="tabBarItem" title="Categories" image="categories" id="hkj-UW-meT"/>
                     <navigationItem key="navigationItem" id="xsu-rP-Qpj"/>
                     <connections>
                         <outlet property="searchContainer" destination="hqJ-zd-odM" id="Dv4-HZ-Qnl"/>
@@ -822,7 +823,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Jf5-Xh-fha"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Add" id="0J3-5Y-Thn"/>
+                    <tabBarItem key="tabBarItem" title="Add" image="addTab" id="0J3-5Y-Thn"/>
                     <connections>
                         <outlet property="amountTextField" destination="n5S-O3-f36" id="49e-zB-CqR"/>
                         <outlet property="background" destination="INF-rF-frw" id="YM0-Sz-5WW"/>
@@ -1010,7 +1011,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MXd-lW-NvE"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Statistics" id="cua-vb-1d9"/>
+                    <tabBarItem key="tabBarItem" title="Statistics" image="graph" id="cua-vb-1d9"/>
                     <connections>
                         <outlet property="background" destination="6DA-Y7-7Bv" id="DtN-ap-2Zo"/>
                         <outlet property="chart" destination="7Rh-9O-ywk" id="HMu-Xp-UMy"/>
@@ -1191,11 +1192,11 @@
             </objects>
             <point key="canvasLocation" x="3929" y="116"/>
         </scene>
-        <!--Item-->
+        <!--Settings-->
         <scene sceneID="qDZ-er-5ET">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AE8-eL-6Bg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="fFe-1L-izQ"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="fFe-1L-izQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="xAY-oB-QPy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
@@ -1455,11 +1456,16 @@ with iCloud sync</string>
     </scenes>
     <resources>
         <image name="addBtn" width="512" height="512"/>
+        <image name="addTab" width="30" height="30"/>
         <image name="arrow" width="512" height="512"/>
+        <image name="categories" width="30" height="30"/>
         <image name="checkmark" width="512" height="512"/>
         <image name="cloudSync" width="512" height="512"/>
         <image name="finance" width="512" height="512"/>
+        <image name="graph" width="30" height="30"/>
+        <image name="home" width="30" height="30"/>
         <image name="restaurant" width="512" height="512"/>
+        <image name="settings" width="30" height="30"/>
         <namedColor name="DarkBlueGradient">
             <color red="0.2196078431372549" green="0.67843137254901964" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
