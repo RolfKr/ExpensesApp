@@ -25,7 +25,12 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var progressConstraint: NSLayoutConstraint!
     
     var selectedMonth = Date()
-    
+    var items: [Item]! {
+        didSet {
+            updateUI()
+        }
+    }
+
     var fetchControllerSettings: NSFetchedResultsController<Settings>! {
         didSet {
             let currencyIcon = fetchControllerSettings.fetchedObjects?.first?.currencyIcon ?? "$"
@@ -48,8 +53,8 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         view.layoutIfNeeded()
         intitialSetup()
         progressConstraint.constant = progress.frame.width
@@ -92,7 +97,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
                                 "Investments" : 0.0, "Bills & Utilities" : 0.0, "Transport" : 0.0, "Travel" : 0.0,
                                 "Fees & Charges" : 0.0, "Business Services" : 0.0]
               
-        let items = FetchRequest.fetchControllerItems.fetchedObjects!.filter({ item in
+        items = FetchRequest.fetchControllerItems.fetchedObjects!.filter({ item in
             let calendar = Calendar.current
             let selectedMonth = calendar.dateComponents([.month, .year], from: self.selectedMonth)
             let itemMonth = calendar.dateComponents([.month, .year], from: item.date)
@@ -112,6 +117,11 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
             }
         }
         
+        for category in categories {
+            
+            print(category.category)
+        }
+        
         tableView.reloadData()
     }
     
@@ -129,38 +139,23 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         var dateComponent = DateComponents()
         dateComponent.month = 1
         selectedMonth = Calendar.current.date(byAdding: dateComponent, to: selectedMonth)!
-        updateUI()
         filterCategories()
+        updateUI()
     }
     
     @IBAction func previousMonthBtntapped(_ sender: UIButton) {
         var dateComponent = DateComponents()
         dateComponent.month = -1
         selectedMonth = Calendar.current.date(byAdding: dateComponent, to: selectedMonth)!
-        updateUI()
         filterCategories()
+        updateUI()
     }
     
-    
-    
-    private func checkDataSelectedDate(date: Date) -> Bool {
-        let calendar = Calendar.current
-        let now = Date()
-        
-        let compOne = calendar.dateComponents([.month, .year], from: now)
-        let compTwo = calendar.dateComponents([.month, .year], from: date)
-        
-        if compOne == compTwo {
-            return true
-        } else {
-            return false
-        }
-    }
     
     private func calculateTotalExpenses() -> Double {
         var totalExpenses = 0.0
         
-        for item in FetchRequest.fetchControllerItems.fetchedObjects! {
+        for item in items {
             if item.category.categoryType != "Income" {
                 totalExpenses += item.amount
             }
@@ -197,6 +192,9 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     }
     
     private func updateUI() {
+        print("*****")
+        print(calculateTotalExpenses())
+        
         let currencyIcon = FetchRequest.fetchControllerSettings.fetchedObjects?.first?.currencyIcon ?? "$"
         let budget = FetchRequest.fetchControllerSettings.fetchedObjects?.first?.budget ?? 1000
         
@@ -225,6 +223,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if expensesSelected {
+            print("number of rows: \(categories.count)")
             return categories.count
         } else {
             return FetchRequest.fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income" }).count
@@ -238,6 +237,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let currencyIcon = FetchRequest.fetchControllerSettings.fetchedObjects?.first?.currencyIcon ?? "$"
         
         if expensesSelected {
+            print(categories.count)
             let category = categories[indexPath.row]
             cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: budget, categoryAmount: category.amount))", moneyLabel: "\(currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) transactions")
         } else {
