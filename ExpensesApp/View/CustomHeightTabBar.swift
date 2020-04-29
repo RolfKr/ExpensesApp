@@ -20,7 +20,6 @@ class CustomHeightTabBar : UITabBar {
             print("No notch")
             return CGSize(width: defaultSizeWidth, height: 60)
         }
-        
     }
 }
 
