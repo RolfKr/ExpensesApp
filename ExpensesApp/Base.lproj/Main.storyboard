@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Launch View Controller-->
+        <!--LaunchVC-->
         <scene sceneID="fF3-a0-PW6">
             <objects>
-                <viewController id="8uH-u9-Nxl" customClass="LaunchViewController" customModule="ExpensesApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LaunchVC" title="LaunchVC" id="8uH-u9-Nxl" customClass="LaunchViewController" customModule="ExpensesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bJ1-1E-s46">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1204,7 +1204,7 @@
         <!--CreatePIN View Controller-->
         <scene sceneID="k3a-Xh-Oio">
             <objects>
-                <viewController id="Jno-nj-Iul" customClass="CreatePINViewController" customModule="ExpensesApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createPIN" id="Jno-nj-Iul" customClass="CreatePINViewController" customModule="ExpensesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sry-gG-8fV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1255,8 +1255,23 @@ finances private</string>
                                     <action selector="enterBtnTapped:" destination="Jno-nj-Iul" eventType="touchUpInside" id="hQB-Cz-oiK"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXm-Sm-WAj">
+                                <rect key="frame" x="260" y="40" width="75" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="Nco-A4-HMd"/>
+                                    <constraint firstAttribute="width" constant="75" id="jLl-a7-422"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
+                                <state key="normal" title="Dismiss">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="skipBtnTapped:" destination="Jno-nj-Iul" eventType="touchUpInside" id="uoJ-kQ-OFQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" name="DarkBlueGradient"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="0cW-5M-uhF" firstAttribute="top" secondItem="4tC-Qj-ots" secondAttribute="top" constant="130" id="7P0-Ax-jb1"/>
                             <constraint firstItem="OEz-qB-dp9" firstAttribute="leading" secondItem="4tC-Qj-ots" secondAttribute="leading" constant="60" id="F4l-ba-bGV"/>
@@ -1266,29 +1281,40 @@ finances private</string>
                             <constraint firstItem="bQt-OB-8Pr" firstAttribute="top" secondItem="OEz-qB-dp9" secondAttribute="bottom" constant="40" id="VRE-SX-OZ4"/>
                             <constraint firstItem="dxN-xH-caO" firstAttribute="leading" secondItem="4tC-Qj-ots" secondAttribute="leading" constant="100" id="WnE-62-1IP"/>
                             <constraint firstItem="4tC-Qj-ots" firstAttribute="bottom" secondItem="sGD-Vl-rkV" secondAttribute="bottom" constant="75" id="a6z-hD-3Nh"/>
+                            <constraint firstItem="4tC-Qj-ots" firstAttribute="trailing" secondItem="HXm-Sm-WAj" secondAttribute="trailing" constant="40" id="cHn-Fu-vcC"/>
                             <constraint firstItem="4tC-Qj-ots" firstAttribute="trailing" secondItem="OEz-qB-dp9" secondAttribute="trailing" constant="60" id="eC4-BO-VJF"/>
                             <constraint firstItem="OEz-qB-dp9" firstAttribute="top" secondItem="0cW-5M-uhF" secondAttribute="bottom" constant="50" id="nnB-e8-a5B"/>
                             <constraint firstItem="4tC-Qj-ots" firstAttribute="trailing" secondItem="bQt-OB-8Pr" secondAttribute="trailing" constant="100" id="pBp-Ru-IY0"/>
                             <constraint firstItem="4tC-Qj-ots" firstAttribute="trailing" secondItem="dxN-xH-caO" secondAttribute="trailing" constant="100" id="s7g-eY-jY1"/>
+                            <constraint firstItem="HXm-Sm-WAj" firstAttribute="top" secondItem="4tC-Qj-ots" secondAttribute="top" constant="40" id="uER-1s-G2z"/>
                             <constraint firstItem="sGD-Vl-rkV" firstAttribute="centerX" secondItem="sry-gG-8fV" secondAttribute="centerX" id="vtY-3g-Vq2"/>
                             <constraint firstItem="bQt-OB-8Pr" firstAttribute="leading" secondItem="4tC-Qj-ots" secondAttribute="leading" constant="100" id="xTD-aa-eUn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4tC-Qj-ots"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="xZP-GF-By9" appends="YES" id="fkz-NB-4wI"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="A7s-V1-dcz"/>
                     <connections>
                         <outlet property="createPinLabel" destination="bQt-OB-8Pr" id="dXA-hd-fca"/>
                         <outlet property="pinTextField" destination="dxN-xH-caO" id="lLO-ea-weQ"/>
+                        <outlet property="skipButton" destination="HXm-Sm-WAj" id="vVL-oT-Cgf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6M-AL-uKt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="xZP-GF-By9">
+                    <connections>
+                        <action selector="tappedBackground:" destination="Jno-nj-Iul" id="MZt-1q-xgP"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="124" y="-675.11244377811101"/>
         </scene>
         <!--FinanceVC-->
         <scene sceneID="bG3-Nz-xT8">
             <objects>
-                <viewController title="FinanceVC" id="k1g-y4-hrx" sceneMemberID="viewController">
+                <viewController title="FinanceVC" id="k1g-y4-hrx" customClass="IntroViewController" customModule="ExpensesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RfF-ON-2rj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

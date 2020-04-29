@@ -21,7 +21,7 @@ class LaunchViewController: UIViewController, NSFetchedResultsControllerDelegate
         
         let defaults = UserDefaults.standard
         
-        if let useBiometrics = defaults.value(forKey: "useBiometrics") as? Bool {
+        if let useBiometrics = defaults.value(forKey: "useSecurity") as? Bool {
             if useBiometrics {
                 checkBiometrics()
             } else {

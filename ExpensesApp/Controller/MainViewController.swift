@@ -47,6 +47,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        view.layoutIfNeeded()
         intitialSetup()
         progressConstraint.constant = progress.frame.width
         filterCategories()

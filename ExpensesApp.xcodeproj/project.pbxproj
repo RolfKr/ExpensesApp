@@ -26,6 +26,7 @@
 		7EDC71142449E107002CACDF /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC710E2449E107002CACDF /* Category+CoreDataProperties.swift */; };
 		7EDC71172449E143002CACDF /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC71162449E143002CACDF /* PersistenceManager.swift */; };
 		B73627202458FFB30087F948 /* CreatePINViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B736271F2458FFB30087F948 /* CreatePINViewController.swift */; };
+		B7362722245912800087F948 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7362721245912800087F948 /* IntroViewController.swift */; };
 		B74263202448BEBA00597D4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B742631F2448BEBA00597D4C /* AppDelegate.swift */; };
 		B74263222448BEBA00597D4C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74263212448BEBA00597D4C /* SceneDelegate.swift */; };
 		B74263242448BEBA00597D4C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74263232448BEBA00597D4C /* MainViewController.swift */; };
@@ -91,6 +92,7 @@
 		84600F1ED4C062903CD24551 /* Pods-ExpensesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesApp.release.xcconfig"; path = "Target Support Files/Pods-ExpensesApp/Pods-ExpensesApp.release.xcconfig"; sourceTree = "<group>"; };
 		8B51D6E71CC05C77E8AB5106 /* Pods-ExpensesApp-ExpensesAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesApp-ExpensesAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-ExpensesApp-ExpensesAppUITests/Pods-ExpensesApp-ExpensesAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B736271F2458FFB30087F948 /* CreatePINViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePINViewController.swift; sourceTree = "<group>"; };
+		B7362721245912800087F948 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		B742631C2448BEBA00597D4C /* ExpensesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpensesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B742631F2448BEBA00597D4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B74263212448BEBA00597D4C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 		7EA3FCFE24499C9500B1AF10 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B7362721245912800087F948 /* IntroViewController.swift */,
 				B736271F2458FFB30087F948 /* CreatePINViewController.swift */,
 				B7514C1B2457BF79004639FC /* LaunchViewController.swift */,
 				B74263232448BEBA00597D4C /* MainViewController.swift */,
@@ -584,6 +587,7 @@
 				7E84C6902449CA9400B2C657 /* SettingsViewController.swift in Sources */,
 				B7969D4B244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift in Sources */,
 				7E54F96B244A4126003ABAA1 /* AddCategoryCell.swift in Sources */,
+				B7362722245912800087F948 /* IntroViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,7 +23,7 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let checkBiometrics = defaults.value(forKey: "useBiometrics") as? Bool {
+        if let checkBiometrics = defaults.value(forKey: "useSecurity") as? Bool {
             print(checkBiometrics)
             lockSwitch.isOn = checkBiometrics
         }
@@ -49,23 +49,6 @@ class SettingsViewController: UITableViewController {
         currencyLabel.text = settings.currency
     }
     
-    private func configureSecurity() {
-        let context = LAContext()
-        var error: NSError?
-        
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Please identify yourself") { (success, error) in
-                if success {
-                    DispatchQueue.main.async {
-                        self.defaults.set(self.lockSwitch.isOn, forKey: "useBiometrics")
-                    }
-                }
-            }
-        } else {
-            print("No biometry")
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
@@ -87,11 +70,11 @@ class SettingsViewController: UITableViewController {
         case 3:
             if lockSwitch.isOn {
                 lockSwitch.setOn(false, animated: true)
+                configureSecurity()
             } else {
                 lockSwitch.setOn(true, animated: true)
+                configureSecurity()
             }
-            
-            configureSecurity()
         default:
             break
         }
@@ -99,6 +82,18 @@ class SettingsViewController: UITableViewController {
     
     @IBAction func lockSwitchChanged(_ sender: UISwitch) {
         configureSecurity()
+    }
+    
+    private func configureSecurity() {
+        if let _ = defaults.value(forKey: "useSecurity") {
+            defaults.set(self.lockSwitch.isOn, forKey: "useSecurity")
+        } else {
+            if lockSwitch.isOn {
+                guard let createPinVC = storyboard?.instantiateViewController(identifier: "createPIN") as? CreatePINViewController else {return}
+                createPinVC.fromSettings = true
+                present(createPinVC, animated: true)
+            }
+        }
     }
     
     
