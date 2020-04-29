@@ -45,19 +45,6 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         }
     }
     
-    override func viewWillLayoutSubviews() {
-        var customTabFrame = self.tabBarController?.tabBar.frame
-        customTabFrame?.size.height = CGFloat(250)
-        customTabFrame?.origin.y = self.view.frame.size.height - CGFloat(250)
-        self.tabBarController?.tabBar.frame = customTabFrame!
-        tabBarController?.tabBar.barTintColor = .black
-        tabBarController?.tabBar.tintColor = .white
-        
-        tableView.isHidden = true
-        cardBehind.isHidden = true
-        cardFront.isHidden = true
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.layoutIfNeeded()

@@ -95,7 +95,7 @@
         <scene sceneID="CfT-dC-8Fp">
             <objects>
                 <tabBarController storyboardIdentifier="TabBar" id="9b6-OG-Suc" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EdK-yV-8RX">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EdK-yV-8RX" customClass="CustomHeightTabBar" customModule="ExpensesApp" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
