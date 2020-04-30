@@ -35,7 +35,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         didSet {
             let currencyIcon = fetchControllerSettings.fetchedObjects?.first?.currencyIcon ?? "$"
             let budget = fetchControllerSettings.fetchedObjects?.first?.budget ?? 1000
-            monthlyBudgetLabel.text = "\(currencyIcon) \(budget) \(NSLocalizedString("budgetRemaining", comment: ""))"
+            monthlyBudgetLabel.text = "\(currencyIcon) \(budget) \("budgetRemaining".localized())"
         }
     }
     
@@ -194,9 +194,10 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         progressConstraint.constant = calculateProgressbar()
         
         let remainingBudget = budget - calculateTotalExpenses()
-        monthlyBudgetLabel.text = "\(currencyIcon) \(remainingBudget) \(NSLocalizedString("budgetRemaining", comment: ""))"
+        monthlyBudgetLabel.text = "\(currencyIcon) \(remainingBudget) \("budgetRemaining".localized())"
         
-        let months = ["January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "Oktober", "November", "December"]
+        let months = ["January".localized(), "Feburary".localized(), "March".localized(), "April".localized(), "May".localized(), "June".localized(), "July".localized(), "August".localized(), "September".localized(), "Oktober".localized(), "November".localized(), "December".localized()]
+        
         let calendar = Calendar.current
         let month = calendar.component(.month, from: selectedMonth)
         monthLabel.text = months[month - 1]

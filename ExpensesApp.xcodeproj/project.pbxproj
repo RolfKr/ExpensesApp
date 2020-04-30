@@ -49,6 +49,7 @@
 		B7C83AF0244F62F000089050 /* Settings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C83AEE244F62F000089050 /* Settings+CoreDataClass.swift */; };
 		B7C83AF1244F62F000089050 /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C83AEF244F62F000089050 /* Settings+CoreDataProperties.swift */; };
 		B7F8DE33245B7DC900A16FDA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7F8DE35245B7DC900A16FDA /* Localizable.strings */; };
+		B7F8DE38245B824F00A16FDA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F8DE37245B824F00A16FDA /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		B7F8DE30245B7A9B00A16FDA /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B7F8DE34245B7DC900A16FDA /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B7F8DE36245B7DD700A16FDA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B7F8DE37245B824F00A16FDA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B9A7077BDCAA92EEB6D8AA88 /* Pods-ExpensesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesApp.debug.xcconfig"; path = "Target Support Files/Pods-ExpensesApp/Pods-ExpensesApp.debug.xcconfig"; sourceTree = "<group>"; };
 		BC66C6A69425343E3FD32677 /* Pods-ExpensesApp-ExpensesAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesApp-ExpensesAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ExpensesApp-ExpensesAppUITests/Pods-ExpensesApp-ExpensesAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -234,6 +236,7 @@
 			children = (
 				B74263522448BF5D00597D4C /* Constants.swift */,
 				7E54F966244A0BE9003ABAA1 /* Preload.swift */,
+				B7F8DE37245B824F00A16FDA /* Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				7E84C6902449CA9400B2C657 /* SettingsViewController.swift in Sources */,
 				B7969D4B244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift in Sources */,
 				7E54F96B244A4126003ABAA1 /* AddCategoryCell.swift in Sources */,
+				B7F8DE38245B824F00A16FDA /* Extensions.swift in Sources */,
 				B7362722245912800087F948 /* IntroViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
