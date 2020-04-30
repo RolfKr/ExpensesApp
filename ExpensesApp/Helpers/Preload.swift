@@ -14,11 +14,6 @@ class Preload {
     
     static func preloadData() {
         
-        let scorestreakEntity = Scorestreak(context: PersistenceManager.persistentContainer.viewContext)
-        scorestreakEntity.highscore = 0
-        scorestreakEntity.score = 0
-        scorestreakEntity.date = Date()
-        
         let settingsEntity = Settings(context: PersistenceManager.persistentContainer.viewContext)
         settingsEntity.budget = 10_000
         settingsEntity.currency = "Dollar"

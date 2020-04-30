@@ -317,7 +317,7 @@
                                     <constraint firstAttribute="height" constant="30" id="CHs-Nk-bAi"/>
                                     <constraint firstAttribute="width" constant="30" id="cqz-f0-LMr"/>
                                 </constraints>
-                                <state key="normal" image="arrow"/>
+                                <state key="normal" image="next"/>
                                 <connections>
                                     <action selector="nextMonthBtntapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yqo-Jn-zfR"/>
                                 </connections>
@@ -328,7 +328,7 @@
                                     <constraint firstAttribute="height" constant="30" id="7OU-c7-aed"/>
                                     <constraint firstAttribute="width" constant="30" id="HSY-UY-gjL"/>
                                 </constraints>
-                                <state key="normal" image="arrow"/>
+                                <state key="normal" image="previous"/>
                                 <connections>
                                     <action selector="previousMonthBtntapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kca-qN-UKQ"/>
                                 </connections>
@@ -1389,7 +1389,7 @@ monthly expenses!</string>
                                     <constraint firstAttribute="width" constant="50" id="ecf-EC-Z8a"/>
                                     <constraint firstAttribute="height" constant="50" id="kGg-CC-duG"/>
                                 </constraints>
-                                <state key="normal" image="arrow"/>
+                                <state key="normal" image="next"/>
                                 <connections>
                                     <segue destination="cMX-U4-ajm" kind="show" id="QKP-Bp-QE6"/>
                                 </connections>
@@ -1450,7 +1450,7 @@ with iCloud sync</string>
                                     <constraint firstAttribute="width" constant="50" id="3s5-SV-R4f"/>
                                     <constraint firstAttribute="height" constant="50" id="IYf-kj-w8o"/>
                                 </constraints>
-                                <state key="normal" image="arrow"/>
+                                <state key="normal" image="next"/>
                                 <connections>
                                     <segue destination="Jno-nj-Iul" kind="show" id="ASJ-lY-4hn"/>
                                 </connections>
@@ -1486,13 +1486,14 @@ with iCloud sync</string>
     <resources>
         <image name="addBtn" width="512" height="512"/>
         <image name="addTab" width="30" height="30"/>
-        <image name="arrow" width="512" height="512"/>
         <image name="categories" width="30" height="30"/>
         <image name="checkmark" width="512" height="512"/>
         <image name="cloudSync" width="512" height="512"/>
         <image name="finance" width="512" height="512"/>
         <image name="graph" width="30" height="30"/>
         <image name="home" width="30" height="30"/>
+        <image name="next" width="512" height="512"/>
+        <image name="previous" width="512" height="512"/>
         <image name="restaurant" width="512" height="512"/>
         <image name="settings" width="30" height="30"/>
         <namedColor name="DarkBlueGradient">
