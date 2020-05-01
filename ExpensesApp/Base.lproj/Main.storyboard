@@ -772,10 +772,9 @@
                                         </connections>
                                     </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wpH-n3-7ej">
-                                        <rect key="frame" x="265" y="20" width="50" height="50"/>
+                                        <rect key="frame" x="247.5" y="20" width="107.5" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Gzk-76-XU1"/>
-                                            <constraint firstAttribute="width" secondItem="wpH-n3-7ej" secondAttribute="height" multiplier="1:1" id="iyF-b3-Sd2"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                                         <state key="normal" title="Add">
@@ -785,8 +784,8 @@
                                             <action selector="addBtnTapped:" destination="7sf-o7-y31" eventType="touchUpInside" id="Yg1-UA-zYD"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UKV-zD-mYZ">
-                                        <rect key="frame" x="60" y="20" width="189" height="50"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UKV-zD-mYZ">
+                                        <rect key="frame" x="60" y="20" width="171.5" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="BAh-Gg-otz"/>
                                         </constraints>
@@ -804,12 +803,12 @@
                                     <constraint firstItem="5gk-Ex-oLi" firstAttribute="top" secondItem="VYp-Ff-Do2" secondAttribute="bottom" constant="16" id="7gf-VL-VAo"/>
                                     <constraint firstItem="NFw-Zp-9IL" firstAttribute="leading" secondItem="INF-rF-frw" secondAttribute="leading" constant="60" id="7hR-aC-70Y"/>
                                     <constraint firstItem="wpH-n3-7ej" firstAttribute="leading" relation="lessThanOrEqual" secondItem="UKV-zD-mYZ" secondAttribute="trailing" constant="16" id="9cU-tp-8PZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="wpH-n3-7ej" secondAttribute="trailing" constant="60" id="GUW-8G-dX7"/>
                                     <constraint firstItem="wpH-n3-7ej" firstAttribute="top" secondItem="INF-rF-frw" secondAttribute="top" constant="20" id="MDi-k4-QHJ"/>
                                     <constraint firstItem="5gk-Ex-oLi" firstAttribute="leading" secondItem="INF-rF-frw" secondAttribute="leading" constant="20" id="Q2f-JQ-aw6"/>
                                     <constraint firstItem="UKV-zD-mYZ" firstAttribute="leading" secondItem="INF-rF-frw" secondAttribute="leading" constant="60" id="WxD-Rx-FVK"/>
                                     <constraint firstAttribute="bottom" secondItem="5gk-Ex-oLi" secondAttribute="bottom" constant="130" id="eDe-9l-FN9"/>
                                     <constraint firstAttribute="trailing" secondItem="NFw-Zp-9IL" secondAttribute="trailing" constant="60" id="fd4-cS-2V6"/>
+                                    <constraint firstAttribute="trailing" secondItem="wpH-n3-7ej" secondAttribute="trailing" constant="20" id="h0D-tI-nWh"/>
                                     <constraint firstItem="VYp-Ff-Do2" firstAttribute="leading" secondItem="NFw-Zp-9IL" secondAttribute="leading" id="jjI-Dg-QL0"/>
                                     <constraint firstItem="NFw-Zp-9IL" firstAttribute="top" secondItem="UKV-zD-mYZ" secondAttribute="bottom" constant="8" id="qSi-Wq-7E5"/>
                                     <constraint firstAttribute="trailing" secondItem="5gk-Ex-oLi" secondAttribute="trailing" constant="20" id="ysF-4J-IdJ"/>

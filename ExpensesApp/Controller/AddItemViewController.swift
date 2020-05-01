@@ -62,16 +62,16 @@ class AddItemViewController: UIViewController {
     }
     
     @IBAction func changeEntryTapped(_ sender: UIButton) {
-        if sender.titleLabel?.text == "expense" {
+        if sender.titleLabel?.text == "expense".localized() {
             addingExpense.toggle()
-            sender.setTitle("income", for: .normal)
+            sender.setTitle("income".localized(), for: .normal)
             sender.setTitleColor(.green, for: .normal)
             filteredCategories = categories.filter { (category) -> Bool in
                 category.categoryType == "Income"
             }
         } else {
             addingExpense.toggle()
-            sender.setTitle("expense", for: .normal)
+            sender.setTitle("expense".localized(), for: .normal)
             sender.setTitleColor(.red, for: .normal)
             filteredCategories = categories.filter { (category) -> Bool in
                 category.categoryType != "Income"

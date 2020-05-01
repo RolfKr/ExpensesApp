@@ -218,7 +218,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         if expensesSelected {
             return categories.count
         } else {
-            return FetchRequest.fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income" }).count
+            return FetchRequest.fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income".localized() }).count
         }
         
     }
@@ -230,9 +230,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         if expensesSelected {
             let category = categories[indexPath.row]
-            cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: budget, categoryAmount: category.amount))", moneyLabel: "\(currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) transactions")
+            cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: budget, categoryAmount: category.amount))", moneyLabel: "\(currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) " + "transactions".localized())
         } else {
-            let filteredOnIncome = FetchRequest.fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income" })
+            let filteredOnIncome = FetchRequest.fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income".localized() })
             
             let item = filteredOnIncome[indexPath.row]
             cell.configureCell(image: UIImage(named: "restaurant")!, category: item.category.name, budgetAmount: "", moneyLabel: "\(currencyIcon) \(item.amount)", transactions: "")
