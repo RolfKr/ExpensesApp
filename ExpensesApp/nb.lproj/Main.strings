@@ -1,0 +1,180 @@
+
+/* Class = "UITabBarItem"; title = "Add"; ObjectID = "0J3-5Y-Thn"; */
+"0J3-5Y-Thn.title" = "Legg til";
+
+/* Class = "UILabel"; text = "Expenses App"; ObjectID = "0cW-5M-uhF"; */
+"0cW-5M-uhF.text" = "Expenses App";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "0k0-pg-lyV"; */
+"0k0-pg-lyV.title" = "Hjem";
+
+/* Class = "UIButton"; normalTitle = "Expenses"; ObjectID = "0nk-g9-HBi"; */
+"0nk-g9-HBi.normalTitle" = "Utgifter";
+
+/* Class = "UILabel"; text = "$12,380"; ObjectID = "1lw-xW-JWw"; */
+"1lw-xW-JWw.text" = "$12,380";
+
+/* Class = "UILabel"; text = "Restaurants"; ObjectID = "2B0-Id-Yp5"; */
+"2B0-Id-Yp5.text" = "Restaurant";
+
+/* Class = "UIButton"; normalTitle = "2020"; ObjectID = "33l-V4-r67"; */
+"33l-V4-r67.normalTitle" = "2020";
+
+/* Class = "UILabel"; text = "9 items"; ObjectID = "4lc-bT-Tsz"; */
+"4lc-bT-Tsz.text" = "9 items";
+
+/* Class = "UILabel"; text = "Light"; ObjectID = "52a-S0-UrK"; */
+"52a-S0-UrK.text" = "Lys";
+
+/* Class = "UILabel"; text = "Total Expenses"; ObjectID = "6Ca-cL-hb9"; */
+"6Ca-cL-hb9.text" = "Utgifter totalt";
+
+/* Class = "UILabel"; text = "1000"; ObjectID = "7k4-Sj-Rkx"; */
+"7k4-Sj-Rkx.text" = "1000";
+
+/* Class = "UIViewController"; title = "LaunchVC"; ObjectID = "8uH-u9-Nxl"; */
+"8uH-u9-Nxl.title" = "LaunchVC";
+
+/* Class = "UILabel"; text = "April"; ObjectID = "Awp-c0-Fd5"; */
+"Awp-c0-Fd5.text" = "April";
+
+/* Class = "UITextField"; placeholder = "Enter a name"; ObjectID = "Cbv-dn-t45"; */
+"Cbv-dn-t45.placeholder" = "Legg inn navn";
+
+/* Class = "UILabel"; text = "Lock"; ObjectID = "Cjf-5W-uHM"; */
+"Cjf-5W-uHM.text" = "Lås";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "DSV-Yp-cIn"; */
+"DSV-Yp-cIn.text" = "Label";
+
+/* Class = "UILabel"; text = "Enter PIN"; ObjectID = "FK7-Zc-iLv"; */
+"FK7-Zc-iLv.text" = "Skriv PIN";
+
+/* Class = "UILabel"; text = "The easiest way to\nkeep track of your\nmonthly expenses!"; ObjectID = "Fy5-W9-bEe"; */
+"Fy5-W9-bEe.text" = "Den enkleste måten å holde oversikt over dine månedlige utgifter!";
+
+/* Class = "UIButton"; normalTitle = "DONE"; ObjectID = "GKk-9K-QHs"; */
+"GKk-9K-QHs.normalTitle" = "FERDIG";
+
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "HXm-Sm-WAj"; */
+"HXm-Sm-WAj.normalTitle" = "Lukk";
+
+/* Class = "UILabel"; text = "$12,380"; ObjectID = "HyS-eu-W6g"; */
+"HyS-eu-W6g.text" = "$12,380";
+
+/* Class = "UILabel"; text = "Last 30 days"; ObjectID = "JQ3-q6-HZr"; */
+"JQ3-q6-HZr.text" = "Siste 30 dager";
+
+/* Class = "UILabel"; text = "Budget"; ObjectID = "M3E-Yq-p3n"; */
+"M3E-Yq-p3n.text" = "Budsjett";
+
+/* Class = "UILabel"; text = "Add new category"; ObjectID = "NMi-cy-19h"; */
+"NMi-cy-19h.text" = "Opprett ny kategory";
+
+/* Class = "UILabel"; text = "Keep your \nfinances private"; ObjectID = "OEz-qB-dp9"; */
+"OEz-qB-dp9.text" = "Hold din økonomi privat";
+
+/* Class = "UILabel"; text = "Currency"; ObjectID = "QYU-ZS-WI0"; */
+"QYU-ZS-WI0.text" = "Valuta";
+
+/* Class = "UILabel"; text = "Monthly budget: $1,500"; ObjectID = "RxH-Xa-ESJ"; */
+"RxH-Xa-ESJ.text" = "Månedlig budsjett: $1,500";
+
+/* Class = "UILabel"; text = "Expenses App"; ObjectID = "U0p-cg-9I4"; */
+"U0p-cg-9I4.text" = "Expenses App";
+
+/* Class = "UITextField"; placeholder = "Enter a name"; ObjectID = "UKV-zD-mYZ"; */
+"UKV-zD-mYZ.placeholder" = "Legg inn navn";
+
+/* Class = "UILabel"; text = "Choose a category"; ObjectID = "VYp-Ff-Do2"; */
+"VYp-Ff-Do2.text" = "Velg kategori";
+
+/* Class = "UILabel"; text = "Categories"; ObjectID = "W1e-jm-K7D"; */
+"W1e-jm-K7D.text" = "Kategorier";
+
+/* Class = "UIButton"; normalTitle = "Incomes"; ObjectID = "WHN-W3-MiK"; */
+"WHN-W3-MiK.normalTitle" = "Inntekter";
+
+/* Class = "UILabel"; text = "Pick an icon"; ObjectID = "X8e-vw-0Kn"; */
+"X8e-vw-0Kn.text" = "Velg ikon";
+
+/* Class = "UILabel"; text = "Theme"; ObjectID = "b8F-Nr-RPo"; */
+"b8F-Nr-RPo.text" = "Tema";
+
+/* Class = "UILabel"; text = "Create a PIN"; ObjectID = "bQt-OB-8Pr"; */
+"bQt-OB-8Pr.text" = "Opprett PIN";
+
+/* Class = "UILabel"; text = "Last 30 days"; ObjectID = "ciX-By-C89"; */
+"ciX-By-C89.text" = "Siste 30 dager";
+
+/* Class = "UITabBarItem"; title = "Statistics"; ObjectID = "cua-vb-1d9"; */
+"cua-vb-1d9.title" = "Statistikk";
+
+/* Class = "UILabel"; text = "Total Income"; ObjectID = "dd8-AS-VgS"; */
+"dd8-AS-VgS.text" = "Inntekter totalt";
+
+/* Class = "UITextField"; placeholder = "0000"; ObjectID = "dxN-xH-caO"; */
+"dxN-xH-caO.placeholder" = "0000";
+
+/* Class = "UILabel"; text = "Restaurant"; ObjectID = "eI4-qL-xny"; */
+"eI4-qL-xny.text" = "Restaurant";
+
+/* Class = "UILabel"; text = "Keep your data\nacross all your devies\nwith iCloud sync"; ObjectID = "efg-T3-ktj"; */
+"efg-T3-ktj.text" = "Hold alle enhetene dine oppdatert med iCloud synkronisering";
+
+/* Class = "UILabel"; text = "$1,749"; ObjectID = "egm-MD-UJm"; */
+"egm-MD-UJm.text" = "$1,749";
+
+/* Class = "UILabel"; text = "$800.00"; ObjectID = "eoL-kw-91L"; */
+"eoL-kw-91L.text" = "$800.00";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "fFe-1L-izQ"; */
+"fFe-1L-izQ.title" = "Innstillinger";
+
+/* Class = "UITabBarItem"; title = "Categories"; ObjectID = "hkj-UW-meT"; */
+"hkj-UW-meT.title" = "Kategorier";
+
+/* Class = "UITextField"; placeholder = "0000"; ObjectID = "i7K-1K-LKY"; */
+"i7K-1K-LKY.placeholder" = "0000";
+
+/* Class = "UIButton"; normalTitle = "expense"; ObjectID = "ifd-Tj-Xt9"; */
+"ifd-Tj-Xt9.normalTitle" = "utgift";
+
+/* Class = "UILabel"; text = "Expenses"; ObjectID = "jp4-Dh-AN4"; */
+"jp4-Dh-AN4.text" = "Utgifter";
+
+/* Class = "UIViewController"; title = "FinanceVC"; ObjectID = "k1g-y4-hrx"; */
+"k1g-y4-hrx.title" = "FinanceVC";
+
+/* Class = "UILabel"; text = "$"; ObjectID = "kUS-7U-M1T"; */
+"kUS-7U-M1T.text" = "$";
+
+/* Class = "UITextField"; placeholder = "Search for categories"; ObjectID = "n1K-7P-G1J"; */
+"n1K-7P-G1J.placeholder" = "Søk etter kategori";
+
+/* Class = "UITextField"; placeholder = "0.00"; ObjectID = "n5S-O3-f36"; */
+"n5S-O3-f36.placeholder" = "0.00";
+
+/* Class = "UILabel"; text = "Dollar"; ObjectID = "n9N-Ub-IXK"; */
+"n9N-Ub-IXK.text" = "Dollar";
+
+/* Class = "UILabel"; text = "No data available"; ObjectID = "nfE-XX-Hcd"; */
+"nfE-XX-Hcd.text" = "Ingen data tilgjengelig";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "sJ0-Bi-cxj"; */
+"sJ0-Bi-cxj.title" = "Innstillinger";
+
+/* Class = "UILabel"; text = "45% of budget"; ObjectID = "vTj-LJ-JMT"; */
+"vTj-LJ-JMT.text" = "45% av budsjettet";
+
+/* Class = "UILabel"; text = "Add new"; ObjectID = "voS-Pv-A2u"; */
+"voS-Pv-A2u.text" = "Opprett ny";
+
+/* Class = "UILabel"; text = "Choose a type"; ObjectID = "wNu-Cr-Cs5"; */
+"wNu-Cr-Cs5.text" = "Velg en type";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "wpH-n3-7ej"; */
+"wpH-n3-7ej.normalTitle" = "Opprett";
+
+/* Class = "UILabel"; text = "Restaurant"; ObjectID = "xpK-5q-s2H"; */
+"xpK-5q-s2H.text" = "Restaurant";

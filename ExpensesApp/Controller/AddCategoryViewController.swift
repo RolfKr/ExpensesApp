@@ -64,17 +64,17 @@ extension AddCategoryViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return Constants.shared.categoryTypes.count
+        return Constants.categoryTypes.count
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         
-        let type = Constants.shared.categoryTypes[row]
+        let type = Constants.categoryTypes[row]
         return NSAttributedString(string: type, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedType = Constants.shared.categoryTypes[row]
+        selectedType = Constants.categoryTypes[row]
     }
 }
 

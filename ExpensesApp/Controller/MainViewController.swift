@@ -35,7 +35,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         didSet {
             let currencyIcon = fetchControllerSettings.fetchedObjects?.first?.currencyIcon ?? "$"
             let budget = fetchControllerSettings.fetchedObjects?.first?.budget ?? 1000
-            monthlyBudgetLabel.text = "\(currencyIcon) \(budget) remaining"
+            monthlyBudgetLabel.text = "\(currencyIcon) \(budget) \("budgetRemaining".localized())"
         }
     }
     
@@ -91,11 +91,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     private func filterCategories() {
         categories = []
-        
-        var categoryExpenses = ["Income" : 0.0, "Entertainment" : 0.0, "Education" : 0.0, "Shopping" : 0.0, "Personal Care" : 0.0,
-                                "Health & Fitness" : 0.0, "Kids" : 0.0, "Food & Dining" : 0.0, "Gifts & Donations" : 0.0,
-                                "Investments" : 0.0, "Bills & Utilities" : 0.0, "Transport" : 0.0, "Travel" : 0.0,
-                                "Fees & Charges" : 0.0, "Business Services" : 0.0]
+        var categoryExpenses = Constants.categoryExpenses
               
         items = FetchRequest.fetchControllerItems.fetchedObjects!.filter({ item in
             let calendar = Calendar.current
@@ -194,9 +190,10 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         progressConstraint.constant = calculateProgressbar()
         
         let remainingBudget = budget - calculateTotalExpenses()
-        monthlyBudgetLabel.text = "\(currencyIcon) \(remainingBudget) remaining"
+        monthlyBudgetLabel.text = "\(currencyIcon) \(remainingBudget) \("budgetRemaining".localized())"
         
-        let months = ["January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "Oktober", "November", "December"]
+        let months = ["January".localized(), "Feburary".localized(), "March".localized(), "April".localized(), "May".localized(), "June".localized(), "July".localized(), "August".localized(), "September".localized(), "Oktober".localized(), "November".localized(), "December".localized()]
+        
         let calendar = Calendar.current
         let month = calendar.component(.month, from: selectedMonth)
         monthLabel.text = months[month - 1]
@@ -217,7 +214,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         if expensesSelected {
             return categories.count
         } else {
-            return FetchRequest.fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income" }).count
+            return FetchRequest.fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income".localized() }).count
         }
         
     }
@@ -229,9 +226,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         if expensesSelected {
             let category = categories[indexPath.row]
-            cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: budget, categoryAmount: category.amount))", moneyLabel: "\(currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) transactions")
+            cell.configureCell(image: UIImage(named: "restaurant")!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: budget, categoryAmount: category.amount))", moneyLabel: "\(currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) " + "transactions".localized())
         } else {
-            let filteredOnIncome = FetchRequest.fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income" })
+            let filteredOnIncome = FetchRequest.fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income".localized() })
             
             let item = filteredOnIncome[indexPath.row]
             cell.configureCell(image: UIImage(named: "restaurant")!, category: item.category.name, budgetAmount: "", moneyLabel: "\(currencyIcon) \(item.amount)", transactions: "")
@@ -242,5 +239,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        print(categories[indexPath.row].category.localizedTo("en"))
     }
 }

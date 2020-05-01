@@ -15,11 +15,13 @@ protocol AddItemDelegate {
 
 class AddItemViewController: UIViewController {
     
+    @IBOutlet weak var expensesButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var currencyIcon: UILabel!
+    @IBOutlet weak var doneBtn: UIButton!
     
     
     var delegate: AddItemDelegate?
@@ -38,8 +40,8 @@ class AddItemViewController: UIViewController {
         super.viewDidAppear(animated)
         loadCategories()
         loadSettings()
+        expensesButton.contentHorizontalAlignment = .left
         Constants.shared.setBackgroundGradient(for: view)
-        background.layer.cornerRadius = 60
         filteredCategories = categories.filter { (category) -> Bool in
             category.categoryType != "Income"
         }
@@ -62,26 +64,28 @@ class AddItemViewController: UIViewController {
     }
     
     @IBAction func changeEntryTapped(_ sender: UIButton) {
-        if sender.titleLabel?.text == "expense" {
+        if sender.titleLabel?.text == "expense".localized() {
             addingExpense.toggle()
-            sender.setTitle("income", for: .normal)
+            sender.setTitle("income".localized(), for: .normal)
             sender.setTitleColor(.green, for: .normal)
+            sender.contentHorizontalAlignment = .left
             filteredCategories = categories.filter { (category) -> Bool in
-                category.categoryType == "Income"
+                category.categoryType == "Income".localized()
             }
         } else {
             addingExpense.toggle()
-            sender.setTitle("expense", for: .normal)
+            sender.setTitle("expense".localized(), for: .normal)
             sender.setTitleColor(.red, for: .normal)
+            sender.contentHorizontalAlignment = .left
             filteredCategories = categories.filter { (category) -> Bool in
-                category.categoryType != "Income"
+                category.categoryType != "Income".localized()
             }
         }
         
         collectionView.reloadData()
     }
     
-    @IBAction func addBtnTapped(_ sender: UIButton) {
+    @IBAction func doneBtnTapped(_ sender: UIButton) {
         guard let name = nameTextField.text, !name.isEmpty else {return}
         guard let amount = amountTextField.text, !amount.isEmpty else {return}
         guard let amountDouble = Double(amount) else {return}

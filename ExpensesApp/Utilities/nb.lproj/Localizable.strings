@@ -1,0 +1,122 @@
+/* 
+  Localization.strings
+  ExpensesApp
+
+  Created by Rolf Kristian Andreassen on 30/04/2020.
+  Copyright © 2020 Rolf Kristian Andreassen. All rights reserved.
+*/
+
+"budgetRemaining" = "gjenstår";
+"January" = "Januar";
+"Feburary" = "Februar";
+"March" = "Mars";
+"April" = "April";
+"May" = "Mai";
+"June" = "Juni";
+"July" = "Juli";
+"August" = "August";
+"September" = "September";
+"Oktober" = "Oktober";
+"November" = "November";
+"December" = "Desember";
+"expense" = "utgift";
+"income" = "inntekt";
+"Expense" = "Utgift";
+"Income" = "Inntekt";
+"% of budget" = "% av budsjettet";
+"transactions" = "transaksjoner";
+"SKIP" = "Hopp over";
+
+"Entertainment" = "Underholdning";
+"Education" = "Utdanning";
+"Shopping" = "Shopping";
+"Personal Care" = "Personlig Pleie";
+"Health & Fitness" = "Helse & Trening";
+"Kids" = "Barn";
+"Food & Dining" = "Mat & Uteliv";
+"Gifts & Donations" = "Gaver & Donasjoner";
+"Investments" = "Investering";
+"Bills & Utilities" = "Regninger";
+"Transport" = "Transport";
+"Travel" = "Reise";
+"Fees & Charges" = "Gebyrer";
+"Business Services" = "Forretningstjenester";
+
+"Paycheck" = "Lønn";
+"Investment" = "Investering";
+"Returned Purchase" = "Retur av kjøp";
+"Bonus" = "Bonus";
+"Interest Income" = "Renter";
+"Reimbursement" = "Refusjon";
+"Rental Income" = "Leieinntekter";
+"Arts" = "Kunst";
+"Music" = "Musikk";
+"Movies" = "Film";
+"Newspaper & Magazines" = "Avis & Magasin";
+"Games" = "Spill";
+"Tuition" = "Undervisning";
+"Student Loan" = "Studentlån";
+"Books & Supplies" = "Rekvisita";
+"Clothing" = "Klær";
+"Books" = "Bøker";
+"Electronics & Software" = "Elektronikk";
+"Hobbies" = "Hobby";
+"Sporting Goods" = "Sportsutstyr";
+"Laundry" = "Klesvask";
+"Hair" = "Hår";
+"Spa" = "Spa";
+"Dentist" = "Tannlege";
+"Doctor" = "Lege";
+"Eye care" = "Øyelege";
+"Pharmacy" = "Apotek";
+"Health Insurance" = "Livsforsikring";
+"Gym" = "Treningssenter";
+"Sports" = "Sport";
+"Activities" = "Aktiviteter";
+"Allowance" = "Ukelønn";
+"Baby Supplies" = "Baby utstyr";
+"Babysitter & Daycare" = "Barnepass";
+"Child Support" = "Barnebidrag";
+"Toys" = "Leker";
+"Groceries" = "Dagligvarer";
+"Coffee shops" = "Café";
+"Fast Food" = "Hurtigmat";
+"Restaurants" = "Restaurant";
+"Alcohol" = "Alkohol";
+"Gift" = "Gaver";
+"Charity" = "Veldedighet";
+"Deposit" = "Innskudd";
+"Withdrawal" = "Uttak";
+"Buy" = "Kjøp";
+"Television" = "TV";
+"Home Phone" = "Telefon";
+"Internet" = "Internett";
+"Mobile Phone" = "Mobiltelefon";
+"Utilities" = "Tjenester";
+"Gas & Fuel" = "Bensin";
+"Parking" = "Parkering";
+"Service & Auto Parts" = "Verksted";
+"Auto Payment" = "Bilutgifter";
+"Auto Insurance" = "Bilforsikring";
+"Air Travel" = "Fly";
+"Hotel" = "Hotel";
+"Rental Car & Taxi" = "Leiebil & Taxi";
+"Vacation" = "Ferie";
+"Service Fee" = "Tjenestegebyr";
+"ATM Fee" = "Minibankgebyr";
+"Bank Fee" = "Bankgebyr";
+"Commissions" = "Provisjon";
+"Advertising" = "Reklame";
+"Office Supplies" = "Kontorrekvisita";
+"Printing" = "Utskrift";
+"Shipping" = "Frakt";
+"Legal" = "Jus";
+
+"Tips number 1: Create a budget and follow it!" = "Sparetips nummer 1: Sett opp et budsjett, og følg det!";
+"Calculate how much a product will cost you in the amount of workhours. The probability of you buying the product is lowered when you see how many workhours it wil cost." = "Før du kjøper et produkt, kalkuler hvor mye det vil koste deg i antall arbeidstimer. Sannsynligheten for at du fortsatt ønsker å kjøpe produktet er langt mindre når du ser hvor mange arbeidstimer det vil koste.";
+"Always pay in the local currency when you are traveling." = "Sørg for å alltid betale i den lokale valuta når du er ute å reiser.";
+"Create a buffer account that contains a minimum of 3 months pay, in case of a rainy day." = "Opprett en bufferkonto som inneholder minst 3 ganger din egen månedslønn, i tilfelle noe uforutsett skulle oppstå.";
+"Create a savingsaccount that deducts a set amount of money on payday. By doing this you wont notice that you are saving." = "Opprett en sparekonto hvor du overfører en fast sum hver måned, på lønningsdagen. På denne måten vil du ikke merke at du sparer.";
+
+"is your most expensive category.\n Try to reduce the cost of this category next month." = "er din mest kostbare kategori denne måneden. Forsøk å reduser kostnadene dine i denne kategorien neste måned.";
+"No data available. Add some new expenses first." = "Ingen data tilgjengelig. Legg til nye utgifter først.";

@@ -12,19 +12,17 @@ class IntroViewController: UIViewController {
     
     let defaults = UserDefaults.standard
     
-    override func viewWillLayoutSubviews() {
-
-        if let checkForSecurity = defaults.value(forKey: "useSecurity") as? Bool {
-            if checkForSecurity {
-                let vc = storyboard?.instantiateViewController(identifier: "LaunchVC") as! LaunchViewController
-                print("******* \(vc)")
-                vc.modalPresentationStyle = .fullScreen
-                present(vc, animated: true)
-            } else {
-                let vc = storyboard?.instantiateViewController(identifier: "TabBar") as! UITabBarController
-                vc.modalPresentationStyle = .fullScreen
-                present(vc, animated: true)
-            }
-        }
-    }
+//    override func viewWillLayoutSubviews() {
+//        if let checkForSecurity = defaults.value(forKey: "useSecurity") as? Bool {
+//            if checkForSecurity {
+//                let vc = storyboard?.instantiateViewController(identifier: "LaunchVC") as! LaunchViewController
+//                vc.modalPresentationStyle = .fullScreen
+//                present(vc, animated: true)
+//            } else {
+//                let vc = storyboard?.instantiateViewController(identifier: "TabBar") as! UITabBarController
+//                vc.modalPresentationStyle = .fullScreen
+//                present(vc, animated: true)
+//            }
+//        }
+//    }
 }

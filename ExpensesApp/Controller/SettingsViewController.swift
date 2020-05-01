@@ -20,6 +20,18 @@ class SettingsViewController: UITableViewController {
     var settings: Settings!
     let defaults = UserDefaults.standard
     
+    override func viewDidAppear(_ animated: Bool) {
+        if let useSecurity = defaults.value(forKey: "useSecurity") as? Bool {
+            if useSecurity == true {
+                lockSwitch.isOn = true
+            } else {
+                lockSwitch.isOn = false
+            }
+        } else {
+            lockSwitch.isOn = false
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,16 +98,25 @@ class SettingsViewController: UITableViewController {
     
     private func configureSecurity() {
         if let _ = defaults.value(forKey: "useSecurity") {
-            defaults.set(self.lockSwitch.isOn, forKey: "useSecurity")
+            if let _ = defaults.value(forKey: "havePIN") {
+                defaults.set(self.lockSwitch.isOn, forKey: "useSecurity")
+            } else {
+                presentCreatePINView()
+            }
+            
         } else {
             if lockSwitch.isOn {
-                guard let createPinVC = storyboard?.instantiateViewController(identifier: "createPIN") as? CreatePINViewController else {return}
-                createPinVC.fromSettings = true
-                present(createPinVC, animated: true)
+                presentCreatePINView()
             }
         }
     }
     
+    private func presentCreatePINView() {
+        guard let createPinVC = storyboard?.instantiateViewController(identifier: "createPIN") as? CreatePINViewController else {return}
+        createPinVC.modalPresentationStyle = .fullScreen
+        createPinVC.fromSettings = true
+        present(createPinVC, animated: true)
+    }
     
     private func selectcurrency(sender: UIAlertAction) {
         guard let currency = sender.title else {return}
