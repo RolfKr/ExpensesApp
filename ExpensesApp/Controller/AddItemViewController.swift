@@ -15,6 +15,7 @@ protocol AddItemDelegate {
 
 class AddItemViewController: UIViewController {
     
+    @IBOutlet weak var expensesButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -38,6 +39,7 @@ class AddItemViewController: UIViewController {
         super.viewDidAppear(animated)
         loadCategories()
         loadSettings()
+        expensesButton.contentHorizontalAlignment = .left
         Constants.shared.setBackgroundGradient(for: view)
         background.layer.cornerRadius = 60
         filteredCategories = categories.filter { (category) -> Bool in
@@ -66,6 +68,7 @@ class AddItemViewController: UIViewController {
             addingExpense.toggle()
             sender.setTitle("income".localized(), for: .normal)
             sender.setTitleColor(.green, for: .normal)
+            sender.contentHorizontalAlignment = .left
             filteredCategories = categories.filter { (category) -> Bool in
                 category.categoryType == "Income".localized()
             }
@@ -73,6 +76,7 @@ class AddItemViewController: UIViewController {
             addingExpense.toggle()
             sender.setTitle("expense".localized(), for: .normal)
             sender.setTitleColor(.red, for: .normal)
+            sender.contentHorizontalAlignment = .left
             filteredCategories = categories.filter { (category) -> Bool in
                 category.categoryType != "Income".localized()
             }

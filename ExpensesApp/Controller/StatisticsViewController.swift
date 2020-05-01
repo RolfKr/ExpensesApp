@@ -26,14 +26,27 @@ class StatisticsViewController: UIViewController {
     
     var items = [Item]() {
         didSet {
+            dataAvailableLabel.text = "No data available. Add some new expenses first.".localized()
             dataAvailableLabel.isHidden = !items.isEmpty
         }
     }
     
+    var savingTips = [
+        "Tips number 1: Create a budget and follow it!".localized(),
+        "Calculate how much a product will cost you in the amount of workhours. The probability of you buying the product is lowered when you see how many workhours it wil cost.".localized(),
+        "Always pay in the local currency when you are traveling.".localized(),
+        "Create a buffer account that contains a minimum of 3 months pay, in case of a rainy day.".localized(),
+        "Create a savingsaccount that deducts a set amount of money on payday. By doing this you wont notice that you are saving.".localized()
+    ]
+    
     var mostExpensiveCategory: String! {
         didSet {
             guard let categoryText = mostExpensiveCategory else {return}
-            mostExpenseCategoryLabel.text = "\(categoryText) is your most expensive category.\n Try to reduce the cost of this category next month."
+            if categoryText == "" {
+                mostExpenseCategoryLabel.text = savingTips.randomElement()
+            } else {
+                mostExpenseCategoryLabel.text = "\(categoryText) " +  "is your most expensive category.\n Try to reduce the cost of this category next month.".localized()
+            }
         }
     }
     

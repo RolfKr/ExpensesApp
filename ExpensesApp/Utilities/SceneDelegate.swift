@@ -13,6 +13,8 @@ import CloudKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, NSFetchedResultsControllerDelegate {
     
+    let defaults = UserDefaults.standard
+    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     var window: UIWindow?
     var database = CKContainer(identifier: "iCloud.ExpensesApp").privateCloudDatabase
     
@@ -20,11 +22,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, NSFetchedResultsControl
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
         queryDatabase()
         FetchRequest.loadCategories()
         FetchRequest.loadItems()
         FetchRequest.loadSettings()
+        
+        
+        self.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        self.window?.windowScene = windowScene
+            
+        self.window?.rootViewController = checkForSecurity()
+        self.window?.makeKeyAndVisible()
+    }
+    
+    private func checkForSecurity() -> UIViewController {
+        
+        if let checkForSecurity = defaults.value(forKey: "useSecurity") as? Bool {
+            if checkForSecurity {
+                let introViewController = mainStoryboard.instantiateViewController(identifier: "LaunchVC") as! LaunchViewController
+                return introViewController
+            } else {
+            let tabbarController = mainStoryboard.instantiateViewController(identifier: "TabBar") as! UITabBarController
+                return tabbarController
+            }
+        }
+        
+        let introViewController = mainStoryboard.instantiateViewController(identifier: "IntroVC") as! IntroViewController
+        return introViewController
     }
     
     private func queryDatabase() {
