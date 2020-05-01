@@ -1319,7 +1319,6 @@ finances private</string>
                             <constraint firstItem="OEz-qB-dp9" firstAttribute="leading" secondItem="4tC-Qj-ots" secondAttribute="leading" constant="60" id="F4l-ba-bGV"/>
                             <constraint firstItem="dxN-xH-caO" firstAttribute="top" secondItem="bQt-OB-8Pr" secondAttribute="bottom" constant="10" id="N0F-Q6-MUI"/>
                             <constraint firstItem="4tC-Qj-ots" firstAttribute="trailing" secondItem="0cW-5M-uhF" secondAttribute="trailing" constant="60" id="NeN-VP-0ne"/>
-                            <constraint firstItem="HXm-Sm-WAj" firstAttribute="leading" secondItem="4tC-Qj-ots" secondAttribute="leading" constant="264" id="Nn7-jY-Icg"/>
                             <constraint firstItem="0cW-5M-uhF" firstAttribute="leading" secondItem="4tC-Qj-ots" secondAttribute="leading" constant="60" id="TCG-Ch-j7c"/>
                             <constraint firstItem="bQt-OB-8Pr" firstAttribute="top" secondItem="OEz-qB-dp9" secondAttribute="bottom" constant="20" id="VRE-SX-OZ4"/>
                             <constraint firstItem="dxN-xH-caO" firstAttribute="leading" secondItem="4tC-Qj-ots" secondAttribute="leading" constant="100" id="WnE-62-1IP"/>

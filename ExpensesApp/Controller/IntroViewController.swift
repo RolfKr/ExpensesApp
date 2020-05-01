@@ -15,9 +15,10 @@ class IntroViewController: UIViewController {
     override func viewWillLayoutSubviews() {
 
         if let checkForSecurity = defaults.value(forKey: "useSecurity") as? Bool {
+            print("******")
+            print(checkForSecurity)
             if checkForSecurity {
                 let vc = storyboard?.instantiateViewController(identifier: "LaunchVC") as! LaunchViewController
-                print("******* \(vc)")
                 vc.modalPresentationStyle = .fullScreen
                 present(vc, animated: true)
             } else {

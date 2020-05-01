@@ -24,7 +24,7 @@ class CreatePINViewController: UIViewController {
         if fromSettings == true {
             skipButton.setTitle("Dismiss", for: .normal)
         } else {
-            skipButton.setTitle("SKIP", for: .normal)
+            skipButton.setTitle("SKIP".localized(), for: .normal)
         }
     }
     
@@ -40,13 +40,16 @@ class CreatePINViewController: UIViewController {
         guard !pinTextField.text!.isEmpty else {return}
         configureBiometrics()
         defaults.set(true, forKey: "useSecurity")
+        defaults.set(true, forKey: "havePIN")
         defaults.set(pinTextField.text!, forKey: "unlockPIN")
     }
     
     
     @IBAction func skipBtnTapped(_ sender: UIButton) {
         if !fromSettings {
+            defaults.set(false, forKey: "useSecurity")
             goToMainVC()
+            
         } else {
             dismiss(animated: true, completion: nil)
         }
