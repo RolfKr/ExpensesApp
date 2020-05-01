@@ -15,8 +15,7 @@ class CategoriesViewController: UIViewController, AddCategoryDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
-    //https://www.mint.com/mint-categories
-    var categoryTypes = Constants.shared.categoryTypes
+    var categoryTypes = Constants.categoryTypes
     var allCategoryTypes = [[Category]]()
     var allCategories = [Category]()
     var isSearching = false

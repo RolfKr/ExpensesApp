@@ -67,14 +67,14 @@ class AddItemViewController: UIViewController {
             sender.setTitle("income".localized(), for: .normal)
             sender.setTitleColor(.green, for: .normal)
             filteredCategories = categories.filter { (category) -> Bool in
-                category.categoryType == "Income"
+                category.categoryType == "Income".localized()
             }
         } else {
             addingExpense.toggle()
             sender.setTitle("expense".localized(), for: .normal)
             sender.setTitleColor(.red, for: .normal)
             filteredCategories = categories.filter { (category) -> Bool in
-                category.categoryType != "Income"
+                category.categoryType != "Income".localized()
             }
         }
         

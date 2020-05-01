@@ -744,18 +744,20 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="xpK-5q-s2H">
-                                                            <rect key="frame" x="8" y="96" width="84" height="26"/>
+                                                            <rect key="frame" x="5" y="96" width="90" height="20"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="90" id="Nn3-jX-K2d"/>
+                                                                <constraint firstAttribute="height" constant="20" id="apJ-ky-fxl"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="14"/>
                                                             <color key="textColor" red="0.090196078431372548" green="0.092069929975480122" blue="0.090196078431372548" alpha="0.74949165239726034" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="xpK-5q-s2H" secondAttribute="bottom" constant="8" id="BkV-7D-i1a"/>
-                                                        <constraint firstAttribute="trailing" secondItem="xpK-5q-s2H" secondAttribute="trailing" constant="8" id="Cvo-Lj-NET"/>
-                                                        <constraint firstItem="xpK-5q-s2H" firstAttribute="leading" secondItem="mZt-yd-rDc" secondAttribute="leading" constant="8" id="GeL-HB-ULK"/>
                                                         <constraint firstItem="xpK-5q-s2H" firstAttribute="top" secondItem="S2w-7I-WDn" secondAttribute="bottom" constant="8" id="khp-3D-sgi"/>
                                                         <constraint firstItem="S2w-7I-WDn" firstAttribute="centerX" secondItem="mZt-yd-rDc" secondAttribute="centerX" id="rgg-W0-CNd"/>
+                                                        <constraint firstItem="xpK-5q-s2H" firstAttribute="centerX" secondItem="mZt-yd-rDc" secondAttribute="centerX" id="sHX-9E-rDJ"/>
                                                         <constraint firstItem="S2w-7I-WDn" firstAttribute="top" secondItem="mZt-yd-rDc" secondAttribute="top" constant="8" id="uiR-Ya-0pS"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
