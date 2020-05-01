@@ -21,23 +21,23 @@ class Preload {
         settingsEntity.currencyIcon = "$"
         
         
-        let categoryTypes = ["Income".localized(), "Entertainment".localized(), "Education".localized(), "Shopping".localized(), "Personal Care".localized(), "Health & Fitness".localized(), "Kids".localized(), "Food & Dining".localized(), "Gifts & Donations".localized(), "Investments".localized(), "Bills & Utilities".localized(), "Transport".localized(), "Travel".localized(), "Fees & Charges".localized(), "Business Services".localized()]
+        let categoryTypes = ["Income", "Entertainment", "Education", "Shopping", "Personal Care", "Health & Fitness", "Kids", "Food & Dining", "Gifts & Donations", "Investments", "Bills & Utilities", "Transport", "Travel", "Fees & Charges", "Business Services"]
         
-        let income = ["Paycheck".localized(), "Investment".localized(), "Returned Purchase".localized(), "Bonus".localized(), "Interest Income".localized(), "Reimbursement".localized(), "Rental Income".localized()]
-        let entertainment = ["Arts".localized(), "Music".localized(), "Movies".localized(), "Newspaper & Magazines".localized(), "Games".localized()]
-        let education = ["Tuition".localized(), "Student Loan".localized(), "Books & Supplies".localized()]
-        let shopping = ["Clothing".localized(), "Books".localized(), "Electronics & Software".localized(), "Hobbies".localized(), "Sporting Goods".localized()]
-        let personalCare = ["Laundry".localized(), "Hair".localized(), "Spa".localized()]
-        let healthFitness = ["Dentist".localized(), "Doctor".localized(), "Eye care".localized(), "Pharmacy".localized(), "Health Insurance".localized(), "Gym".localized(), "Sports".localized()]
-        let kids = ["Activities".localized(), "Allowance".localized(), "Baby Supplies".localized(), "Babysitter & Daycare".localized(), "Child Support".localized(), "Toys".localized()]
-        let foodDining = ["Groceries".localized(), "Coffee shops".localized(), "Fast Food".localized(), "Restaurants".localized(), "Alcohol".localized()]
-        let giftDonations = ["Gift".localized(), "Charity".localized()]
-        let investments = ["Deposit".localized(), "Withdrawal".localized(), "Buy".localized()]
-        let billsUtilities = ["Television".localized(), "Home Phone".localized(), "Internet".localized(), "Mobile Phone".localized(), "Utilities".localized()]
-        let transport = ["Gas & Fuel".localized(), "Parking".localized(), "Service & Auto Parts".localized(), "Auto Payment".localized(), "Auto Insurance".localized()]
-        let travel = ["Air Travel".localized(), "Hotel".localized(), "Rental Car & Taxi".localized(), "Vacation".localized()]
-        let feesCharges = ["Service Fee".localized(), "ATM Fee".localized(), "Bank Fee".localized(), "Commissions".localized()]
-        let businessServices = ["Advertising".localized(), "Office Supplies".localized(), "Printing".localized(), "Shipping".localized(), "Legal".localized()]
+        let income = ["Paycheck", "Investment", "Returned Purchase", "Bonus", "Interest Income", "Reimbursement", "Rental Income"]
+        let entertainment = ["Arts", "Music", "Movies", "Newspaper & Magazines", "Games"]
+        let education = ["Tuition", "Student Loan", "Books & Supplies"]
+        let shopping = ["Clothing", "Books", "Electronics & Software", "Hobbies", "Sporting Goods"]
+        let personalCare = ["Laundry", "Hair", "Spa"]
+        let healthFitness = ["Dentist", "Doctor", "Eye care", "Pharmacy", "Health Insurance", "Gym", "Sports"]
+        let kids = ["Activities", "Allowance", "Baby Supplies", "Babysitter & Daycare", "Child Support", "Toys"]
+        let foodDining = ["Groceries", "Coffee shops", "Fast Food", "Restaurants", "Alcohol"]
+        let giftDonations = ["Gift", "Charity"]
+        let investments = ["Deposit", "Withdrawal", "Buy"]
+        let billsUtilities = ["Television", "Home Phone", "Internet", "Mobile Phone", "Utilities"]
+        let transport = ["Gas & Fuel", "Parking", "Service & Auto Parts", "Auto Payment", "Auto Insurance"]
+        let travel = ["Air Travel", "Hotel", "Rental Car & Taxi", "Vacation"]
+        let feesCharges = ["Service Fee", "ATM Fee", "Bank Fee", "Commissions"]
+        let businessServices = ["Advertising", "Office Supplies", "Printing", "Shipping", "Legal"]
         
         let categories = [income, entertainment, education, shopping, personalCare, healthFitness, kids, foodDining, giftDonations, investments, billsUtilities, transport, travel, feesCharges, businessServices]
         var index = 0
@@ -45,10 +45,10 @@ class Preload {
         for category in categories {
             for item in category {
                 let categoryEntity = Category(context: PersistenceManager.persistentContainer.viewContext)
-                categoryEntity.name = item
+                categoryEntity.name = item.localized()
                 categoryEntity.items = []
-                categoryEntity.categoryType = categoryTypes[index]
-                categoryEntity.icon = (UIImage(named: "restaurant")!.pngData()!)
+                categoryEntity.categoryType = categoryTypes[index].localized()
+                categoryEntity.icon = item
             }
             index += 1
         }

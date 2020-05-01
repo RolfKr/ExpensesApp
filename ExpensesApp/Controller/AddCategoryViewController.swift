@@ -49,7 +49,7 @@ class AddCategoryViewController: UIViewController {
         categoryEntity.name = name
         categoryEntity.items = []
         categoryEntity.categoryType = type
-        categoryEntity.icon = icon.pngData()!
+        categoryEntity.icon = name
         PersistenceManager.saveContext()
         
         delegate.didfinishAddingCategory(category: categoryEntity)

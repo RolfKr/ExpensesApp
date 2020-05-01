@@ -127,7 +127,7 @@ extension AddItemViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CategoryCollectionCell
         let category = filteredCategories[indexPath.row]
-        cell.configureCell(image: UIImage(named: "restaurant")!, name: category.name)
+        cell.configureCell(image: UIImage(named: category.icon)!, name: category.name)
         return cell
     }
     

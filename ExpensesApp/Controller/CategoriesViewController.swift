@@ -114,10 +114,12 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
         
         if isSearching {
             let category = filteredCategories[indexPath.row]
-            cell.configureCell(image: UIImage(data: category.icon)!, name: category.name)
+            cell.configureCell(image: UIImage(named: category.icon)!, name: category.name)
         } else {
             let category = allCategoryTypes[indexPath.section][indexPath.item]
-            cell.configureCell(image: UIImage(data: category.icon)!, name: category.name)
+            print("******@@*")
+            print(category.icon)
+            cell.configureCell(image: UIImage(named: category.icon)!, name: category.name)
         }
         
         return cell
