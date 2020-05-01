@@ -21,10 +21,7 @@ class Preload {
         settingsEntity.currencyIcon = "$"
         
         
-        let categoryTypes = ["Income".localized(), "Entertainment".localized(), "Education".localized(), "Shopping".localized(), "Personal Care".localized(),
-                             "Health & Fitness".localized(), "Kids".localized(), "Food & Dining".localized(), "Gifts & Donations".localized(),
-                             "Investments".localized(), "Bills & Utilities".localized(), "Transport".localized(), "Travel".localized(),
-                             "Fees & Charges".localized(), "Business Services".localized()]
+        let categoryTypes = ["Income".localized(), "Entertainment".localized(), "Education".localized(), "Shopping".localized(), "Personal Care".localized(), "Health & Fitness".localized(), "Kids".localized(), "Food & Dining".localized(), "Gifts & Donations".localized(), "Investments".localized(), "Bills & Utilities".localized(), "Transport".localized(), "Travel".localized(), "Fees & Charges".localized(), "Business Services".localized()]
         
         let income = ["Paycheck".localized(), "Investment".localized(), "Returned Purchase".localized(), "Bonus".localized(), "Interest Income".localized(), "Reimbursement".localized(), "Rental Income".localized()]
         let entertainment = ["Arts".localized(), "Music".localized(), "Movies".localized(), "Newspaper & Magazines".localized(), "Games".localized()]
@@ -39,7 +36,7 @@ class Preload {
         let billsUtilities = ["Television".localized(), "Home Phone".localized(), "Internet".localized(), "Mobile Phone".localized(), "Utilities".localized()]
         let transport = ["Gas & Fuel".localized(), "Parking".localized(), "Service & Auto Parts".localized(), "Auto Payment".localized(), "Auto Insurance".localized()]
         let travel = ["Air Travel".localized(), "Hotel".localized(), "Rental Car & Taxi".localized(), "Vacation".localized()]
-        let feesCharges = ["Service Fee".localized(), "Late Fee".localized(), "ATM Fee".localized(), "Bank Fee".localized(), "Commissions".localized()]
+        let feesCharges = ["Service Fee".localized(), "ATM Fee".localized(), "Bank Fee".localized(), "Commissions".localized()]
         let businessServices = ["Advertising".localized(), "Office Supplies".localized(), "Printing".localized(), "Shipping".localized(), "Legal".localized()]
         
         let categories = [income, entertainment, education, shopping, personalCare, healthFitness, kids, foodDining, giftDonations, investments, billsUtilities, transport, travel, feesCharges, businessServices]

@@ -12,4 +12,12 @@ extension String {
     func localized(withComment comment: String? = nil) -> String {
         return NSLocalizedString(self, comment: comment ?? "")
     }
+    
+    func localizedTo(_ lang:String) -> String {
+
+        let path = Bundle.main.path(forResource: lang, ofType: "lproj")
+        let bundle = Bundle(path: path!)
+
+        return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
+    }
 }

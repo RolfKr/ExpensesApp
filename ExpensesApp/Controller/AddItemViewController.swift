@@ -21,6 +21,7 @@ class AddItemViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var currencyIcon: UILabel!
+    @IBOutlet weak var doneBtn: UIButton!
     
     
     var delegate: AddItemDelegate?
@@ -41,7 +42,6 @@ class AddItemViewController: UIViewController {
         loadSettings()
         expensesButton.contentHorizontalAlignment = .left
         Constants.shared.setBackgroundGradient(for: view)
-        background.layer.cornerRadius = 60
         filteredCategories = categories.filter { (category) -> Bool in
             category.categoryType != "Income"
         }
@@ -85,7 +85,7 @@ class AddItemViewController: UIViewController {
         collectionView.reloadData()
     }
     
-    @IBAction func addBtnTapped(_ sender: UIButton) {
+    @IBAction func doneBtnTapped(_ sender: UIButton) {
         guard let name = nameTextField.text, !name.isEmpty else {return}
         guard let amount = amountTextField.text, !amount.isEmpty else {return}
         guard let amountDouble = Double(amount) else {return}
