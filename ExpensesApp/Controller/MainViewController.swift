@@ -53,8 +53,9 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
         progressConstraint.constant = progress.frame.width
         filterCategories()
         updateUI()
@@ -67,6 +68,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     }
     
     private func intitialSetup() {
+        
         loadItems()
         loadSettings()
         Constants.shared.setBackgroundGradient(for: view)
@@ -243,5 +245,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        performSegue(withIdentifier: "goToExpensesDetail", sender: nil)
     }
+    
+    
 }

@@ -50,6 +50,7 @@
 		B7C83AF1244F62F000089050 /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C83AEF244F62F000089050 /* Settings+CoreDataProperties.swift */; };
 		B7F8DE33245B7DC900A16FDA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7F8DE35245B7DC900A16FDA /* Localizable.strings */; };
 		B7F8DE38245B824F00A16FDA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F8DE37245B824F00A16FDA /* Extensions.swift */; };
+		B7FA10DF245E07A600CDBDEC /* ExpensesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FA10DE245E07A600CDBDEC /* ExpensesDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		B7F8DE34245B7DC900A16FDA /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B7F8DE36245B7DD700A16FDA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B7F8DE37245B824F00A16FDA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B7FA10DE245E07A600CDBDEC /* ExpensesDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesDetailViewController.swift; sourceTree = "<group>"; };
 		B9A7077BDCAA92EEB6D8AA88 /* Pods-ExpensesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesApp.debug.xcconfig"; path = "Target Support Files/Pods-ExpensesApp/Pods-ExpensesApp.debug.xcconfig"; sourceTree = "<group>"; };
 		BC66C6A69425343E3FD32677 /* Pods-ExpensesApp-ExpensesAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesApp-ExpensesAppUITests.release.xcconfig"; path = "Target Support Files/Pods-ExpensesApp-ExpensesAppUITests/Pods-ExpensesApp-ExpensesAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -222,6 +224,7 @@
 				B736271F2458FFB30087F948 /* CreatePINViewController.swift */,
 				B7514C1B2457BF79004639FC /* LaunchViewController.swift */,
 				B74263232448BEBA00597D4C /* MainViewController.swift */,
+				B7FA10DE245E07A600CDBDEC /* ExpensesDetailViewController.swift */,
 				B74263582448FEE200597D4C /* CategoriesViewController.swift */,
 				7E54F968244A3AF1003ABAA1 /* AddCategoryViewController.swift */,
 				7EA3FD012449A83E00B1AF10 /* AddItemViewController.swift */,
@@ -583,6 +586,7 @@
 				B74263202448BEBA00597D4C /* AppDelegate.swift in Sources */,
 				7EA3FD022449A83E00B1AF10 /* AddItemViewController.swift in Sources */,
 				B74263592448FEE200597D4C /* CategoriesViewController.swift in Sources */,
+				B7FA10DF245E07A600CDBDEC /* ExpensesDetailViewController.swift in Sources */,
 				B74263222448BEBA00597D4C /* SceneDelegate.swift in Sources */,
 				B73627202458FFB30087F948 /* CreatePINViewController.swift in Sources */,
 				B7969D3F244B9D56007E69E9 /* LineChartView.swift in Sources */,
