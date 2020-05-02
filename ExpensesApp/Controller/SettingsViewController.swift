@@ -145,7 +145,7 @@ class SettingsViewController: UITableViewController {
     }
     
     private func selectBudget() {
-        let alert = UIAlertController(title: "Monthly Budget", message: "Enter a monthly budget", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Monthly Budget".localized(), message: "Enter a monthly budget".localized(), preferredStyle: .alert)
         
         alert.addTextField { (textfield) in
             textfield.placeholder = "Enter budget here"

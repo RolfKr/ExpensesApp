@@ -86,7 +86,7 @@ class StatisticsViewController: UIViewController {
     
     // MARK: Draws each point in chart, based on datapoints.
     private func setChartData() {
-        let set1 = LineChartDataSet(entries: chartDataEntries, label: "Expenses per month")
+        let set1 = LineChartDataSet(entries: chartDataEntries, label: "Expenses per month".localized())
         set1.drawCirclesEnabled = false
         set1.mode = .cubicBezier
         set1.lineWidth = 3
