@@ -117,8 +117,6 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
             cell.configureCell(image: UIImage(named: category.icon)!, name: category.name)
         } else {
             let category = allCategoryTypes[indexPath.section][indexPath.item]
-            print("******@@*")
-            print(category.icon)
             cell.configureCell(image: UIImage(named: category.icon)!, name: category.name)
         }
         

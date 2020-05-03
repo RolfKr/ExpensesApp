@@ -11,6 +11,13 @@ import UIKit
 class ExpensesDetailViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var detailTitle: UILabel!
+    @IBOutlet weak var swipeToDeleteLabel: UILabel! {
+        didSet {
+            swipeToDeleteLabel.text = "Swipe to delete".localized()
+        }
+    }
+    
     
     var selectedCategory: String!
     var filteredItems = [Item]()
@@ -18,6 +25,7 @@ class ExpensesDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         filterCategories()
+        detailTitle.text = selectedCategory + " expense details".localized()
     }
 
     
@@ -46,5 +54,21 @@ extension ExpensesDetailViewController: UITableViewDelegate, UITableViewDataSour
         let item = filteredItems[indexPath.row]
         cell.configureCell(image: UIImage(named: item.category.name)!, name: item.name, amount: String(item.amount))
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let item = filteredItems[indexPath.row]
+            PersistenceManager.persistentContainer.viewContext.delete(item)
+            
+            filteredItems.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            
+            PersistenceManager.saveContext()
+        }
     }
 }

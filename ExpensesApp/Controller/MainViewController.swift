@@ -56,8 +56,10 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+        loadItems()
+        loadSettings()
         progressConstraint.constant = progress.frame.width
-        filterCategories()
+        
         updateUI()
     }
     
@@ -65,12 +67,10 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         super.viewDidLoad()
         view.layoutIfNeeded()
         intitialSetup()
+        filterCategories()
     }
     
     private func intitialSetup() {
-        
-        loadItems()
-        loadSettings()
         Constants.shared.setBackgroundGradient(for: view)
         cardBehind.layer.cornerRadius = 60
         cardFront.layer.cornerRadius = 60
@@ -119,6 +119,8 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
             }
         }
         
+        print("*****")
+        print(categories.count)
         tableView.reloadData()
     }
     

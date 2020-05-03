@@ -20,9 +20,11 @@ class AddCategoryViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var doneButton: UIButton!
     
-    var selectedIcon = UIImage()
+    var selectedIcon: String!
     var selectedType = "Income"
     var delegate: AddCategoryDelegate!
+    
+    var icons = ["Paycheck", "Investment", "Returned Purchase", "Bonus", "Interest Income", "Reimbursement", "Rental Income", "Arts", "Music", "Movies", "Newspaper & Magazines", "Games", "Tuition", "Student Loan", "Books & Supplies", "Clothing", "Books", "Electronics & Software", "Hobbies", "Sporting Goods", "Laundry", "Hair", "Spa", "Dentist", "Doctor", "Eye care", "Pharmacy", "Health Insurance", "Gym", "Sports", "Activities", "Allowance", "Baby Supplies", "Babysitter & Daycare", "Child Support", "Toys", "Groceries", "Coffee shops", "Fast Food", "Restaurants", "Alcohol", "Gift", "Charity", "Deposit", "Withdrawal", "Buy", "Television", "Home Phone", "Internet", "Mobile Phone", "Utilities", "Gas & Fuel", "Parking", "Service & Auto Parts", "Auto Payment", "Auto Insurance", "Air Travel", "Hotel", "Rental Car & Taxi", "Vacation", "Service Fee", "ATM Fee", "Bank Fee", "Commissions", "Advertising", "Office Supplies", "Printing", "Shipping", "Legal"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,12 +46,12 @@ class AddCategoryViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    private func createCategory(name: String, type: String, icon: UIImage) {
+    private func createCategory(name: String, type: String, icon: String) {
         let categoryEntity = Category(context: PersistenceManager.persistentContainer.viewContext)
         categoryEntity.name = name
         categoryEntity.items = []
         categoryEntity.categoryType = type
-        categoryEntity.icon = name
+        categoryEntity.icon = selectedIcon
         PersistenceManager.saveContext()
         
         delegate.didfinishAddingCategory(category: categoryEntity)
@@ -81,12 +83,12 @@ extension AddCategoryViewController: UIPickerViewDelegate, UIPickerViewDataSourc
 extension AddCategoryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return icons.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! AddCategoryCell
-        cell.configureCell(image: UIImage(named: "restaurant")!)
+        cell.configureCell(image: UIImage(named: icons[indexPath.row])!)
         return cell
     }
     
@@ -95,7 +97,7 @@ extension AddCategoryViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedIcon = UIImage(named: "restaurant")!
+        selectedIcon = icons[indexPath.row]
     }
     
 }
