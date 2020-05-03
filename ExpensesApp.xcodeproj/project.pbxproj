@@ -21,6 +21,7 @@
 		7EA3FD022449A83E00B1AF10 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA3FD012449A83E00B1AF10 /* AddItemViewController.swift */; };
 		7EA3FD042449BA4000B1AF10 /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA3FD032449BA4000B1AF10 /* CategoryCollectionCell.swift */; };
 		7EA3FD062449C27300B1AF10 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA3FD052449C27300B1AF10 /* StatisticsViewController.swift */; };
+		7ED11C0B245F1E1E004211E2 /* ExpenseDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED11C0A245F1E1E004211E2 /* ExpenseDetailCell.swift */; };
 		7EDC71112449E107002CACDF /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC710B2449E107002CACDF /* Item+CoreDataClass.swift */; };
 		7EDC71122449E107002CACDF /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC710C2449E107002CACDF /* Item+CoreDataProperties.swift */; };
 		7EDC71132449E107002CACDF /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC710D2449E107002CACDF /* Category+CoreDataClass.swift */; };
@@ -87,6 +88,7 @@
 		7EA3FD012449A83E00B1AF10 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		7EA3FD032449BA4000B1AF10 /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
 		7EA3FD052449C27300B1AF10 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		7ED11C0A245F1E1E004211E2 /* ExpenseDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailCell.swift; sourceTree = "<group>"; };
 		7EDC710B2449E107002CACDF /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		7EDC710C2449E107002CACDF /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		7EDC710D2449E107002CACDF /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				B74263562448E63800597D4C /* ExpenseCell.swift */,
+				7ED11C0A245F1E1E004211E2 /* ExpenseDetailCell.swift */,
 				7EA3FCFA24498F5200B1AF10 /* CategoryCell.swift */,
 				7E54F96A244A4126003ABAA1 /* AddCategoryCell.swift */,
 				7EA3FD032449BA4000B1AF10 /* CategoryCollectionCell.swift */,
@@ -584,6 +587,7 @@
 				7EA3FD062449C27300B1AF10 /* StatisticsViewController.swift in Sources */,
 				7EA3FD042449BA4000B1AF10 /* CategoryCollectionCell.swift in Sources */,
 				B74263202448BEBA00597D4C /* AppDelegate.swift in Sources */,
+				7ED11C0B245F1E1E004211E2 /* ExpenseDetailCell.swift in Sources */,
 				7EA3FD022449A83E00B1AF10 /* AddItemViewController.swift in Sources */,
 				B74263592448FEE200597D4C /* CategoriesViewController.swift in Sources */,
 				B7FA10DF245E07A600CDBDEC /* ExpensesDetailViewController.swift in Sources */,

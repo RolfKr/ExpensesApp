@@ -245,9 +245,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        performSegue(withIdentifier: "goToExpensesDetail", sender: nil)
+
+        let selectedCategory = categories[indexPath.row].category
+        let expensesDetailVC = storyboard?.instantiateViewController(identifier: "expensesDetailVC") as! ExpensesDetailViewController
+        expensesDetailVC.selectedCategory = selectedCategory
+        present(expensesDetailVC, animated: true)
+
     }
-    
-    
 }

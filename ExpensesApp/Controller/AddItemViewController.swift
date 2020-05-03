@@ -136,6 +136,7 @@ extension AddItemViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(selectedCategory)
         selectedCategory = filteredCategories[indexPath.row]
     }
 }
