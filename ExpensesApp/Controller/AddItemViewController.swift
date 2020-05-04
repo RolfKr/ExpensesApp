@@ -13,8 +13,8 @@ protocol AddItemDelegate {
     func didFinishAddingItem()
 }
 
-class AddItemViewController: UIViewController {
-    
+class AddItemViewController: UIViewController, SetTimeDelegate {
+        
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -32,6 +32,8 @@ class AddItemViewController: UIViewController {
     var filteredCategories = [Category]()
     var isSearching = false
     var selectedCategory: Category?
+    
+    var selectedDate: Date?
     
     var settings: Settings! {
         didSet {
@@ -84,8 +86,7 @@ class AddItemViewController: UIViewController {
         guard let amountDouble = Double(amount) else {return}
         guard let category = selectedCategory else {return}
         
-        let timeNow = Date()
-        createItem(name: name, amount: amountDouble, category: category, date: timeNow)
+        createItem(name: name, amount: amountDouble, category: category, date: selectedDate ?? Date())
         delegate?.didFinishAddingItem()
         
         nameTextField.text = ""
@@ -97,8 +98,13 @@ class AddItemViewController: UIViewController {
         #warning("Show an error message when some of the fields are empty")
     }
     
+    func didSelectTime(date: Date) {
+        selectedDate = date
+    }
+    
     @IBAction func setTimeButtonTapped(_ sender: UIButton) {
-        
+        let setTimeVC = storyboard?.instantiateViewController(identifier: "SetTimeVC") as! SetTimeViewController
+        present(setTimeVC, animated: true)
     }
     
     

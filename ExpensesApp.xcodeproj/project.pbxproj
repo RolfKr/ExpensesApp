@@ -47,6 +47,7 @@
 		B7969D3F244B9D56007E69E9 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7969D3E244B9D56007E69E9 /* LineChartView.swift */; };
 		B7969D4A244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7969D48244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift */; };
 		B7969D4B244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7969D49244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift */; };
+		B7BFF3F12460378600A92975 /* SetTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BFF3F02460378600A92975 /* SetTimeViewController.swift */; };
 		B7C83AF0244F62F000089050 /* Settings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C83AEE244F62F000089050 /* Settings+CoreDataClass.swift */; };
 		B7C83AF1244F62F000089050 /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C83AEF244F62F000089050 /* Settings+CoreDataProperties.swift */; };
 		B7F8DE33245B7DC900A16FDA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7F8DE35245B7DC900A16FDA /* Localizable.strings */; };
@@ -123,6 +124,7 @@
 		B7969D3E244B9D56007E69E9 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		B7969D48244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scorestreak+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7969D49244C7B0E007E69E9 /* Scorestreak+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scorestreak+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		B7BFF3F02460378600A92975 /* SetTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTimeViewController.swift; sourceTree = "<group>"; };
 		B7C83AEE244F62F000089050 /* Settings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B7C83AEF244F62F000089050 /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		B7F8DE2F245B7A9A00A16FDA /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main.strings; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				B74263582448FEE200597D4C /* CategoriesViewController.swift */,
 				7E54F968244A3AF1003ABAA1 /* AddCategoryViewController.swift */,
 				7EA3FD012449A83E00B1AF10 /* AddItemViewController.swift */,
+				B7BFF3F02460378600A92975 /* SetTimeViewController.swift */,
 				7EA3FD052449C27300B1AF10 /* StatisticsViewController.swift */,
 				7E84C68F2449CA9400B2C657 /* SettingsViewController.swift */,
 			);
@@ -585,6 +588,7 @@
 				B7969D4A244C7B0E007E69E9 /* Scorestreak+CoreDataClass.swift in Sources */,
 				B74263572448E63800597D4C /* ExpenseCell.swift in Sources */,
 				7EA3FD062449C27300B1AF10 /* StatisticsViewController.swift in Sources */,
+				B7BFF3F12460378600A92975 /* SetTimeViewController.swift in Sources */,
 				7EA3FD042449BA4000B1AF10 /* CategoryCollectionCell.swift in Sources */,
 				B74263202448BEBA00597D4C /* AppDelegate.swift in Sources */,
 				7ED11C0B245F1E1E004211E2 /* ExpenseDetailCell.swift in Sources */,

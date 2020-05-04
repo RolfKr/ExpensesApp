@@ -141,6 +141,8 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         selectedMonth = Calendar.current.date(byAdding: dateComponent, to: selectedMonth)!
         filterCategories()
         updateUI()
+        
+        print(selectedMonth)
     }
     
     @IBAction func previousMonthBtntapped(_ sender: UIButton) {
@@ -149,6 +151,8 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         selectedMonth = Calendar.current.date(byAdding: dateComponent, to: selectedMonth)!
         filterCategories()
         updateUI()
+        
+        print(selectedMonth)
     }
     
     
