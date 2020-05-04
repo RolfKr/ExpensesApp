@@ -12,7 +12,7 @@ class CustomTabbar : UITabBar {
     
     required init?(coder aDecoder: NSCoder) {
        super.init(coder: aDecoder)
-        barTintColor = UIColor(named: "MainColor")
+        barTintColor = UIColor(named: "SecondaryColor")
         tintColor = .white
         unselectedItemTintColor = UIColor(red: 23/255, green: 23/255, blue: 23/255, alpha: 0.75)
     }

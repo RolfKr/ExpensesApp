@@ -42,7 +42,7 @@ class SettingsViewController: UITableViewController, ChangedSecurity {
         loadSettings()
         
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = UIColor(named: "DarkBlueGradient")
+        appearance.backgroundColor = UIColor(named: "MainColor")
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         
