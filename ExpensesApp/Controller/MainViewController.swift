@@ -66,6 +66,8 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.layoutIfNeeded()
+        loadItems()
+        loadSettings()
         intitialSetup()
         filterCategories()
     }

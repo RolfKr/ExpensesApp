@@ -54,7 +54,8 @@ extension ExpensesDetailViewController: UITableViewDelegate, UITableViewDataSour
         let item = filteredItems[indexPath.row]
         print(item)
         print(item.category)
-        cell.configureCell(image: UIImage(named: item.category.name)!, name: item.name, amount: String(item.amount))
+        print(item.category.icon)
+        cell.configureCell(image: UIImage(named: item.category.icon)!, name: item.name, amount: String(item.amount))
         return cell
     }
 

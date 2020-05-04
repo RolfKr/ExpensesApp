@@ -811,10 +811,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="9pD-YI-cc5">
-                                                <rect key="frame" x="0.0" y="63.5" width="220" height="150"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="2RA-FG-YFQ"/>
-                                                </constraints>
+                                                <rect key="frame" x="0.0" y="63.5" width="220" height="228"/>
                                             </datePicker>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -823,6 +820,7 @@
                                             <constraint firstItem="9pD-YI-cc5" firstAttribute="leading" secondItem="Eb8-da-WGC" secondAttribute="leading" id="Cks-lb-d2P"/>
                                             <constraint firstItem="Klh-or-Tfd" firstAttribute="leading" secondItem="Eb8-da-WGC" secondAttribute="leading" id="WYi-mc-4hF"/>
                                             <constraint firstAttribute="trailing" secondItem="9pD-YI-cc5" secondAttribute="trailing" id="c5g-XE-q0b"/>
+                                            <constraint firstAttribute="bottom" secondItem="9pD-YI-cc5" secondAttribute="bottom" constant="25" id="gc1-YQ-egP"/>
                                             <constraint firstItem="Klh-or-Tfd" firstAttribute="top" secondItem="Eb8-da-WGC" secondAttribute="top" constant="20" id="jMF-hF-kq6"/>
                                             <constraint firstAttribute="trailing" secondItem="Klh-or-Tfd" secondAttribute="trailing" constant="20" id="mE0-Hg-q6j"/>
                                         </constraints>
