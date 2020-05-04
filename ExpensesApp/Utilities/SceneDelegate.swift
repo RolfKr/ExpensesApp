@@ -48,7 +48,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, NSFetchedResultsControl
             }
         }
         
-        let introViewController = mainStoryboard.instantiateViewController(identifier: "IntroVC") as! IntroViewController
+        let introViewController = mainStoryboard.instantiateViewController(identifier: "IntroVC")
         return introViewController
     }
     

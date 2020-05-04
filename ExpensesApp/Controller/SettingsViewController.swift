@@ -36,7 +36,6 @@ class SettingsViewController: UITableViewController, ChangedSecurity {
         super.viewDidLoad()
         
         if let checkBiometrics = defaults.value(forKey: "useSecurity") as? Bool {
-            print(checkBiometrics)
             lockSwitch.isOn = checkBiometrics
         }
         
@@ -53,7 +52,6 @@ class SettingsViewController: UITableViewController, ChangedSecurity {
     
     private func loadSettings() {
         guard let fetchedSettings = FetchRequest.fetchControllerSettings.fetchedObjects?.first else {return}
-        print("Got Settings")
         settings = fetchedSettings
         
         budgetLabel.text = String(settings.budget)
@@ -161,6 +159,7 @@ class SettingsViewController: UITableViewController, ChangedSecurity {
         
         alert.addTextField { (textfield) in
             textfield.placeholder = "Enter budget here"
+            textfield.keyboardType = .numberPad
         }
         
         let changeBudgetAction = UIAlertAction(title: "Change", style: .default) { (_) in

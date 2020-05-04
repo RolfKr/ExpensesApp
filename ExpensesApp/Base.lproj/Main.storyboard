@@ -1544,10 +1544,10 @@ finances private</string>
             </objects>
             <point key="canvasLocation" x="124" y="-675.11244377811101"/>
         </scene>
-        <!--FinanceVC-->
+        <!--View Controller-->
         <scene sceneID="bG3-Nz-xT8">
             <objects>
-                <viewController storyboardIdentifier="IntroVC" title="FinanceVC" id="k1g-y4-hrx" customClass="IntroViewController" customModule="ExpensesApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IntroVC" id="k1g-y4-hrx" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RfF-ON-2rj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

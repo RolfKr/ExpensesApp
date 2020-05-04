@@ -143,8 +143,6 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         selectedMonth = Calendar.current.date(byAdding: dateComponent, to: selectedMonth)!
         filterCategories()
         updateUI()
-        
-        print(selectedMonth)
     }
     
     @IBAction func previousMonthBtntapped(_ sender: UIButton) {
@@ -153,8 +151,6 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         selectedMonth = Calendar.current.date(byAdding: dateComponent, to: selectedMonth)!
         filterCategories()
         updateUI()
-        
-        print(selectedMonth)
     }
     
     
@@ -227,7 +223,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if expensesSelected {
-            print("categoriesCount: \(categories.count)")
             return categories.count
         } else {
             return itemsFilteredOnIncome.count
@@ -245,7 +240,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configureCell(image: UIImage(named: category.category)!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: budget, categoryAmount: category.amount))"  + "% of budget".localized(), moneyLabel: "\(currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) " + "transactions".localized())
         } else {
             let item = itemsFilteredOnIncome[indexPath.row]
-            print(item)
             cell.configureCell(image: UIImage(named: item.category.icon) ?? UIImage(named: "restaurant")!, category: item.name, budgetAmount: item.category.name, moneyLabel: "\(currencyIcon) \(item.amount)", transactions: "")
         }
         
