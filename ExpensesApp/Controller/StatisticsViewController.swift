@@ -24,10 +24,12 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var mostExpenseCategoryLabel: UILabel!
     
     
-    var items = [Item]() {
+    var items = [Item]()
+    
+    var allItems = [Item]() {
         didSet {
             dataAvailableLabel.text = "No data available. Add some new expenses first.".localized()
-            dataAvailableLabel.isHidden = !items.isEmpty
+            dataAvailableLabel.isHidden = !allItems.isEmpty
         }
     }
     
@@ -53,11 +55,12 @@ class StatisticsViewController: UIViewController {
     var settings: Settings!
     var totalExpenses = 0.0
     var totalIncome = 0.0
-    var chartDataEntries: [ChartDataEntry] = []
+    var chartDataEntries: [ChartDataEntry]!
     var selectedYear = 2020
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
     override func viewDidAppear(_ animated: Bool) {
+        chartDataEntries = []
         initialSetup()
         loadData()
         calculate()
@@ -72,6 +75,8 @@ class StatisticsViewController: UIViewController {
     }
     
     private func loadData(){
+        FetchRequest.loadItems()
+        allItems = FetchRequest.fetchControllerItems.fetchedObjects!
         items = FetchRequest.fetchControllerItems.fetchedObjects!.filter({ item in checkForCurrentMonth(date: item.date)})
         mostExpensiveCategory = ReferenceBuget.compareWithBudget(with: items)
     }
@@ -110,14 +115,16 @@ class StatisticsViewController: UIViewController {
         for (index, _) in months.enumerated() {
             var totalAmountPerMonth = 0.0
             
-            for item in items {
+            for item in allItems {
                 let dateComponent = calendar.dateComponents([.month, .year], from: item.date)
                 guard let month = dateComponent.month else {continue}
                 guard let year = dateComponent.year else {continue}
-                
-                if index == month && selectedYear == year {
+                                
+                if index == (month - 1) && selectedYear == year {
                     totalAmountPerMonth += item.amount
-                    let entry = ChartDataEntry(x: Double(month), y: totalAmountPerMonth)
+                    let entry = ChartDataEntry(x: Double(month - 1), y: totalAmountPerMonth)
+                    print("Entry:")
+                    print(entry)
                     chartDataEntries.append(entry)
                 }
             }
