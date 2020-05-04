@@ -23,9 +23,7 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var dataAvailableLabel: UILabel!
     @IBOutlet weak var mostExpenseCategoryLabel: UILabel!
     
-    
     var items = [Item]()
-    
     var allItems = [Item]() {
         didSet {
             dataAvailableLabel.text = "No data available. Add some new expenses first.".localized()
@@ -33,13 +31,11 @@ class StatisticsViewController: UIViewController {
         }
     }
     
-    var savingTips = [
-        "Tips number 1: Create a budget and follow it!".localized(),
+    var savingTips = ["Tips number 1: Create a budget and follow it!".localized(),
         "Calculate how much a product will cost you in the amount of workhours. The probability of you buying the product is lowered when you see how many workhours it wil cost.".localized(),
         "Always pay in the local currency when you are traveling.".localized(),
         "Create a buffer account that contains a minimum of 3 months pay, in case of a rainy day.".localized(),
-        "Create a savingsaccount that deducts a set amount of money on payday. By doing this you wont notice that you are saving.".localized()
-    ]
+        "Create a savingsaccount that deducts a set amount of money on payday. By doing this you wont notice that you are saving.".localized()]
     
     var mostExpensiveCategory: String! {
         didSet {
@@ -57,7 +53,7 @@ class StatisticsViewController: UIViewController {
     var totalIncome = 0.0
     var chartDataEntries: [ChartDataEntry]!
     var selectedYear = 2020
-    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map {$0.localized()}
 
     override func viewDidAppear(_ animated: Bool) {
         chartDataEntries = []
@@ -93,7 +89,7 @@ class StatisticsViewController: UIViewController {
     private func setChartData() {
         let set1 = LineChartDataSet(entries: chartDataEntries, label: "Expenses per month".localized())
         set1.drawCirclesEnabled = false
-        set1.mode = .cubicBezier
+        set1.mode = .horizontalBezier
         set1.lineWidth = 3
         set1.setColors(.systemTeal)
         set1.fill = Fill(color: .systemTeal)
@@ -123,8 +119,6 @@ class StatisticsViewController: UIViewController {
                 if index == (month - 1) && selectedYear == year {
                     totalAmountPerMonth += item.amount
                     let entry = ChartDataEntry(x: Double(month - 1), y: totalAmountPerMonth)
-                    print("Entry:")
-                    print(entry)
                     chartDataEntries.append(entry)
                 }
             }

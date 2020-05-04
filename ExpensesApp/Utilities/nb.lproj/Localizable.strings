@@ -126,3 +126,16 @@
 
 "is your most expensive category.\n Try to reduce the cost of this category next month." = "er din mest kostbare kategori denne måneden. Forsøk å reduser kostnadene dine i denne kategorien neste måned.";
 "No data available. Add some new expenses first." = "Ingen data tilgjengelig. Legg til nye utgifter først.";
+
+"Jan" = "Jan";
+"Feb" = "Feb";
+"Mar" = "Mar";
+"Apr" = "Apr";
+"May" = "Mai";
+"Jun" = "Jun";
+"Jul" = "Jul";
+"Aug" = "Aug";
+"Sep" = "Sep";
+"Oct" = "Okt";
+"Nov" = "Nov";
+"Dec" = "Des";
