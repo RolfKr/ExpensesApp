@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import LocalAuthentication
 
-class SettingsViewController: UITableViewController {
+class SettingsViewController: UITableViewController, ChangedSecurity {
     
     @IBOutlet weak var budgetLabel: UILabel!
     @IBOutlet weak var currencyLabel: UILabel!
@@ -96,10 +96,15 @@ class SettingsViewController: UITableViewController {
         configureSecurity()
     }
     
+    internal func didFinishEnteringPIN() {
+        defaults.set(self.lockSwitch.isOn, forKey: "useSecurity")
+    }
+    
     private func configureSecurity() {
         if let _ = defaults.value(forKey: "useSecurity") {
             if let _ = defaults.value(forKey: "havePIN") {
-                defaults.set(self.lockSwitch.isOn, forKey: "useSecurity")
+                presentEnterPINView()
+                didFinishEnteringPIN()
             } else {
                 presentCreatePINView()
             }
@@ -116,6 +121,13 @@ class SettingsViewController: UITableViewController {
         createPinVC.modalPresentationStyle = .fullScreen
         createPinVC.fromSettings = true
         present(createPinVC, animated: true)
+    }
+    
+    private func presentEnterPINView() {
+        guard let enterPINView = storyboard?.instantiateViewController(identifier: "LaunchVC") as? LaunchViewController else {return}
+        enterPINView.fromSettings = true
+        enterPINView.delegate = self
+        present(enterPINView, animated: true)
     }
     
     private func selectcurrency(sender: UIAlertAction) {

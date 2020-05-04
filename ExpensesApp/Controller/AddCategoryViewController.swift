@@ -30,7 +30,7 @@ class AddCategoryViewController: UIViewController {
         super.viewDidLoad()
         let placeholderColor = UIColor.init(white: 1, alpha: 0.5)
         nameTextField.attributedPlaceholder = NSAttributedString(
-            string: "Enter name here",
+            string: "Enter name here".localized(),
             attributes: [NSAttributedString.Key.foregroundColor: placeholderColor])
 
         collectionView.layer.cornerRadius = 25

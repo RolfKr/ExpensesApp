@@ -167,8 +167,8 @@
 /* Class = "UILabel"; text = "45% of budget"; ObjectID = "vTj-LJ-JMT"; */
 "vTj-LJ-JMT.text" = "45% av budsjettet";
 
-/* Class = "UILabel"; text = "Add new"; ObjectID = "voS-Pv-A2u"; */
-"voS-Pv-A2u.text" = "Opprett ny";
+/* Class = "UILabel"; text = "Add new entry"; ObjectID = "voS-Pv-A2u"; */
+"voS-Pv-A2u.text" = "Legg til ny";
 
 /* Class = "UILabel"; text = "Choose a type"; ObjectID = "wNu-Cr-Cs5"; */
 "wNu-Cr-Cs5.text" = "Velg en type";

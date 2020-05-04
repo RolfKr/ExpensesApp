@@ -99,7 +99,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" red="0.24059507250000001" green="0.67350560429999995" blue="0.87453913689999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.23921568627450979" green="0.67450980392156867" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="o7p-a3-pZK"/>
@@ -779,8 +779,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voS-Pv-A2u">
-                                <rect key="frame" x="20" y="30" width="146.5" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new entry" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voS-Pv-A2u">
+                                <rect key="frame" x="20" y="30" width="335" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="klV-6A-p2S"/>
                                 </constraints>
@@ -788,19 +788,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifd-Tj-Xt9">
-                                <rect key="frame" x="176.5" y="30" width="148.5" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="7ml-c7-e0G"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="35"/>
-                                <state key="normal" title="expense">
-                                    <color key="titleColor" red="0.78848746827411165" green="0.0" blue="0.14000781147107441" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <action selector="changeEntryTapped:" destination="7sf-o7-y31" eventType="touchUpInside" id="TSf-w1-Arm"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0.00" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="n5S-O3-f36">
                                 <rect key="frame" x="99" y="85" width="256" height="98"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -950,13 +937,11 @@
                             <constraint firstItem="INF-rF-frw" firstAttribute="top" secondItem="n5S-O3-f36" secondAttribute="bottom" constant="8" id="CkK-WH-k2r"/>
                             <constraint firstItem="INF-rF-frw" firstAttribute="bottom" secondItem="Jf5-Xh-fha" secondAttribute="bottom" id="E8q-dR-WPu"/>
                             <constraint firstItem="INF-rF-frw" firstAttribute="top" secondItem="kUS-7U-M1T" secondAttribute="bottom" constant="8" id="HRS-gX-11j"/>
-                            <constraint firstItem="ifd-Tj-Xt9" firstAttribute="leading" secondItem="voS-Pv-A2u" secondAttribute="trailing" constant="10" id="J0z-lB-Bkp"/>
-                            <constraint firstItem="Jf5-Xh-fha" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="ifd-Tj-Xt9" secondAttribute="trailing" constant="50" id="N0O-z5-sZw"/>
                             <constraint firstItem="voS-Pv-A2u" firstAttribute="top" secondItem="Jf5-Xh-fha" secondAttribute="top" constant="30" id="OFj-wo-1jv"/>
                             <constraint firstItem="kUS-7U-M1T" firstAttribute="leading" secondItem="Jf5-Xh-fha" secondAttribute="leading" constant="50" id="Pg0-dN-7gQ"/>
+                            <constraint firstItem="Jf5-Xh-fha" firstAttribute="trailing" secondItem="voS-Pv-A2u" secondAttribute="trailing" constant="20" id="Zb8-Js-fqt"/>
                             <constraint firstItem="n5S-O3-f36" firstAttribute="top" secondItem="voS-Pv-A2u" secondAttribute="bottom" constant="15" id="aNR-qw-DTz"/>
                             <constraint firstItem="voS-Pv-A2u" firstAttribute="leading" secondItem="Jf5-Xh-fha" secondAttribute="leading" constant="20" id="aw3-pw-5Ay"/>
-                            <constraint firstItem="ifd-Tj-Xt9" firstAttribute="top" secondItem="Jf5-Xh-fha" secondAttribute="top" constant="30" id="ibL-Ie-0cb"/>
                             <constraint firstItem="INF-rF-frw" firstAttribute="leading" secondItem="Jf5-Xh-fha" secondAttribute="leading" id="ph8-0j-apC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Jf5-Xh-fha"/>
@@ -967,7 +952,6 @@
                         <outlet property="background" destination="INF-rF-frw" id="YM0-Sz-5WW"/>
                         <outlet property="currencyIcon" destination="kUS-7U-M1T" id="ZWB-HR-WfY"/>
                         <outlet property="doneBtn" destination="PI7-xl-52o" id="sVD-f6-BM5"/>
-                        <outlet property="expensesButton" destination="ifd-Tj-Xt9" id="Qpq-B4-7Dt"/>
                         <outlet property="nameTextField" destination="UKV-zD-mYZ" id="XpN-YN-spk"/>
                         <outlet property="tableView" destination="zD7-Kx-lGb" id="ZuT-Wm-EXB"/>
                     </connections>

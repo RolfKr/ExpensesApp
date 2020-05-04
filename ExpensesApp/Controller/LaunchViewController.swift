@@ -10,25 +10,32 @@ import UIKit
 import CoreData
 import LocalAuthentication
 
+protocol ChangedSecurity {
+    func didFinishEnteringPIN()
+}
+
 class LaunchViewController: UIViewController {
 
     @IBOutlet weak var enterPinLabel: UILabel!
     @IBOutlet weak var pinTextField: UITextField!
     
-    
+    var delegate: ChangedSecurity?
+    var fromSettings = false
     let defaults = UserDefaults.standard
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         pinTextField.delegate = self
-        if let useBiometrics = defaults.value(forKey: "useSecurity") as? Bool {
-            if useBiometrics {
-                checkBiometrics()
+        if !fromSettings {
+            if let useBiometrics = defaults.value(forKey: "useSecurity") as? Bool {
+                if useBiometrics {
+                    checkBiometrics()
+                } else {
+                    print("Use password")
+                }
             } else {
-                print("Use password")
+                presentMainViewController()
             }
-        } else {
-            presentMainViewController()
         }
     }
     
@@ -44,7 +51,7 @@ class LaunchViewController: UIViewController {
                     self?.presentMainViewController()
                 }
             } else {
-                print("")
+                //TODO: Tell user that it failed. Use PIN instead.
             }
         }
     }
@@ -54,7 +61,14 @@ class LaunchViewController: UIViewController {
         guard let enteredPin = pinTextField.text else {return}
         
         if enteredPin == correctPin {
-            presentMainViewController()
+            if fromSettings {
+                defaults.set(true, forKey: "useSecurity")
+                delegate?.didFinishEnteringPIN()
+                dismiss(animated: true, completion: nil)
+            } else {
+                presentMainViewController()
+            }
+            
         } else {
             enterPinLabel.text = "Wrong PIN"
             enterPinLabel.textColor = .red
