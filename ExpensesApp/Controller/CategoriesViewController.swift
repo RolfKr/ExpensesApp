@@ -25,7 +25,6 @@ class CategoriesViewController: UIViewController, AddCategoryDelegate {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: true)
         textField.addTarget(self, action: #selector(editedTextfield), for: .editingChanged)
-        Constants.shared.setBackgroundGradient(for: view)
         searchContainer.layer.cornerRadius = 20
         loadCategories()
     }

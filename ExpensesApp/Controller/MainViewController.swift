@@ -73,7 +73,6 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     }
     
     private func intitialSetup() {
-        Constants.shared.setBackgroundGradient(for: view)
         cardBehind.layer.cornerRadius = 60
         cardFront.layer.cornerRadius = 60
         progressContainer.layer.cornerRadius = 6

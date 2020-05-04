@@ -134,12 +134,9 @@ class SettingsViewController: UITableViewController, ChangedSecurity {
         settings.setValue(currency, forKey: "currency")
         
         switch sender.title {
-        case "Dollar":
-            settings.setValue("$", forKey: "currencyIcon")
-        case "Kroner":
-            settings.setValue("kr", forKey: "currencyIcon")
-        case "Euro":
-            settings.setValue("€", forKey: "currencyIcon")
+        case "Dollar": settings.setValue("$", forKey: "currencyIcon")
+        case "Kroner": settings.setValue("kr", forKey: "currencyIcon")
+        case "Euro": settings.setValue("€", forKey: "currencyIcon")
         default:
             break
         }

@@ -64,7 +64,6 @@ class StatisticsViewController: UIViewController {
     }
     
     private func initialSetup() {
-        Constants.shared.setBackgroundGradient(for: view)
         totalIncomeContainer.layer.cornerRadius = 8
         totalExpensesContainer.layer.cornerRadius = 8
         background.layer.cornerRadius = 60

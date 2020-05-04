@@ -26,7 +26,6 @@ class AddItemViewController: UIViewController, SetTimeDelegate {
     var delegate: AddItemDelegate?
     var addingExpense = true
     var categoryTypes = Constants.categoryTypes
-    
     var allCategoryTypes = [[Category]]()
     var allCategories = [Category]()
     var filteredCategories = [Category]()
@@ -45,7 +44,6 @@ class AddItemViewController: UIViewController, SetTimeDelegate {
         super.viewWillAppear(animated)
         loadCategories()
         loadSettings()
-        Constants.shared.setBackgroundGradient(for: view)
         
         let placeholderColor = UIColor.init(white: 1, alpha: 0.5)
         amountTextField.attributedPlaceholder = NSAttributedString(
@@ -71,7 +69,6 @@ class AddItemViewController: UIViewController, SetTimeDelegate {
             }
             allCategoryTypes.append(categoryGroup)
         }
-        
         tableView.reloadData()
     }
     
@@ -94,17 +91,11 @@ class AddItemViewController: UIViewController, SetTimeDelegate {
         
         nameTextField.resignFirstResponder()
         amountTextField.resignFirstResponder()
-        
-        
-        
         #warning("Show an error message when some of the fields are empty")
     }
     
     func didSelectTime(date: Date) {
         selectedDate = date
-        
-        print("*****@@**")
-        print(selectedDate)
     }
     
     @IBAction func setTimeButtonTapped(_ sender: UIButton) {
