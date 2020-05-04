@@ -93,7 +93,14 @@ class AddItemViewController: UIViewController {
         
         nameTextField.resignFirstResponder()
         amountTextField.resignFirstResponder()
+        
+        #warning("Show an error message when some of the fields are empty")
     }
+    
+    @IBAction func setTimeButtonTapped(_ sender: UIButton) {
+        
+    }
+    
     
     private func getYesterdayDate() -> Date {
         let calender = Calendar.current
