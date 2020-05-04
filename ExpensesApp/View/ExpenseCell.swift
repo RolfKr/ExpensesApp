@@ -24,7 +24,7 @@ class ExpenseCell: UITableViewCell {
     func configureCell(image: UIImage, category: String, budgetAmount: String, moneyLabel: String, transactions: String) {
         categoryImage.image = image
         categoryName.text = category
-        budgetLabel.text = "\(budgetAmount)" + "% of budget".localized()
+        budgetLabel.text = "\(budgetAmount)"
         self.moneyLabel.text = "\(moneyLabel)"
         transactionsLabel.text = transactions
     }

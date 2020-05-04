@@ -25,6 +25,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var progressConstraint: NSLayoutConstraint!
     
     var selectedMonth = Date()
+    var itemsFilteredOnIncome = [Item]()
     var items: [Item]! {
         didSet {
             updateUI()
@@ -59,7 +60,6 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         loadItems()
         loadSettings()
         progressConstraint.constant = progress.frame.width
-        
         updateUI()
     }
     
@@ -104,7 +104,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
             let selectedMonth = calendar.dateComponents([.month, .year], from: self.selectedMonth)
             let itemMonth = calendar.dateComponents([.month, .year], from: item.date)
             return selectedMonth == itemMonth
-        })
+        }).filter({ $0.category.categoryType != "Income".localized() })
         
         for item in items {
             var currentAmount = categoryExpenses[item.category.categoryType]!
@@ -113,16 +113,16 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         }
         
         for categoryExpense in categoryExpenses where categoryExpense.value != 0.0 {
-            if categoryExpense.key != "Income" {
+
                 let category = ExpenseCategory(category: categoryExpense.key, amount: categoryExpense.value)
                 self.categories.append(category)
-            }
+            
         }
         
-        print("*****")
-        print(categories.count)
+        
         tableView.reloadData()
     }
+
     
     @IBAction func expensesBtnTapped(_ sender: UIButton) {
         expensesSelected = true
@@ -131,6 +131,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     @IBAction func incomeBtnTapped(_ sender: UIButton) {
         expensesSelected = false
+        itemsFilteredOnIncome = FetchRequest.fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income".localized() })
         tableView.reloadData()
     }
     
@@ -222,7 +223,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         if expensesSelected {
             return categories.count
         } else {
-            return FetchRequest.fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income".localized() }).count
+            return itemsFilteredOnIncome.count
         }
         
     }
@@ -234,24 +235,40 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         if expensesSelected {
             let category = categories[indexPath.row]
-            cell.configureCell(image: UIImage(named: category.category)!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: budget, categoryAmount: category.amount))", moneyLabel: "\(currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) " + "transactions".localized())
+            cell.configureCell(image: UIImage(named: category.category)!, category: category.category, budgetAmount: "\(calculateBudgetPercentage(totalAmount: budget, categoryAmount: category.amount))"  + "% of budget".localized(), moneyLabel: "\(currencyIcon) \(category.amount)", transactions: "\(calculateTransactions(for: category)) " + "transactions".localized())
         } else {
-            let filteredOnIncome = FetchRequest.fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income".localized() })
-            
-            let item = filteredOnIncome[indexPath.row]
-            cell.configureCell(image: UIImage(named: "restaurant")!, category: item.category.name, budgetAmount: "", moneyLabel: "\(currencyIcon) \(item.amount)", transactions: "")
+            let item = itemsFilteredOnIncome[indexPath.row]
+            print(item)
+            cell.configureCell(image: UIImage(named: item.category.icon) ?? UIImage(named: "restaurant")!, category: item.name, budgetAmount: item.category.name, moneyLabel: "\(currencyIcon) \(item.amount)", transactions: "")
         }
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return !expensesSelected
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            let item = itemsFilteredOnIncome[indexPath.row]
+            PersistenceManager.persistentContainer.viewContext.delete(item)
+            PersistenceManager.saveContext()
+
+            itemsFilteredOnIncome.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
-        let selectedCategory = categories[indexPath.row].category
-        let expensesDetailVC = storyboard?.instantiateViewController(identifier: "expensesDetailVC") as! ExpensesDetailViewController
-        expensesDetailVC.selectedCategory = selectedCategory
-        present(expensesDetailVC, animated: true)
-
+        
+        if expensesSelected {
+            let selectedCategory = categories[indexPath.row].category
+            let expensesDetailVC = storyboard?.instantiateViewController(identifier: "expensesDetailVC") as! ExpensesDetailViewController
+            expensesDetailVC.selectedCategory = selectedCategory
+            present(expensesDetailVC, animated: true)
+        }
     }
 }

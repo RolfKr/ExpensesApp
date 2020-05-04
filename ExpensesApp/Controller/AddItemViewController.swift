@@ -16,7 +16,7 @@ protocol AddItemDelegate {
 class AddItemViewController: UIViewController {
     
     @IBOutlet weak var expensesButton: UIButton!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
@@ -26,8 +26,12 @@ class AddItemViewController: UIViewController {
     
     var delegate: AddItemDelegate?
     var addingExpense = true
-    var categories = [Category]()
+    var categoryTypes = Constants.categoryTypes
+    
+    var allCategoryTypes = [[Category]]()
+    var allCategories = [Category]()
     var filteredCategories = [Category]()
+    var isSearching = false
     var selectedCategory: Category?
     
     var settings: Settings! {
@@ -36,15 +40,12 @@ class AddItemViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         loadCategories()
         loadSettings()
         expensesButton.contentHorizontalAlignment = .left
         Constants.shared.setBackgroundGradient(for: view)
-        filteredCategories = categories.filter { (category) -> Bool in
-            category.categoryType != "Income"
-        }
         
         let placeholderColor = UIColor.init(white: 1, alpha: 0.5)
         amountTextField.attributedPlaceholder = NSAttributedString(
@@ -53,9 +54,25 @@ class AddItemViewController: UIViewController {
     }
     
     private func loadCategories() {
-        categories = FetchRequest.fetchControllerCategory.fetchedObjects!
-        filteredCategories = categories.filter {$0.categoryType != "Income"}
-        collectionView.reloadData()
+        
+        FetchRequest.loadCategories()
+        allCategories = FetchRequest.fetchControllerCategory.fetchedObjects!
+        filteredCategories = FetchRequest.fetchControllerCategory.fetchedObjects!
+        
+        
+        for categoryType in categoryTypes {
+            var categoryGroup: [Category] = []
+            for category in allCategories {
+                if category.categoryType == categoryType {
+                    categoryGroup.append(category)
+                } else{
+                    continue
+                }
+            }
+            allCategoryTypes.append(categoryGroup)
+        }
+        
+        tableView.reloadData()
     }
     
     private func loadSettings() {
@@ -69,20 +86,13 @@ class AddItemViewController: UIViewController {
             sender.setTitle("income".localized(), for: .normal)
             sender.setTitleColor(.green, for: .normal)
             sender.contentHorizontalAlignment = .left
-            filteredCategories = categories.filter { (category) -> Bool in
-                category.categoryType == "Income".localized()
-            }
+
         } else {
             addingExpense.toggle()
             sender.setTitle("expense".localized(), for: .normal)
             sender.setTitleColor(.red, for: .normal)
             sender.contentHorizontalAlignment = .left
-            filteredCategories = categories.filter { (category) -> Bool in
-                category.categoryType != "Income".localized()
-            }
-        }
-        
-        collectionView.reloadData()
+        }        
     }
     
     @IBAction func doneBtnTapped(_ sender: UIButton) {
@@ -93,6 +103,7 @@ class AddItemViewController: UIViewController {
         
         let timeNow = Date()
         createItem(name: name, amount: amountDouble, category: category, date: timeNow)
+        delegate?.didFinishAddingItem()
         
         nameTextField.text = ""
         amountTextField.text = ""
@@ -118,36 +129,57 @@ class AddItemViewController: UIViewController {
     
 }
 
-extension AddItemViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension AddItemViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredCategories.count
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if isSearching {
+            return 1
+        } else {
+            return categoryTypes.count
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CategoryCollectionCell
-        let category = filteredCategories[indexPath.row]
-        cell.configureCell(image: UIImage(named: category.icon)!, name: category.name)
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if isSearching {
+            return "Search results"
+        } else {
+            if allCategoryTypes[section].isEmpty  {
+                return nil
+            } else {
+                return categoryTypes[section]
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isSearching {
+            return filteredCategories.count
+        } else {
+            return allCategoryTypes[section].count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CategoryCell
+        
+        if isSearching {
+            let category = filteredCategories[indexPath.row]
+            cell.configureCell(image: UIImage(named: category.icon)!, name: category.name)
+        } else {
+            let category = allCategoryTypes[indexPath.section][indexPath.item]
+            cell.configureCell(image: UIImage(named: category.icon)!, name: category.name)
+        }
+        
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 120)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(selectedCategory)
-        selectedCategory = filteredCategories[indexPath.row]
-    }
-}
-
-
-extension AddItemViewController: UITextFieldDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        amountTextField.resignFirstResponder()
-        nameTextField.resignFirstResponder()
-        
-        return true
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if isSearching {
+            let category = filteredCategories[indexPath.row]
+            selectedCategory = category
+        } else {
+            let category = allCategoryTypes[indexPath.section][indexPath.item]
+            selectedCategory = category
+        }
     }
 }
