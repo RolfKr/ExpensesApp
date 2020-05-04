@@ -95,15 +95,21 @@ class AddItemViewController: UIViewController, SetTimeDelegate {
         nameTextField.resignFirstResponder()
         amountTextField.resignFirstResponder()
         
+        
+        
         #warning("Show an error message when some of the fields are empty")
     }
     
     func didSelectTime(date: Date) {
         selectedDate = date
+        
+        print("*****@@**")
+        print(selectedDate)
     }
     
     @IBAction func setTimeButtonTapped(_ sender: UIButton) {
         let setTimeVC = storyboard?.instantiateViewController(identifier: "SetTimeVC") as! SetTimeViewController
+        setTimeVC.delegate = self
         present(setTimeVC, animated: true)
     }
     

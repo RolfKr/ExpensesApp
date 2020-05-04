@@ -52,6 +52,8 @@ extension ExpensesDetailViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ExpenseDetailCell
         let item = filteredItems[indexPath.row]
+        print(item)
+        print(item.category)
         cell.configureCell(image: UIImage(named: item.category.name)!, name: item.name, amount: String(item.amount))
         return cell
     }

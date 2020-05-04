@@ -225,6 +225,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if expensesSelected {
+            print("categoriesCount: \(categories.count)")
             return categories.count
         } else {
             return itemsFilteredOnIncome.count
