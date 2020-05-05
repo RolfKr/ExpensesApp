@@ -170,7 +170,6 @@ class StatisticsViewController: UIViewController {
     
     //MARK: Creates chart.
     private func createChart() {
-        setChartData()
         getDataPoints()
         setChartData()
     }
@@ -179,7 +178,7 @@ class StatisticsViewController: UIViewController {
     private func setChartData() {
         let set1 = LineChartDataSet(entries: chartDataEntries, label: "Expenses per month".localized())
         set1.drawCirclesEnabled = false
-        set1.mode = .horizontalBezier
+        set1.mode = .cubicBezier
         set1.lineWidth = 3
         set1.setColors(.systemTeal)
         set1.fill = Fill(color: .systemTeal)
