@@ -23,6 +23,7 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var expensesLabel: UILabel!
     @IBOutlet weak var mostExpenseCategoryLabel: UILabel!
     
+    var containerView = UIView()
     var items = [Item]()
     var allItems = [Item]() {
         didSet {
@@ -87,41 +88,70 @@ class StatisticsViewController: UIViewController {
         let height = view.frame.height * 0.3
         let startFrame = CGRect(x: view.frame.midX + width, y: view.frame.midY - (height/2), width: width, height: height)
         let endFrame = CGRect(x: view.frame.midX - (width/2), y: view.frame.midY - (height/2), width: width, height: height)
-        let containerView = UIView(frame: startFrame)
+        containerView = UIView(frame: startFrame)
         containerView.layer.cornerRadius = 20
         containerView.backgroundColor = .white
         view.addSubview(containerView)
         
-        let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(datePicker)
+
+        let dismissButton = UIButton(type: .custom)
+        dismissButton.setTitle("Dismiss".localized(), for: .normal)
+        dismissButton.backgroundColor = .red
+        dismissButton.setTitleColor(.white, for: .normal)
+        dismissButton.layer.cornerRadius = 8
+        dismissButton.translatesAutoresizingMaskIntoConstraints = false
+        dismissButton.addTarget(self, action: #selector(dismissBtnTapped), for: .touchUpInside)
+        containerView.addSubview(dismissButton)
+        
+        let selectButton = UIButton(type: .custom)
+        selectButton.setTitle("Select".localized(), for: .normal)
+        selectButton.backgroundColor = UIColor(named: "MainColor")
+        selectButton.setTitleColor(.white, for: .normal)
+        selectButton.layer.cornerRadius = 8
+        selectButton.translatesAutoresizingMaskIntoConstraints = false
+        selectButton.addTarget(self, action: #selector(selectBtnTapped), for: .touchUpInside)
+        containerView.addSubview(selectButton)
+        
         NSLayoutConstraint.activate([
-            datePicker.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 50),
+            datePicker.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20),
             datePicker.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
             datePicker.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
-            datePicker.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20)
+            datePicker.bottomAnchor.constraint(equalTo: dismissButton.bottomAnchor, constant: -40),
+            
+            //dismissButton.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 20),
+            dismissButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 50),
+            dismissButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20),
+            dismissButton.widthAnchor.constraint(equalToConstant: 100),
+            dismissButton.heightAnchor.constraint(equalToConstant: 30),
+            
+            //selectButton.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 20),
+            selectButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -50),
+            selectButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20),
+            selectButton.widthAnchor.constraint(equalToConstant: 100),
+            selectButton.heightAnchor.constraint(equalToConstant: 30),
         ])
         
+        containerView.layoutIfNeeded()
         
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
-            containerView.frame = endFrame
-            containerView.layoutIfNeeded()
+            self.containerView.frame = endFrame
+            self.containerView.layoutIfNeeded()
         }, completion: nil)
     }
-
-    @objc func doneClick() {
-        let dateFormatter1 = DateFormatter()
-        dateFormatter1.dateStyle = .medium
-        dateFormatter1.timeStyle = .none
-
-        datePicker.isHidden = true
-        self.toolBar.isHidden = true
+    
+    @objc private func dismissBtnTapped() {
+        containerView.removeFromSuperview()
     }
-
-    @objc func cancelClick() {
-        datePicker.isHidden = true
-        self.toolBar.isHidden = true
+    
+    @objc private func selectBtnTapped() {
+        containerView.removeFromSuperview()
+    }
+    
+    private func dismissPickerView(containerView: UIView) {
+        containerView.removeFromSuperview()
     }
     
     //MARK: Creates chart.
