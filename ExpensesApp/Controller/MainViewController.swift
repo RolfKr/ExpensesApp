@@ -19,8 +19,8 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var totalExpensesLabel: UILabel!
     
     @IBOutlet weak var progressContainer: UIView!
-    @IBOutlet weak var expensesBtn: UIButton!
-    @IBOutlet weak var incomeBtn: UIButton!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     @IBOutlet weak var progress: UIView!
     @IBOutlet weak var progressConstraint: NSLayoutConstraint!
     
@@ -42,17 +42,7 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     var categories = [ExpenseCategory]()
     var monthlyBudget = 1500.00
-    var expensesSelected = true {
-        didSet {
-            if expensesSelected {
-                expensesBtn.setTitleColor(.label, for: .normal)
-                incomeBtn.setTitleColor(.secondaryLabel, for: .normal)
-            } else {
-                expensesBtn.setTitleColor(.secondaryLabel, for: .normal)
-                incomeBtn.setTitleColor(.label, for: .normal)
-            }
-        }
-    }
+    var expensesSelected = true
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -77,6 +67,8 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         cardFront.layer.cornerRadius = 60
         progressContainer.layer.cornerRadius = 6
         progressConstraint.constant = progress.frame.width
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UISegmentedControl.appearance().setTitleTextAttributes(titleTextAttributes, for: .selected)
         monthlyBudget = FetchRequest.fetchControllerSettings.fetchedObjects?.first?.budget ?? 0.0
     }
     
@@ -124,16 +116,15 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         tableView.reloadData()
     }
 
-    
-    @IBAction func expensesBtnTapped(_ sender: UIButton) {
-        expensesSelected = true
-        tableView.reloadData()
-    }
-    
-    @IBAction func incomeBtnTapped(_ sender: UIButton) {
-        expensesSelected = false
-        itemsFilteredOnIncome = FetchRequest.fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income".localized() })
-        tableView.reloadData()
+    @IBAction func changeCategory(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            expensesSelected = true
+            tableView.reloadData()
+        } else {
+            expensesSelected = false
+            itemsFilteredOnIncome = FetchRequest.fetchControllerItems.fetchedObjects!.filter({ $0.category.categoryType == "Income".localized() })
+            tableView.reloadData()
+        }
     }
     
     @IBAction func nextMonthBtntapped(_ sender: UIButton) {

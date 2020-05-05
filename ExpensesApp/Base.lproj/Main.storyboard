@@ -234,33 +234,20 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="brq-BG-HPl" userLabel="cardFront">
                                         <rect key="frame" x="0.0" y="82" width="375" height="438"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Z9a-DB-a7L">
-                                                <rect key="frame" x="60" y="30" width="161" height="36"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nk-g9-HBi">
-                                                        <rect key="frame" x="0.0" y="0.0" width="75" height="36"/>
-                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
-                                                        <state key="normal" title="Expenses">
-                                                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="expensesBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yC8-GR-8p4"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHN-W3-MiK">
-                                                        <rect key="frame" x="95" y="0.0" width="66" height="36"/>
-                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
-                                                        <state key="normal" title="Incomes">
-                                                            <color key="titleColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="incomeBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="esZ-iB-xyJ"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dIP-PV-FUQ">
+                                                <rect key="frame" x="60" y="30" width="255" height="32"/>
+                                                <color key="backgroundColor" name="SecondaryColor"/>
+                                                <segments>
+                                                    <segment title="Expenses"/>
+                                                    <segment title="Incomes"/>
+                                                </segments>
+                                                <color key="selectedSegmentTintColor" name="MainColor"/>
+                                                <connections>
+                                                    <action selector="changeCategory:" destination="BYZ-38-t0r" eventType="valueChanged" id="V8T-iP-RrN"/>
+                                                </connections>
+                                            </segmentedControl>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="owk-px-cZV">
-                                                <rect key="frame" x="0.0" y="74" width="375" height="314"/>
+                                                <rect key="frame" x="0.0" y="73" width="375" height="315"/>
                                                 <color key="backgroundColor" name="TertiaryColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="expenseCell" rowHeight="60" id="mF6-5a-ZPA" customClass="ExpenseCell" customModule="ExpensesApp" customModuleProvider="target">
@@ -339,12 +326,13 @@
                                         </subviews>
                                         <color key="backgroundColor" name="TertiaryColor"/>
                                         <constraints>
+                                            <constraint firstItem="dIP-PV-FUQ" firstAttribute="leading" secondItem="brq-BG-HPl" secondAttribute="leading" constant="60" id="4ij-k9-a9j"/>
                                             <constraint firstAttribute="trailing" secondItem="owk-px-cZV" secondAttribute="trailing" id="4s2-i0-fy2"/>
-                                            <constraint firstItem="Z9a-DB-a7L" firstAttribute="top" secondItem="brq-BG-HPl" secondAttribute="top" constant="30" id="CaR-to-vWb"/>
                                             <constraint firstAttribute="bottom" secondItem="owk-px-cZV" secondAttribute="bottom" constant="50" id="NgX-Pp-2zS"/>
-                                            <constraint firstItem="owk-px-cZV" firstAttribute="top" secondItem="Z9a-DB-a7L" secondAttribute="bottom" constant="8" id="WQ9-SI-kHW"/>
-                                            <constraint firstItem="Z9a-DB-a7L" firstAttribute="leading" secondItem="brq-BG-HPl" secondAttribute="leading" constant="60" id="WnC-N0-KMA"/>
+                                            <constraint firstItem="dIP-PV-FUQ" firstAttribute="top" secondItem="brq-BG-HPl" secondAttribute="top" constant="30" id="PzC-AG-8pd"/>
+                                            <constraint firstAttribute="trailing" secondItem="dIP-PV-FUQ" secondAttribute="trailing" constant="60" id="ShH-q5-BaL"/>
                                             <constraint firstItem="owk-px-cZV" firstAttribute="leading" secondItem="brq-BG-HPl" secondAttribute="leading" id="gxa-GK-H0Y"/>
+                                            <constraint firstItem="owk-px-cZV" firstAttribute="top" secondItem="dIP-PV-FUQ" secondAttribute="bottom" constant="12" id="iVo-xT-wv5"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monthly budget: $1,500" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="RxH-Xa-ESJ">
@@ -457,13 +445,12 @@
                     <connections>
                         <outlet property="cardBehind" destination="fAb-f7-Rgo" id="dkn-eY-OTw"/>
                         <outlet property="cardFront" destination="brq-BG-HPl" id="ija-uR-M9n"/>
-                        <outlet property="expensesBtn" destination="0nk-g9-HBi" id="sjy-K3-Uyk"/>
-                        <outlet property="incomeBtn" destination="WHN-W3-MiK" id="zi8-DS-6bw"/>
                         <outlet property="monthLabel" destination="Awp-c0-Fd5" id="uzh-Gh-NyE"/>
                         <outlet property="monthlyBudgetLabel" destination="RxH-Xa-ESJ" id="dn3-FM-Ko1"/>
                         <outlet property="progress" destination="Tcd-2D-Xg0" id="mrz-GW-wYD"/>
                         <outlet property="progressConstraint" destination="tlC-he-cTI" id="FhA-hb-Dju"/>
                         <outlet property="progressContainer" destination="6fd-pt-Ld7" id="5W3-aI-1U7"/>
+                        <outlet property="segmentedControl" destination="dIP-PV-FUQ" id="meS-VJ-PgJ"/>
                         <outlet property="tableView" destination="owk-px-cZV" id="luC-1N-08D"/>
                         <outlet property="totalExpensesLabel" destination="egm-MD-UJm" id="jdW-bq-P7y"/>
                     </connections>
