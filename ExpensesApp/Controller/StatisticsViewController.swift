@@ -12,7 +12,7 @@ import CoreData
 
 
 class StatisticsViewController: UIViewController {
-
+    
     @IBOutlet weak var totalIncomeContainer: UIView!
     @IBOutlet weak var totalExpensesContainer: UIView!
     @IBOutlet weak var totalIncomeLabel: UILabel!
@@ -33,10 +33,10 @@ class StatisticsViewController: UIViewController {
     }
     
     var savingTips = ["Tips number 1: Create a budget and follow it!".localized(),
-        "Calculate how much a product will cost you in the amount of workhours. The probability of you buying the product is lowered when you see how many workhours it wil cost.".localized(),
-        "Always pay in the local currency when you are traveling.".localized(),
-        "Create a buffer account that contains a minimum of 3 months pay, in case of a rainy day.".localized(),
-        "Create a savingsaccount that deducts a set amount of money on payday. By doing this you wont notice that you are saving.".localized()]
+                      "Calculate how much a product will cost you in the amount of workhours. The probability of you buying the product is lowered when you see how many workhours it wil cost.".localized(),
+                      "Always pay in the local currency when you are traveling.".localized(),
+                      "Create a buffer account that contains a minimum of 3 months pay, in case of a rainy day.".localized(),
+                      "Create a savingsaccount that deducts a set amount of money on payday. By doing this you wont notice that you are saving.".localized()]
     
     var mostExpensiveCategory: String! {
         didSet {
@@ -55,12 +55,24 @@ class StatisticsViewController: UIViewController {
     var chartDataEntries: [ChartDataEntry]!
     var selectedYear = 2020
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map {$0.localized()}
-    var datePicker = UIDatePicker()
-    let toolBar = UIToolbar()
+    var datePicker = UIPickerView()
+    var datePickerSelectedValue = 2020
+    
+    var years: [String] {
+        var years = [String]()
+        for index in 2000..<2051 {
+            years.append(String(index))
+        }
+        return years
+    }
     
     override func viewDidAppear(_ animated: Bool) {
-        chartDataEntries = []
         initialSetup()
+        setupChart()
+    }
+    
+    private func setupChart() {
+        chartDataEntries = []
         loadData()
         calculate()
         createChart()
@@ -93,10 +105,12 @@ class StatisticsViewController: UIViewController {
         containerView.backgroundColor = .white
         view.addSubview(containerView)
         
-        datePicker.datePickerMode = .date
+        datePicker.dataSource = self
+        datePicker.delegate = self
+        datePicker.selectRow(datePickerSelectedValue - 2000, inComponent:0, animated:true)
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(datePicker)
-
+        
         let dismissButton = UIButton(type: .custom)
         dismissButton.setTitle("Dismiss".localized(), for: .normal)
         dismissButton.backgroundColor = .red
@@ -121,13 +135,11 @@ class StatisticsViewController: UIViewController {
             datePicker.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
             datePicker.bottomAnchor.constraint(equalTo: dismissButton.bottomAnchor, constant: -40),
             
-            //dismissButton.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 20),
             dismissButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 50),
             dismissButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20),
             dismissButton.widthAnchor.constraint(equalToConstant: 100),
             dismissButton.heightAnchor.constraint(equalToConstant: 30),
             
-            //selectButton.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 20),
             selectButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -50),
             selectButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20),
             selectButton.widthAnchor.constraint(equalToConstant: 100),
@@ -148,6 +160,8 @@ class StatisticsViewController: UIViewController {
     
     @objc private func selectBtnTapped() {
         containerView.removeFromSuperview()
+        selectedYear = datePickerSelectedValue
+        setupChart()
     }
     
     private func dismissPickerView(containerView: UIView) {
@@ -191,7 +205,7 @@ class StatisticsViewController: UIViewController {
                 let dateComponent = calendar.dateComponents([.month, .year], from: item.date)
                 guard let month = dateComponent.month else {continue}
                 guard let year = dateComponent.year else {continue}
-                                
+                
                 if index == (month - 1) && selectedYear == year {
                     totalAmountPerMonth += item.amount
                     let entry = ChartDataEntry(x: Double(month - 1), y: totalAmountPerMonth)
@@ -222,7 +236,7 @@ class StatisticsViewController: UIViewController {
         
         totalExpensesLabel.text = "\(settings.currencyIcon) \(totalExpenses)"
         totalIncomeLabel.text = "\(settings.currencyIcon) \(totalIncome)"
-
+        
     }
     
     //MARK: Calculates total expenses and income for current month.
@@ -240,5 +254,42 @@ class StatisticsViewController: UIViewController {
         
         updateUI()
     }
+    
+}
 
+extension StatisticsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return years.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return years[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 50
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        var title = UILabel()
+        if let view = view { title = view as! UILabel }
+        title.font = UIFont(name: "AvenirNext-DemiBold", size: 30)
+        title.textColor = UIColor.label
+        title.text =  years[row]
+        title.textAlignment = .center
+        
+        return title
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        datePickerSelectedValue = Int(years[row])!
+        print(datePickerSelectedValue)
+    }
 }
