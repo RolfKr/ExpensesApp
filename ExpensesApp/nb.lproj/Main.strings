@@ -140,9 +140,6 @@
 /* Class = "UIButton"; normalTitle = "expense"; ObjectID = "ifd-Tj-Xt9"; */
 "ifd-Tj-Xt9.normalTitle" = "utgift";
 
-/* Class = "UILabel"; text = "Expenses"; ObjectID = "jp4-Dh-AN4"; */
-"jp4-Dh-AN4.text" = "Utgifter";
-
 /* Class = "UIViewController"; title = "FinanceVC"; ObjectID = "k1g-y4-hrx"; */
 "k1g-y4-hrx.title" = "FinanceVC";
 

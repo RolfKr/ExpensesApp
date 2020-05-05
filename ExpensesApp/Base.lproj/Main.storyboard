@@ -1126,23 +1126,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DA-Y7-7Bv">
                                 <rect key="frame" x="0.0" y="190" width="375" height="428"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jp4-Dh-AN4">
-                                        <rect key="frame" x="60" y="40" width="66" height="20.5"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses for 2020" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jp4-Dh-AN4">
+                                        <rect key="frame" x="40" y="40" width="216" height="35"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="25"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33l-V4-r67">
-                                        <rect key="frame" x="278" y="40" width="37" height="15"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="15" id="HTz-wh-VuR"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
-                                        <state key="normal" title="2020">
-                                            <color key="titleColor" name="MainColor"/>
-                                        </state>
-                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Rh-9O-ywk" customClass="LineChart" customModule="ExpensesApp" customModuleProvider="target">
-                                        <rect key="frame" x="25" y="85.5" width="325" height="128.5"/>
+                                        <rect key="frame" x="25" y="91" width="325" height="128.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data available" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfE-XX-Hcd">
                                                 <rect key="frame" x="25" y="14" width="275" height="100"/>
@@ -1161,26 +1152,36 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="DSV-Yp-cIn">
-                                        <rect key="frame" x="60" y="230" width="255" height="158"/>
+                                        <rect key="frame" x="60" y="235.5" width="255" height="152.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qh9-QF-Vg0">
+                                        <rect key="frame" x="272" y="40" width="83" height="32"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="14"/>
+                                        <state key="normal" title="CHANGE">
+                                            <color key="titleColor" red="0.78848746830000005" green="0.0" blue="0.1400078115" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="changeBtnTapped:" destination="v4Y-Ut-yMQ" eventType="touchUpInside" id="ojU-O3-U8G"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="SecondaryColor"/>
                                 <constraints>
-                                    <constraint firstItem="7Rh-9O-ywk" firstAttribute="top" secondItem="jp4-Dh-AN4" secondAttribute="bottom" constant="25" id="1xB-DH-m03"/>
+                                    <constraint firstItem="7Rh-9O-ywk" firstAttribute="top" secondItem="jp4-Dh-AN4" secondAttribute="bottom" constant="16" id="1xB-DH-m03"/>
                                     <constraint firstItem="7Rh-9O-ywk" firstAttribute="leading" secondItem="6DA-Y7-7Bv" secondAttribute="leading" constant="25" id="4jq-3J-bdg"/>
                                     <constraint firstItem="jp4-Dh-AN4" firstAttribute="top" secondItem="6DA-Y7-7Bv" secondAttribute="top" constant="40" id="4sZ-kE-qhM"/>
+                                    <constraint firstItem="qh9-QF-Vg0" firstAttribute="top" secondItem="6DA-Y7-7Bv" secondAttribute="top" constant="40" id="6Hb-G5-ZSD"/>
                                     <constraint firstItem="DSV-Yp-cIn" firstAttribute="leading" secondItem="6DA-Y7-7Bv" secondAttribute="leading" constant="60" id="CMp-22-PZc"/>
-                                    <constraint firstItem="33l-V4-r67" firstAttribute="top" secondItem="6DA-Y7-7Bv" secondAttribute="top" constant="40" id="EY7-RC-c0H"/>
+                                    <constraint firstItem="qh9-QF-Vg0" firstAttribute="leading" secondItem="jp4-Dh-AN4" secondAttribute="trailing" constant="16" id="EfD-eo-pzH"/>
                                     <constraint firstAttribute="bottom" secondItem="DSV-Yp-cIn" secondAttribute="bottom" constant="40" id="OQ5-qA-EqW"/>
-                                    <constraint firstItem="33l-V4-r67" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jp4-Dh-AN4" secondAttribute="trailing" constant="50" id="OaX-i9-QRP"/>
-                                    <constraint firstItem="jp4-Dh-AN4" firstAttribute="leading" secondItem="6DA-Y7-7Bv" secondAttribute="leading" constant="60" id="Xm7-qJ-Gc1"/>
+                                    <constraint firstItem="jp4-Dh-AN4" firstAttribute="leading" secondItem="6DA-Y7-7Bv" secondAttribute="leading" constant="40" id="Xm7-qJ-Gc1"/>
+                                    <constraint firstAttribute="trailing" secondItem="qh9-QF-Vg0" secondAttribute="trailing" constant="20" id="gHV-F6-qe4"/>
                                     <constraint firstItem="DSV-Yp-cIn" firstAttribute="top" secondItem="7Rh-9O-ywk" secondAttribute="bottom" constant="16" id="gnh-H8-iW7"/>
                                     <constraint firstAttribute="trailing" secondItem="DSV-Yp-cIn" secondAttribute="trailing" constant="60" id="itZ-qs-Wwb"/>
                                     <constraint firstItem="7Rh-9O-ywk" firstAttribute="height" secondItem="6DA-Y7-7Bv" secondAttribute="height" multiplier="0.3" id="qCj-FE-tJw"/>
                                     <constraint firstAttribute="trailing" secondItem="7Rh-9O-ywk" secondAttribute="trailing" constant="25" id="spk-Ra-ZQU"/>
-                                    <constraint firstAttribute="trailing" secondItem="33l-V4-r67" secondAttribute="trailing" constant="60" id="y4X-pv-mku"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1204,12 +1205,12 @@
                         <outlet property="background" destination="6DA-Y7-7Bv" id="DtN-ap-2Zo"/>
                         <outlet property="chart" destination="7Rh-9O-ywk" id="HMu-Xp-UMy"/>
                         <outlet property="dataAvailableLabel" destination="nfE-XX-Hcd" id="m3k-Fc-soI"/>
+                        <outlet property="expensesLabel" destination="jp4-Dh-AN4" id="sp5-N2-Ms8"/>
                         <outlet property="mostExpenseCategoryLabel" destination="DSV-Yp-cIn" id="45K-4L-cM2"/>
                         <outlet property="totalExpensesContainer" destination="TyT-5Z-Igi" id="LWS-aS-FF1"/>
                         <outlet property="totalExpensesLabel" destination="HyS-eu-W6g" id="0TS-lV-aQp"/>
                         <outlet property="totalIncomeContainer" destination="c7Y-WQ-w7R" id="Il3-d9-eN0"/>
                         <outlet property="totalIncomeLabel" destination="1lw-xW-JWw" id="r5m-cf-bhB"/>
-                        <outlet property="yearButton" destination="33l-V4-r67" id="lP1-db-bFT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4vz-BK-PTq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -18,9 +18,9 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var totalIncomeLabel: UILabel!
     @IBOutlet weak var totalExpensesLabel: UILabel!
     @IBOutlet weak var background: UIView!
-    @IBOutlet weak var yearButton: UIButton!
     @IBOutlet weak var chart: LineChartView!
     @IBOutlet weak var dataAvailableLabel: UILabel!
+    @IBOutlet weak var expensesLabel: UILabel!
     @IBOutlet weak var mostExpenseCategoryLabel: UILabel!
     
     var items = [Item]()
@@ -54,7 +54,9 @@ class StatisticsViewController: UIViewController {
     var chartDataEntries: [ChartDataEntry]!
     var selectedYear = 2020
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map {$0.localized()}
-
+    var datePicker = UIDatePicker()
+    let toolBar = UIToolbar()
+    
     override func viewDidAppear(_ animated: Bool) {
         chartDataEntries = []
         initialSetup()
@@ -64,6 +66,7 @@ class StatisticsViewController: UIViewController {
     }
     
     private func initialSetup() {
+        expensesLabel.text = "Expenses for ".localized() + String(selectedYear)
         totalIncomeContainer.layer.cornerRadius = 8
         totalExpensesContainer.layer.cornerRadius = 8
     }
@@ -73,6 +76,52 @@ class StatisticsViewController: UIViewController {
         allItems = FetchRequest.fetchControllerItems.fetchedObjects!
         items = FetchRequest.fetchControllerItems.fetchedObjects!.filter({ item in checkForCurrentMonth(date: item.date)})
         mostExpensiveCategory = ReferenceBuget.compareWithBudget(with: items)
+    }
+    
+    @IBAction func changeBtnTapped(_ sender: UIButton) {
+        createDatePickerView(changeButton: sender)
+    }
+    
+    private func createDatePickerView(changeButton: UIView) {
+        let width = view.frame.width * 0.8
+        let height = view.frame.height * 0.3
+        let startFrame = CGRect(x: view.frame.midX + width, y: view.frame.midY - (height/2), width: width, height: height)
+        let endFrame = CGRect(x: view.frame.midX - (width/2), y: view.frame.midY - (height/2), width: width, height: height)
+        let containerView = UIView(frame: startFrame)
+        containerView.layer.cornerRadius = 20
+        containerView.backgroundColor = .white
+        view.addSubview(containerView)
+        
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(datePicker)
+        NSLayoutConstraint.activate([
+            datePicker.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 50),
+            datePicker.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
+            datePicker.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
+            datePicker.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20)
+        ])
+        
+        
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
+            containerView.frame = endFrame
+            containerView.layoutIfNeeded()
+        }, completion: nil)
+    }
+
+    @objc func doneClick() {
+        let dateFormatter1 = DateFormatter()
+        dateFormatter1.dateStyle = .medium
+        dateFormatter1.timeStyle = .none
+
+        datePicker.isHidden = true
+        self.toolBar.isHidden = true
+    }
+
+    @objc func cancelClick() {
+        datePicker.isHidden = true
+        self.toolBar.isHidden = true
     }
     
     //MARK: Creates chart.
