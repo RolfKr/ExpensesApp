@@ -66,7 +66,6 @@ class StatisticsViewController: UIViewController {
     private func initialSetup() {
         totalIncomeContainer.layer.cornerRadius = 8
         totalExpensesContainer.layer.cornerRadius = 8
-        background.layer.cornerRadius = 60
     }
     
     private func loadData(){
@@ -78,7 +77,6 @@ class StatisticsViewController: UIViewController {
     
     //MARK: Creates chart.
     private func createChart() {
-        chart.animate(xAxisDuration: 0.5)
         setChartData()
         getDataPoints()
         setChartData()
@@ -94,7 +92,7 @@ class StatisticsViewController: UIViewController {
         set1.fill = Fill(color: .systemTeal)
         set1.fillAlpha = 0.8
         set1.drawFilledEnabled = true
-
+        
         let data = LineChartData(dataSet: set1)
         data.setDrawValues(false)
         chart.data = data

@@ -34,7 +34,6 @@ class SettingsViewController: UITableViewController, ChangedSecurity {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if let checkBiometrics = defaults.value(forKey: "useSecurity") as? Bool {
             lockSwitch.isOn = checkBiometrics
         }

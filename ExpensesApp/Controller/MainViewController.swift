@@ -46,9 +46,9 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
         didSet {
             if expensesSelected {
                 expensesBtn.setTitleColor(.label, for: .normal)
-                incomeBtn.setTitleColor(.systemGray2, for: .normal)
+                incomeBtn.setTitleColor(.secondaryLabel, for: .normal)
             } else {
-                expensesBtn.setTitleColor(.systemGray2, for: .normal)
+                expensesBtn.setTitleColor(.secondaryLabel, for: .normal)
                 incomeBtn.setTitleColor(.label, for: .normal)
             }
         }
