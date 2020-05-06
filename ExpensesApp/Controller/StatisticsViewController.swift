@@ -171,14 +171,14 @@ class StatisticsViewController: UIViewController {
     //MARK: Creates chart.
     private func createChart() {
         getDataPoints()
-        setChartData()
+        //setChartData()
     }
     
     // MARK: Draws each point in chart, based on datapoints.
     private func setChartData() {
         let set1 = LineChartDataSet(entries: chartDataEntries, label: "Expenses per month".localized())
-        set1.drawCirclesEnabled = false
-        set1.mode = .cubicBezier
+        set1.drawCirclesEnabled = true
+        set1.mode = .horizontalBezier
         set1.lineWidth = 3
         set1.setColors(.systemTeal)
         set1.fill = Fill(color: .systemTeal)
@@ -191,27 +191,48 @@ class StatisticsViewController: UIViewController {
         
         chart.xAxis.valueFormatter = IndexAxisValueFormatter(values:months)
         chart.xAxis.granularity = 1
+        
     }
+    
     
     // MARK: Calculates datapoints for chart. Uses items array fetched from coredata
     private func getDataPoints() {
         let calendar = Calendar.current
         
+        var dataPoints = [Int:Double]()
+        
         for (index, _) in months.enumerated() {
-            var totalAmountPerMonth = 0.0
+            let totalAmountPerMonth = 0.0
             
             for item in allItems {
                 let dateComponent = calendar.dateComponents([.month, .year], from: item.date)
                 guard let month = dateComponent.month else {continue}
                 guard let year = dateComponent.year else {continue}
                 
+                
                 if index == (month - 1) && selectedYear == year {
-                    totalAmountPerMonth += item.amount
-                    let entry = ChartDataEntry(x: Double(month - 1), y: totalAmountPerMonth)
-                    chartDataEntries.append(entry)
+                    if let _ = dataPoints[month - 1] {
+                        dataPoints[month - 1]! += Double(item.amount)
+                    } else {
+                        dataPoints[month - 1] = (totalAmountPerMonth + item.amount)
+                        
+                    }
+                    
+                    //totalAmountPerMonth += item.amount
+                    //let entry = ChartDataEntry(x: Double(month - 1), y: totalAmountPerMonth)
+                    //chartDataEntries.append(entry)
                 }
             }
         }
+        
+        for dataPoint in dataPoints {
+            
+            let entry = ChartDataEntry(x: Double(dataPoint.key), y: dataPoint.value)
+            chartDataEntries.append(entry)
+        }
+        
+        chartDataEntries.sort(by: { $0.x < $1.x })
+        setChartData()
     }
     
     // MARK: Checks item in items array if item is for current month
