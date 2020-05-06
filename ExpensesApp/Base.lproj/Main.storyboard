@@ -1144,7 +1144,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" name="SecondaryColor"/>
+                                        <color key="backgroundColor" name="ChartsViewColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="nfE-XX-Hcd" secondAttribute="trailing" constant="25" id="AtQ-6e-web"/>
                                             <constraint firstItem="nfE-XX-Hcd" firstAttribute="centerY" secondItem="7Rh-9O-ywk" secondAttribute="centerY" id="NzC-lL-V9g"/>
@@ -1167,7 +1167,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" name="SecondaryColor"/>
+                                <color key="backgroundColor" name="ChartsViewColor"/>
                                 <constraints>
                                     <constraint firstItem="7Rh-9O-ywk" firstAttribute="top" secondItem="jp4-Dh-AN4" secondAttribute="bottom" constant="16" id="1xB-DH-m03"/>
                                     <constraint firstItem="7Rh-9O-ywk" firstAttribute="leading" secondItem="6DA-Y7-7Bv" secondAttribute="leading" constant="25" id="4jq-3J-bdg"/>
@@ -1656,6 +1656,9 @@ with iCloud sync</string>
         <image name="settings" width="30" height="30"/>
         <namedColor name="BarColor">
             <color red="0.24099999666213989" green="0.67400002479553223" blue="0.875" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="ChartsViewColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="DarkBlueGradient">
             <color red="0.2196078431372549" green="0.67843137254901964" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

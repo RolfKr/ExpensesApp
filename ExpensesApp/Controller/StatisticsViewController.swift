@@ -53,7 +53,11 @@ class StatisticsViewController: UIViewController {
     var totalExpenses = 0.0
     var totalIncome = 0.0
     var chartDataEntries: [ChartDataEntry]!
-    var selectedYear = 2020
+    var selectedYear = 2020 {
+        didSet {
+            expensesLabel.text = "Expenses for ".localized() + String(selectedYear)
+        }
+    }
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map {$0.localized()}
     var datePicker = UIPickerView()
     var datePickerSelectedValue = 2020
@@ -79,7 +83,6 @@ class StatisticsViewController: UIViewController {
     }
     
     private func initialSetup() {
-        expensesLabel.text = "Expenses for ".localized() + String(selectedYear)
         totalIncomeContainer.layer.cornerRadius = 8
         totalExpensesContainer.layer.cornerRadius = 8
     }
@@ -102,11 +105,14 @@ class StatisticsViewController: UIViewController {
         let endFrame = CGRect(x: view.frame.midX - (width/2), y: view.frame.midY - (height/2), width: width, height: height)
         containerView = UIView(frame: startFrame)
         containerView.layer.cornerRadius = 20
-        containerView.backgroundColor = .white
+        containerView.backgroundColor = UIColor(named: "TertiaryColor")
+        containerView.layer.borderColor = UIColor(named: "SecondaryColor")?.cgColor
+        containerView.layer.borderWidth = 4
         view.addSubview(containerView)
         
         datePicker.dataSource = self
         datePicker.delegate = self
+        datePicker.backgroundColor = UIColor(named: "TertiaryColor")
         datePicker.selectRow(datePickerSelectedValue - 2000, inComponent:0, animated:true)
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(datePicker)
@@ -171,7 +177,6 @@ class StatisticsViewController: UIViewController {
     //MARK: Creates chart.
     private func createChart() {
         getDataPoints()
-        //setChartData()
     }
     
     // MARK: Draws each point in chart, based on datapoints.
@@ -215,18 +220,12 @@ class StatisticsViewController: UIViewController {
                         dataPoints[month - 1]! += Double(item.amount)
                     } else {
                         dataPoints[month - 1] = (totalAmountPerMonth + item.amount)
-                        
                     }
-                    
-                    //totalAmountPerMonth += item.amount
-                    //let entry = ChartDataEntry(x: Double(month - 1), y: totalAmountPerMonth)
-                    //chartDataEntries.append(entry)
                 }
             }
         }
         
         for dataPoint in dataPoints {
-            
             let entry = ChartDataEntry(x: Double(dataPoint.key), y: dataPoint.value)
             chartDataEntries.append(entry)
         }

@@ -22,7 +22,7 @@ class LineChart: LineChartView {
     }
     
     private func configure() {
-        backgroundColor = UIColor(named: "SecondaryColor")
+        backgroundColor = UIColor(named: "ChartsViewColor")
         rightAxis.enabled = false
         let yAxix =  self.leftAxis
         yAxix.labelFont = .boldSystemFont(ofSize: 12)
