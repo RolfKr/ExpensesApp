@@ -28,13 +28,19 @@
 "SKIP" = "Hopp over";
 "Expenses per month" = "Utgifter per måned";
 "Enter a monthly budget" = "Endre månedlig budsjett";
+"Expenses" = "Utgifter";
+"Incomes" = "Inntekter";
 "Monthly Budget" = "Månedlig Budsjett";
-" expense details" = " utgift detaljer";
+"Details" = "Detaljer";
 "Swipe to delete" = "Sveip for å slette";
 "Enter name here" = "Legg inn navn";
 "Expenses for " = "Utgifter for ";
 "Dismiss" = "Lukk";
 "Select" = "Velg";
+"Use current time" = "Bruk nåværende dato";
+"Set the date" = "Velg en dato";
+"Custom Date" = "Tilpasset dato";
+"DONE" = "FERDIG";
 
 "Entertainment" = "Underholdning";
 "Education" = "Utdanning";
@@ -127,7 +133,7 @@
 "Create a buffer account that contains a minimum of 3 months pay, in case of a rainy day." = "Opprett en bufferkonto som inneholder minst 3 ganger din egen månedslønn, i tilfelle noe uforutsett skulle oppstå.";
 "Create a savingsaccount that deducts a set amount of money on payday. By doing this you wont notice that you are saving." = "Opprett en sparekonto hvor du overfører en fast sum hver måned, på lønningsdagen. På denne måten vil du ikke merke at du sparer.";
 
-"is your most expensive category.\n Try to reduce the cost of this category next month." = "er din mest kostbare kategori denne måneden. Forsøk å reduser kostnadene dine i denne kategorien neste måned.";
+"is your most expensive category.\n Try to reduce the cost of this category next month." = "er din mest kostbare kategori denne måneden. Forsøk å reduser kostnadene dine neste måned.";
 "No data available. Add some new expenses first." = "Ingen data tilgjengelig. Legg til nye utgifter først.";
 
 "Jan" = "Jan";

@@ -22,7 +22,6 @@ class AddItemViewController: UIViewController, SetTimeDelegate {
     @IBOutlet weak var currencyIcon: UILabel!
     @IBOutlet weak var doneBtn: UIButton!
     
-    
     var delegate: AddItemDelegate?
     var addingExpense = true
     var categoryTypes = Constants.categoryTypes
@@ -40,15 +39,20 @@ class AddItemViewController: UIViewController, SetTimeDelegate {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadCategories()
-        loadSettings()
-        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        doneBtn.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
+        doneBtn.setTitle("DONE".localized(), for: .normal)
         let placeholderColor = UIColor.init(white: 1, alpha: 0.5)
         amountTextField.attributedPlaceholder = NSAttributedString(
             string: "0.00",
             attributes: [NSAttributedString.Key.foregroundColor: placeholderColor])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadCategories()
+        loadSettings()
     }
     
     private func loadCategories() {
@@ -163,9 +167,9 @@ extension AddItemViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
-        view.tintColor = UIColor(named: "SecondaryColor")
+        view.tintColor = UIColor(named: "MainColor")
         let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = .label
+        header.textLabel?.textColor = .white
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

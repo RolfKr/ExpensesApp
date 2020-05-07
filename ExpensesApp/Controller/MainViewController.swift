@@ -19,7 +19,12 @@ class MainViewController: UIViewController, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var totalExpensesLabel: UILabel!
     
     @IBOutlet weak var progressContainer: UIView!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var segmentedControl: UISegmentedControl! {
+        didSet {
+            segmentedControl.setTitle("Expenses".localized(), forSegmentAt: 0)
+            segmentedControl.setTitle("Incomes".localized(), forSegmentAt: 1)
+        }
+    }
     
     @IBOutlet weak var progress: UIView!
     @IBOutlet weak var progressConstraint: NSLayoutConstraint!

@@ -25,7 +25,7 @@ class ExpensesDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         filterCategories()
-        detailTitle.text = selectedCategory + " expense details".localized()
+        detailTitle.text = "Details".localized()
     }
 
     

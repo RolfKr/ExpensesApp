@@ -14,6 +14,10 @@ protocol SetTimeDelegate {
 
 class SetTimeViewController: UIViewController {
     
+    @IBOutlet weak var doneBtn: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var setTimeLabel: UILabel!
+    @IBOutlet weak var setDateLabel: UILabel!
     @IBOutlet weak var customDateContainerView: UIView!
     @IBOutlet weak var customDateSwitch: UISwitch!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -22,7 +26,11 @@ class SetTimeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setTimeLabel.text = "Use current time".localized()
+        setDateLabel.text = "Set the date".localized()
+        titleLabel.text = "Custom Date".localized()
+        doneBtn.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
+        doneBtn.setTitle("DONE".localized(), for: .normal)
     }
     
     @IBAction func customDateSwitchToggle(_ sender: UISwitch) {

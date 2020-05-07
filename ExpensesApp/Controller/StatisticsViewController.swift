@@ -44,7 +44,7 @@ class StatisticsViewController: UIViewController {
             if categoryText == "" {
                 mostExpenseCategoryLabel.text = savingTips.randomElement()
             } else {
-                mostExpenseCategoryLabel.text = "\(categoryText) " +  "is your most expensive category.\n Try to reduce the cost of this category next month.".localized()
+                mostExpenseCategoryLabel.text = "\(categoryText) " +  "is your most expensive category.\n Try to reduce the cost next month.".localized()
             }
         }
     }
