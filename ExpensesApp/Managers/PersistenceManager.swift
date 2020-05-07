@@ -53,20 +53,4 @@ class PersistenceManager {
         
         return items
     }
-    
-    static func fetchScore() -> Scorestreak? {
-        #warning("Need to fix this. Use Fetched controller instead.")
-        let fetchRequest: NSFetchRequest<Scorestreak> = Scorestreak.fetchRequest()
-        var score: [Scorestreak] = []
-        
-        do {
-            score = try persistentContainer.viewContext.fetch(fetchRequest)
-            
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        
-        guard let firstEntry = score.first else {return nil}
-        return firstEntry
-    }
 }

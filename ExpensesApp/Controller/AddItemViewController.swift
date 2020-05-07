@@ -14,7 +14,7 @@ protocol AddItemDelegate {
 }
 
 class AddItemViewController: UIViewController, SetTimeDelegate {
-        
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -78,10 +78,21 @@ class AddItemViewController: UIViewController, SetTimeDelegate {
     }
     
     @IBAction func doneBtnTapped(_ sender: UIButton) {
-        guard let name = nameTextField.text, !name.isEmpty else {return}
-        guard let amount = amountTextField.text, !amount.isEmpty else {return}
+        guard let name = nameTextField.text, !name.isEmpty else {
+            showPopupAlert(on: view, message: "You need to enter a name")
+            return
+        }
+        
+        guard let amount = amountTextField.text, !amount.isEmpty else {
+            showPopupAlert(on: view, message: "You need to enter an amount")
+            return
+        }
+        
         guard let amountDouble = Double(amount) else {return}
-        guard let category = selectedCategory else {return}
+        guard let category = selectedCategory else {
+                showPopupAlert(on: view, message: "You need to choose a category")
+                return
+        }
         
         createItem(name: name, amount: amountDouble, category: category, date: selectedDate ?? Date())
         delegate?.didFinishAddingItem()
@@ -91,7 +102,6 @@ class AddItemViewController: UIViewController, SetTimeDelegate {
         
         nameTextField.resignFirstResponder()
         amountTextField.resignFirstResponder()
-        #warning("Show an error message when some of the fields are empty")
     }
     
     func didSelectTime(date: Date) {
