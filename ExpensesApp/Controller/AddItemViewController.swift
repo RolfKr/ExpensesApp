@@ -187,6 +187,7 @@ extension AddItemViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("HEYYY")
         if isSearching {
             let category = filteredCategories[indexPath.row]
             selectedCategory = category

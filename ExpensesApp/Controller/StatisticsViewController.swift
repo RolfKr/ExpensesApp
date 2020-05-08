@@ -22,6 +22,7 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var dataAvailableLabel: UILabel!
     @IBOutlet weak var expensesLabel: UILabel!
     @IBOutlet weak var mostExpenseCategoryLabel: UILabel!
+    @IBOutlet weak var changeBtn: UIButton!
     
     var containerView = UIView()
     var items = [Item]()
@@ -70,8 +71,11 @@ class StatisticsViewController: UIViewController {
         return years
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidLoad() {
         initialSetup()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         setupChart()
     }
     
@@ -85,6 +89,9 @@ class StatisticsViewController: UIViewController {
     private func initialSetup() {
         totalIncomeContainer.layer.cornerRadius = 8
         totalExpensesContainer.layer.cornerRadius = 8
+        expensesLabel.text = "Expenses for ".localized() + "\(selectedYear)"
+        changeBtn.setTitle("Change".localized(), for: .normal)
+        changeBtn.setTitleColor(UIColor(named: "ButtonColor"), for: .normal)
     }
     
     private func loadData(){
@@ -141,12 +148,12 @@ class StatisticsViewController: UIViewController {
             datePicker.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
             datePicker.bottomAnchor.constraint(equalTo: dismissButton.bottomAnchor, constant: -40),
             
-            dismissButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 50),
+            dismissButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 30),
             dismissButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20),
             dismissButton.widthAnchor.constraint(equalToConstant: 100),
             dismissButton.heightAnchor.constraint(equalToConstant: 30),
             
-            selectButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -50),
+            selectButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -30),
             selectButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20),
             selectButton.widthAnchor.constraint(equalToConstant: 100),
             selectButton.heightAnchor.constraint(equalToConstant: 30),
@@ -182,7 +189,7 @@ class StatisticsViewController: UIViewController {
     // MARK: Draws each point in chart, based on datapoints.
     private func setChartData() {
         let set1 = LineChartDataSet(entries: chartDataEntries, label: "Expenses per month".localized())
-        set1.drawCirclesEnabled = true
+        set1.drawCirclesEnabled = false
         set1.mode = .horizontalBezier
         set1.lineWidth = 3
         set1.setColors(.systemTeal)

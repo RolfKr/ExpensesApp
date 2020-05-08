@@ -17,5 +17,4 @@ class CategoryCell: UITableViewCell {
         categoryImage.image = image
         categoryLabel.text = name
     }
-
 }

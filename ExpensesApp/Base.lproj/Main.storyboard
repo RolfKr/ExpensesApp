@@ -940,7 +940,6 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" name="TertiaryColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailingMargin" secondItem="7Oh-cf-g2X" secondAttribute="trailing" constant="20" id="3WA-dz-yVI"/>
                                                         <constraint firstItem="7Oh-cf-g2X" firstAttribute="leading" secondItem="JvN-yi-KQ7" secondAttribute="trailing" constant="25" id="cf9-bq-gGO"/>
@@ -949,6 +948,7 @@
                                                         <constraint firstItem="JvN-yi-KQ7" firstAttribute="leading" secondItem="jKp-dk-Nro" secondAttribute="leading" constant="20" id="zjX-u0-HGd"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <color key="backgroundColor" name="TertiaryColor"/>
                                                 <connections>
                                                     <outlet property="categoryImage" destination="JvN-yi-KQ7" id="Tzl-fu-iy9"/>
                                                     <outlet property="categoryLabel" destination="7Oh-cf-g2X" id="QLG-Y1-g3O"/>
@@ -1136,10 +1136,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Rh-9O-ywk" customClass="LineChart" customModule="ExpensesApp" customModuleProvider="target">
-                                        <rect key="frame" x="25" y="91" width="325" height="137.5"/>
+                                        <rect key="frame" x="25" y="91" width="325" height="183"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data available" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfE-XX-Hcd">
-                                                <rect key="frame" x="25" y="18.5" width="275" height="100"/>
+                                                <rect key="frame" x="25" y="41.5" width="275" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="thd-nz-R21"/>
                                                 </constraints>
@@ -1155,15 +1155,15 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="DSV-Yp-cIn">
-                                        <rect key="frame" x="60" y="244.5" width="255" height="173.5"/>
+                                        <rect key="frame" x="60" y="290" width="255" height="128"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qh9-QF-Vg0">
-                                        <rect key="frame" x="272" y="40" width="83" height="32"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="14"/>
+                                        <rect key="frame" x="272" y="40" width="83" height="37"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                                         <state key="normal" title="CHANGE">
-                                            <color key="titleColor" red="0.78848746830000005" green="0.0" blue="0.1400078115" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="titleColor" name="MainColor"/>
                                         </state>
                                         <connections>
                                             <action selector="changeBtnTapped:" destination="v4Y-Ut-yMQ" eventType="touchUpInside" id="ojU-O3-U8G"/>
@@ -1183,7 +1183,7 @@
                                     <constraint firstAttribute="trailing" secondItem="qh9-QF-Vg0" secondAttribute="trailing" constant="20" id="gHV-F6-qe4"/>
                                     <constraint firstItem="DSV-Yp-cIn" firstAttribute="top" secondItem="7Rh-9O-ywk" secondAttribute="bottom" constant="16" id="gnh-H8-iW7"/>
                                     <constraint firstAttribute="trailing" secondItem="DSV-Yp-cIn" secondAttribute="trailing" constant="60" id="itZ-qs-Wwb"/>
-                                    <constraint firstItem="7Rh-9O-ywk" firstAttribute="height" secondItem="6DA-Y7-7Bv" secondAttribute="height" multiplier="0.3" id="qCj-FE-tJw"/>
+                                    <constraint firstItem="7Rh-9O-ywk" firstAttribute="height" secondItem="6DA-Y7-7Bv" secondAttribute="height" multiplier="0.4" id="qCj-FE-tJw"/>
                                     <constraint firstAttribute="trailing" secondItem="7Rh-9O-ywk" secondAttribute="trailing" constant="25" id="spk-Ra-ZQU"/>
                                 </constraints>
                             </view>
@@ -1206,6 +1206,7 @@
                     <tabBarItem key="tabBarItem" title="Statistics" image="graph" id="cua-vb-1d9"/>
                     <connections>
                         <outlet property="background" destination="6DA-Y7-7Bv" id="DtN-ap-2Zo"/>
+                        <outlet property="changeBtn" destination="qh9-QF-Vg0" id="TVk-iF-czl"/>
                         <outlet property="chart" destination="7Rh-9O-ywk" id="HMu-Xp-UMy"/>
                         <outlet property="dataAvailableLabel" destination="nfE-XX-Hcd" id="m3k-Fc-soI"/>
                         <outlet property="expensesLabel" destination="jp4-Dh-AN4" id="sp5-N2-Ms8"/>

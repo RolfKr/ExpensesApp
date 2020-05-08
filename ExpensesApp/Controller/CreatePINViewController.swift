@@ -22,7 +22,7 @@ class CreatePINViewController: UIViewController {
         super.viewWillAppear(animated)
         pinTextField.delegate = self
         if fromSettings == true {
-            skipButton.setTitle("Dismiss", for: .normal)
+            skipButton.setTitle("Dismiss".localized(), for: .normal)
         } else {
             skipButton.setTitle("SKIP".localized(), for: .normal)
         }
